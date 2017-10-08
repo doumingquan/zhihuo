@@ -298,12 +298,11 @@
                                 <label class="col-lg-3 control-label">是否显示</label>
                                 <div class="col-lg-7">
                                     <div class="radio">
-                                        <input id="demo-radio-3" class="magic-radio" type="radio" name="show" value="0" data-bv-field="memberType">
+                                        <input id="demo-radio-3" class="magic-radio" type="radio" {if condition="$v['show'] eq 0" }checked="checked"{/if} name="show" value="0" data-bv-field="memberType">
                                         <label for="demo-radio-3">隐藏</label>
 
-                                        <input id="demo-radio-4" class="magic-radio" type="radio" name="show" value="1" data-bv-field="memberType">
+                                        <input id="demo-radio-4" class="magic-radio" type="radio" {if condition="$v['show'] eq 1"} checked="checked"{/if}  name="show" value="1" data-bv-field="memberType">
                                         <label for="demo-radio-4">显示</label>
-
 
                                     </div>
                                 </div>
@@ -344,11 +343,9 @@
             var ruleId=$(obj).attr('ruleId');
             var ruletitle=$(obj).attr('ruletitle');
             var ruleName=$(obj).attr('ruleName');
-            var ruleshow=$(obj).attr('ruleshow');
             $("input[name='id']").val(ruleId);
             $("input[name='title']").val(ruletitle);
             $("input[name='name']").val(ruleName);
-            $("input:radio[name='show']").val(ruleshow);
             $('#thinkright-edit').modal('show');
         }
     </script>    
