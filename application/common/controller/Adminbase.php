@@ -58,7 +58,14 @@ class AdminBase extends Base
         /*if (!$result) {
             $this->error('您没有权限访问');
         }*/
+
     }
+
+    public function header_404(){
+        require('404.html');
+        exit();
+    }
+
 
 
 }
