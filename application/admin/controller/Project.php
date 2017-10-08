@@ -78,7 +78,7 @@ class Project extends Adminbase{
     public function edit($id){
         if(Request::instance()->post()){
             $data=input('post.');
-            var_dump($data);
+            //var_dump($data);
             $userdata=[
                 'pro'=>$data['pro'],
                 'cycle'=>$data['cycle'],
@@ -98,18 +98,23 @@ class Project extends Adminbase{
                 $this->error('修改失败');
             }
         }else{
-            $data = DB::name('project')->where(array('id'=>$id))->find();
-            // $info = DB::name('admin')->field('username')->where('id','in',$data['admin_id'])->select();//dump($info);
-            // $arr = array();
-            // foreach($info as $v){
-            //     array_push($arr,$v['username']);
-            // }
-            // $str = implode(',',$arr);
-            // $data['_parti'] = $str;
+            $data = DB::name('project')->where(array('id'=>$id))->find();//dump($data);
+            $admin_id = $data['admin_id'];
+            $info=db('admin')->field('username')->where("id", 'in',"$admin_id")->select();//dump($info);
+            $array = array();
+            foreach ($info as $key => $value) {
+                array_push($array,$value['username']);
+              
+               //dump($array);
+            }
+
             $user = DB::name('admin')->field('id,username')->select();//dump($info);
+          
+      
             $position = db('position')->select();
             // $user = DB::name('admin')->field('id,username')->select();
             $this->assign('position',$position);
+            $this->assign('string',$array);
             $this->assign('user',$user);
             $this->assign('data',$data);
 
