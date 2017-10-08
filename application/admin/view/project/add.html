@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目列表</title>
+
+
+   {include file='layout/top' /}
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+        
+        <!--NAVBAR-->
+        <!--===================================================-->
+         {include file='layout/header' /}  
+        <!--===================================================-->
+        <!--END NAVBAR-->
+
+        <div class="boxed">
+
+            <!--CONTENT CONTAINER-->
+            <!--===================================================-->
+            <div id="content-container">
+                
+                <!--Page Title-->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <div id="page-title">
+                    <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
+
+                    <!--Searchbox-->
+                    <!-- <div class="searchbox">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search..">
+                            <span class="input-group-btn">
+                                <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                            </span>
+                        </div>
+                    </div> -->
+                </div>
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <!--End page title-->
+
+
+                <!--Breadcrumb-->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <ol class="breadcrumb">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">项目信息</a></li>
+                    <li class="active">添加</li>
+                </ol>
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <!--End breadcrumb-->
+                <div class="panel">
+                    <!-- <div class="panel-heading">
+                        <h3 class="panel-title">Add &amp; Remove Rows</h3>
+                    </div> -->
+                
+                    <!-- Foo Table - Add & Remove Rows -->
+                    <!--===================================================-->
+                    <div class="panel-body">
+                        <form class="panel-body form-horizontal form-padding" method="post">
+
+                            <!--Text Input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="demo-text-input">项目名称</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="demo-text-input" class="form-control" name="pro" placeholder="名称" value="{$data.pro}">
+                                </div>
+                            </div>
+
+                            <div class="form-group pad-ver">
+                                <label class="col-md-3 control-label">项目类型</label>
+                                <div class="col-md-9">
+                                    <div class="radio">
+                                        <!-- Inline radio buttons -->
+                                        {volist id="vo" name="data"}
+                                        <input id="demo-inline-form-radio-{$vo.id}" class="magic-radio" type="radio"  name="pro_style_id" value="{$vo.id}" >
+                                        <label for="demo-inline-form-radio-{$vo.id}" >{$vo.position}</label>
+                                        {/volist}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!--Password-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="demo-password-input">项目周期</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="demo-password-input" value="" class="form-control" name="cycle" placeholder="项目天数/单位天">
+
+                                </div>
+                            </div>
+                            <!--Textarea-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="demo-textarea-input">项目描述</label>
+                                <div class="col-md-9">
+                                    <textarea id="demo-textarea-input" rows="9" class="form-control" placeholder="填写项目描述" name="desc"></textarea>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group pad-ver">
+                                <label class="col-md-3 control-label">项目参与人员</label>
+                                <div class="col-md-9">
+                                    <div class="checkbox">
+                                        <!-- Inline Checkboxes -->
+                                        {foreach name="user" item="vv"}
+                                        <input id="demo-form-inline-checkbox-{$vv['id']}" class="magic-checkbox" type="checkbox" name="admin_ids[]"  value="{$vv['id']}" >
+                                        <label for="demo-form-inline-checkbox-{$vv['id']}">{$vv['username']} </label>
+                                        {/foreach}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group pad-ver">
+                                <label class="col-md-3 control-label">项目状态</label>
+                                <div class="col-md-9">
+                                    <div class="radio">
+                                        <!-- Inline radio buttons -->
+                                        <input id="demo-inline-form-radio-1" class="magic-radio" type="radio" checked="checked"  name="status" value="1" >
+                                        <label for="demo-inline-form-radio-1">未完成</label>
+                                        <input id="demo-inline-form-radio-2"  class="magic-radio" type="radio"  name="status" value="2" >
+                                        <label for="demo-inline-form-radio-2">已完成</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer text-right">
+                                <button class="btn btn-success" type="submit">提交</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--===================================================-->
+                    <!-- End Foo Table - Add & Remove Rows -->
+                
+                </div>
+            </div>
+            <!--===================================================-->
+            <!--END CONTENT CONTAINER-->
+
+ {include file="layout/left" /}
+
+        </div>
+
+        
+{include file="layout/footer" /}
+
+
+        <!-- SCROLL PAGE BUTTON -->
+        <!--===================================================-->
+        <button class="scroll-top btn">
+            <i class="pci-chevron chevron-up"></i>
+        </button>
+        <!--===================================================-->
+
+
+
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+
+    
+        <!-- SETTINGS - DEMO PURPOSE ONLY -->
+    <!-- END SETTINGS -->
+
+
+</body>
+</html>
