@@ -46,13 +46,46 @@ class AdminBase extends Base
                 $menu[$k]['children'][$k1]['children'] = db('authRule')->where($_map)->where(array('pid' => $v1['id'], 'show' => 1))->select();
             }
         }
-        // // print_r($menu); die;
+        // echo "<pre>";
+        // print_r($menu); 
+        // echo "</pre>";die;
         $this->assign([
             'menu' => $menu,
         ]);
 
         // end菜单
         $result = $auth->check($rule_name, session('user')['id']);
+
+        $cate = db('auth_group_access')->alias('au')->field('g.id,c.id cid,c.pid,c.company')->join('__ADMIN__ a','a.id=au.uid')->join('admin_auth_group g','g.id=au.group_id')->join('__COMPANY__ c','c.id = a.company_id')->where('a.id',$this->uid)->find();// dump($cate);
+        session('admin_cate',$cate);
+        //超级管理员
+        // switch ($cate['id']) {
+        //     case 1://超级管理员
+        //         //$allinfo = 
+        //         break;
+        //     case 2://一般管理员
+        //         //$allinfo = 
+        //         break;
+        //     case 4://员工,查出所在公司的员工信息
+        //     //查出该员工所在公司
+        //     //查出该公司所有员工的信息
+        //        // $allinfo = 
+        //         break;
+        //     default:
+            
+        //         break;
+        // }
+        // switch ($cate['pid']) {
+        //     case 0://顶级公司,无限极分类查出所有该公司下员工的信息
+        //        // $allinfo = 
+        //         break;
+        //     //员工,查出该公司下所有员工的信息
+        //     default:
+            
+        //         break;
+        // }
+
+      
 
 
         /*if (!$result) {
@@ -65,7 +98,6 @@ class AdminBase extends Base
         require('404.html');
         exit();
     }
-
 
 
 }

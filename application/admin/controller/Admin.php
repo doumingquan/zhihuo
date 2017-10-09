@@ -46,7 +46,7 @@ class Admin extends Adminbase
     public function ad_list()
     {
         //使用左连接查询
-        $admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('status=2')->paginate(20);
+        $admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=2')->paginate(20);
         //halt($info);exit;
         $this->assign('admin', $admin);
         return view();
@@ -64,7 +64,7 @@ class Admin extends Adminbase
     public function check_index()
     {
         //使用左连接查询
-        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('status=2')->paginate(15);
+        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=2')->paginate(15);
         //halt($info);exit;
         $this->assign('data', $info);
         // dump($info);

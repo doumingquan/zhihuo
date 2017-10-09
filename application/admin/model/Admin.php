@@ -71,4 +71,10 @@ class Admin extends \think\Model
         } 
         return array('year'=>$Y,'month'=>$m,'day'=>$d); 
     }
+
+//通过查询出用户的公司的信息
+    // public function select($id){
+    //    $cate = db('auth_group_access')->alias('au')->field('g.id,g.title,c.pid,c.company')->join('__ADMIN__ a','a.id=au.uid')->join('admin_auth_group g','g.id=au.group_id')->join('__COMPANY__ c','c.id = a.company_id')->where('a.id',$id)->find();
+    //     return $cate; 
+    // }
 }

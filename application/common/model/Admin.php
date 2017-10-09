@@ -19,7 +19,7 @@ class Admin extends Model{
 		}
 
 //验证密码是否正确($this指代的是control)；//需要对密码进行加密
-		$info=db('admin')->where('username',$data['username'])->where('password',md5($data['password']))->find();//dump($info);
+		$info=db('admin')->alias('a')->where('username',$data['username'])->where('password',md5($data['password']))->find();//dump($info);
 		//$info=$this->where('admin_name',$data['username'])->where('password',$data['password'])->find();
 //halt(info);
 		//echo $this->getlastSql();exit;

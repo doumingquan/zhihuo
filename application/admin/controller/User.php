@@ -56,12 +56,13 @@ class User extends Adminbase{
     public function add_user(){
         if(Request::instance()->post()){
             $data=input('post.');
-           
+           //halt($data);
             $userdata=[
                 'username'=>$data['username'],
-                'phone'=>$data['phone'],
+                'mobile'=>$data['phone'],
                 'password'=>md5($data['password']),
                 'status'=>$data['status'],
+                'company_id'=>$data['company_id']
 
             ];
             //dump($userdata);exit;
@@ -84,8 +85,10 @@ class User extends Adminbase{
             }
         }else{
             $data=Db::name('auth_group')->select();
+            $info = Db::name('company')->where()->select();//dump($info);
             $assign=array(
-                'data'=>$data
+                'data'=>$data,
+                'info'=>$info
                 );
             $this->assign($assign);
             return $this->fetch();

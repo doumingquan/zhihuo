@@ -9,8 +9,9 @@ class Index extends Adminbase
    {
 
        $id=$this->uid;
-       $statue=db('admin')->field('id,remark')->where(array('id'=>$id))->find();
-       $statue=$statue['remark'];
+       // $statue=db('admin')->field('id,remark')->where(array('id'=>$id))->find();
+       // $statue=$statue['remark'];
+       $statue=session('admin_cate')['id'];//echo $statue;
        if($statue ==1){
            //完成数量
            $date=db('project')->where('is_delete!=2')->where('status=2')->count();
@@ -19,7 +20,7 @@ class Index extends Adminbase
            
            $BeginDate=date('Y-m-01', strtotime(date("Y-m-d")));
            $Begin = strtotime($BeginDate);//echo $Begin;
-		   $last = strtotime("$BeginDate +1 month -1 day");
+		        $last = strtotime("$BeginDate +1 month -1 day");
 		   //echo $lastDate;
             $total1=db('project')->where('is_delete!=2')->where('status=1')->where('createtime','between',[$Begin,$last])->count();
             $total2=db('project')->where('is_delete!=2')->where('status=2')->where('createtime','between',[$Begin,$last])->count();
