@@ -103,11 +103,9 @@ class Project extends Adminbase{
             $info=db('admin')->field('username')->where("id", 'in',"$admin_id")->select();//dump($info);
             $array = array();
             foreach ($info as $key => $value) {
-                array_push($array,$value['username']);
-              
-               //dump($array);
+                array_push($array,$value['username']);           
             }
-
+            //dump($array);
             $user = DB::name('admin')->field('id,username')->select();//dump($info);
           
       

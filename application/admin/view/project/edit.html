@@ -174,12 +174,13 @@
 
 
                             <div class="form-group pad-ver">
-                                <label class="col-md-3 control-label">项目参与人员</label>
+                                <label class="col-md-3 control-label">项目参与人员</label> 
                                 <div class="col-md-9">
                                     <div class="checkbox">
                                         <!-- Inline Checkboxes -->
                                         {foreach name="user" item="vv"}
-                                        <input id="demo-form-inline-checkbox-{$vv['id']}" class="magic-checkbox" type="checkbox" name="admin_ids[]"  value="{$vv['id']}" <?php if($vv['id']==$data['id']) {echo 'checked="checked"';}?> >
+                                        <input id="demo-form-inline-checkbox-{$vv['id']}"  class="magic-checkbox" type="checkbox" name="admin_ids[]"  value="{$vv['id']}" <?php if(in_array($vv['username'],$string)){echo 'checked="checked"';} ?> >
+
                                         <label for="demo-form-inline-checkbox-{$vv['id']}">{$vv['username']} </label>
                                         {/foreach}
                                     </div>
@@ -195,6 +196,8 @@
                                         <label for="demo-inline-form-radio-1">未完成</label>
                                         <input id="demo-inline-form-radio-2" <?php if($data['status']==2) {echo "checked='checked'";}?> class="magic-radio" type="radio"  name="status" value="2" >
                                         <label for="demo-inline-form-radio-2">已完成</label>
+                                        <input id="demo-inline-form-radio-3" <?php if($data['status']==3) {echo "checked='checked'";}?> class="magic-radio" type="radio"  name="status" value="3" >
+                                        <label for="demo-inline-form-radio-3">正在完成</label>
                                     </div>
                                 </div>
                             </div>

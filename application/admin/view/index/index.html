@@ -578,18 +578,14 @@ d
 
 	</script>
 
-
 	<script type="text/javascript">
 
 
-        // 初始化两个数组，盛装从数据库中获取到的数据
-
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main2'));
         option = {
             title : {
-                text: '每月工作完成通奸',
-                subtext: '选取每月完成数据',
+                text: '本月工作完成统计',
+                subtext: '总共数据',
                 x:'center'
             },
             tooltip : {
@@ -608,9 +604,9 @@ d
                     radius : '55%',
                     center: ['50%', '60%'],
                     data:[
-                        {value:'{$date2}', name:'未完成数量'},
-                        {value:'{$date}', name:'完成数量'},
-                        {value:0, name:'正在进行'},
+                        {value:'{$total1}', name:'未完成数量'},
+                        {value:'{$total2}', name:'完成数量'},
+                        {value:'{$total3}', name:'正在进行'},
 
                     ],
                     itemStyle: {
@@ -626,8 +622,15 @@ d
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
-
     </script>
+
+
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+	</script>
+
 
 </body>
 </html>
