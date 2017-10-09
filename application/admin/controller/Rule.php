@@ -44,8 +44,8 @@ class Rule extends AdminBase{
      * 修改权限
      */
     public function edit(){
-        $data=input('post.'); 
-        $info=['title'=>$data['title'],'name'=>$data['name']];
+        $data=input('post.');
+        $info=['title'=>$data['title'],'name'=>$data['name'],'show'=>$data['show']];
         $result=Db::name('auth_rule')->where(["id"=>$data['id']])->update($info);
         // $result=\app\admin\model\Admin::change(["id"=>$data['id']],$info);
         if ($result) {
