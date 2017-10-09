@@ -160,19 +160,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                               {volist id="vo" name="cateRes"}
                                 <tr>
-                                    <td>admin</td>
-                                    <td>超级管理员</td>
-                                    <td>超级管理员</td>
-                                    <td>超级管理员</td>
+
+                                    <td>{$vo.id}</td>
+                                    <td><?php echo str_repeat('-', $vo['level']*8);?>{$vo.company}</td>
+                                    <td>{if condition="$vo['status'] eq 1"}显示{else/}隐藏{/if}</td>
+                                    <td>{$vo.sort}</td>
                                     <td >
                                         <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary">
                                             修改
                                         </a>
                                         <a id="{$vo.id}" class="btn btn-danger btn-sm shiny"   href="javascript:" onclick="deletestaff(this);">删除</a>
                                     </td>
-                                </tr>
 
+                                </tr>
+                                {/volist}
                                 </tbody>
 
                             </table>
@@ -210,14 +213,14 @@
         function deletestaff(o){
             var $id=$(o).attr("id");
             $.ajax({
-                url:"{:url('Project/delete')}",
+                url:"{:url('Company/del')}",
                 data:{'id':$id},
                 type:'post',
                 dataType:'json',
                 success:function(msg){
                     if(msg.status==1000){
                         alert('删除成功!');
-                        location.href='{:url('Admin/Project/index')}';
+                        location.href='{:url('Admin/Company/index')}';
                     }else{
                         alert('删除失败!');
                     }
