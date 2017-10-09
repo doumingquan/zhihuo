@@ -7,7 +7,6 @@ class Index extends Adminbase
     //protected $user_model,$role_model;
    public function index()
    {
-
        $id=$this->uid;
        // $statue=db('admin')->field('id,remark')->where(array('id'=>$id))->find();
        // $statue=$statue['remark'];

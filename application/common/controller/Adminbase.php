@@ -25,12 +25,9 @@ class AdminBase extends Base
         $rule_name = $m . '/' . $c . '/' . $a;
         $this->assign('c', $c);
         //var_dump($rule_name);
-
         // 菜单
-
         $group = $auth->getGroups(session('user')['id']);
         $this->uid=(session('user')['id']);
-
         /*var_dump(session('user')['id']);*/
         $rules = explode(',', $group[0]['rules']);
 
