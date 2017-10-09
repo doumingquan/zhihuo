@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司架构修改</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="__STATIC__/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="__STATIC__/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="__STATIC__/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+    <link href="__STATIC__/plugins/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+
+    <!--Morris.js [ OPTIONAL ]-->
+    <link href="__STATIC__/plugins/morris-js/morris.min.css" rel="stylesheet">
+
+
+    <!--Magic Checkbox [ OPTIONAL ]-->
+    <link href="__STATIC__/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+
+    <link href="__STATIC__/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="__STATIC__/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="__STATIC__/plugins/pace/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="__STATIC__/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="__STATIC__/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="__STATIC__/js/nifty.min.js"></script>
+
+
+
+
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="__STATIC__/js/demo/nifty-demo.min.js"></script>
+
+
+    <!--Morris.js [ OPTIONAL ]-->
+    <script src="__STATIC__/plugins/morris-js/morris.min.js"></script>
+    <script src="__STATIC__/plugins/morris-js/raphael-js/raphael.min.js"></script>
+
+
+    <!--Sparkline [ OPTIONAL ]-->
+    <script src="__STATIC__/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+
+    <!--Specify page [ SAMPLE ]-->
+    <script src="__STATIC__/js/demo/dashboard.js"></script>
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+    <!--NAVBAR-->
+    <!--===================================================-->
+    {include file='layout/header' /}
+    <!--===================================================-->
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+            <!--Page Title-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div id="page-title">
+                <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
+
+                <!--Searchbox-->
+                <!-- <div class="searchbox">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search..">
+                        <span class="input-group-btn">
+                            <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End page title-->
+
+
+            <!--Breadcrumb-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">公司管理</a></li>
+                <li class="active">修改</li>
+            </ol>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End breadcrumb-->
+            <!--  <div class="panel">
+                  &lt;!&ndash; <div class="panel-heading">
+                      <h3 class="panel-title">Add &amp; Remove Rows</h3>
+                  </div> &ndash;&gt;
+
+                  &lt;!&ndash; Foo Table - Add & Remove Rows &ndash;&gt;
+                  &lt;!&ndash;===================================================&ndash;&gt;
+                  <div class="panel-body">
+                      <form class="form-inline" method="post">
+                          <table class="table table-striped table-bordered table-hover table-condensed">
+                              <tr>
+                                  <th>管理组</th>
+                                  <td>
+                                      {foreach name="data" item="v"}
+                                          {$v['title']}
+                                          <input class="xb-icheck" type="checkbox" name="group_ids[]" value="{$v['id']}">
+                                          &emsp;
+                                      {/foreach}
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>手机号</th>
+                                  <td>
+                                      <input class="form-control" type="text" name="phone" required="required">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>登录账号</th>
+                                  <td>
+                                      <input class="form-control" type="text" name="username" required="required">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>初始密码</th>
+                                  <td>
+                                      <input class="form-control" type="text" name="password" required="required">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>状态</th>
+                                  <td>
+                                      <span class="inputword">允许登录</span>
+                                      <input class="xb-icheck" type="radio" name="status" value="1" checked="checked">
+                                      &emsp;
+                                      <span class="inputword">禁止登录</span>
+                                      <input class="xb-icheck" type="radio" name="status" value="0">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th></th>
+                                  <td>
+                                      <input class="btn btn-success" type="submit" value="添加">
+                                  </td>
+                              </tr>
+                          </table>
+                      </form>
+                  </div>
+                  &lt;!&ndash;===================================================&ndash;&gt;
+                  &lt;!&ndash; End Foo Table - Add & Remove Rows &ndash;&gt;
+
+              </div>-->
+            <div class="panel">
+                <!-- <div class="panel-heading">
+                    <h3 class="panel-title">Add &amp; Remove Rows</h3>
+                </div> -->
+
+                <!-- Foo Table - Add & Remove Rows -->
+                <!--===================================================-->
+                <div class="panel-body">
+                    <form class="panel-body form-horizontal form-padding" method="post">
+                        <input type="hidden" name="id" value="{$cates.id}">
+                        <!--Text Input-->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="demo-text-input">上级公司</label>
+                            <div class="col-md-9">
+                                <select name="pid" id="" class="form-control">
+                                    <option value="0">顶级栏目</option>
+                                    {volist id="vo" name="cateRes"}
+                                    <option {if condition="$cates['pid'] eq $vo['id']"} selected="selected" {/if} value="{$vo.id}">{$vo.company}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demo-is-inputnormal" class="col-sm-3 control-label">公司名称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control"  value="{$cates.company}" name="company" id="demo-is-inputnormal">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demo-is-inputnormal" class="col-sm-3 control-label">排序</label>
+                            <div class="col-sm-6">
+                                <input type="text"  class="form-control"  value="{$cates.sort}"  name="sort" id="demo-is-inputnormal">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demo-is-inputnormal" class="col-sm-3 control-label">关键词</label>
+                            <div class="col-sm-6">
+                                <input type="text"   placeholder="关键词,用逗号分隔" value="{$cates.keyword}"  class="form-control" name="keyword" id="demo-is-inputnormal">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group pad-ver">
+                            <label class="col-md-3 control-label">状态</label>
+                            <div class="col-md-9">
+                                <div class="radio">
+                                    <!-- Inline radio buttons -->
+                                    <input id="demo-inline-form-radio-1" class="magic-radio" type="radio" {if condition="$cates['status'] eq 1"} checked="checked" {/if} name="status" value="1">
+                                    <label for="demo-inline-form-radio-1">显示</label>
+                                    <input id="demo-inline-form-radio-2" class="magic-radio" {if condition="$cates['status'] eq 0"} checked="checked" {/if}  type="radio" name="status" value="0">
+                                    <label for="demo-inline-form-radio-2">隐藏</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-footer text-right">
+                            <button class="btn btn-success" type="submit">提交</button>
+                        </div>
+                    </form>
+                </div>
+                <!--===================================================-->
+                <!-- End Foo Table - Add & Remove Rows -->
+
+            </div>
+        </div>
+
+        {include file="layout/left" /}
+
+        <!--Widget-->
+        <!--================================-->
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <!--===================================================-->
+    {include file="layout/footer" /}
+    <!--===================================================-->
+    <!-- END FOOTER -->
+
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+
+
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+
+
+<!-- SETTINGS - DEMO PURPOSE ONLY -->
+<!-- END SETTINGS -->
+
+
+</body>
+</html>
