@@ -40,7 +40,7 @@ class Project extends Adminbase{
         }else{
             //员工自己参与项目的信息
             $id=session('user')['id'];
-            $data=db('project')->alias('p')->where("FIND_IN_SET($id, admin_id)")->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.is_delete!=2')->where('p.status=2')->select();//halt($data);
+            $data=db('project')->alias('p')->where("FIND_IN_SET($id, admin_id)")->join('admin_position po' , 'po.id=p.pro_style_id','RIGHT')->where('p.is_delete!=2')->where('p.status=2')->select();halt($data);
             foreach($data as $k=>$v){
                 $arr = explode(',',$v['admin_id']);
                 //dump($arr);
@@ -125,6 +125,7 @@ class Project extends Adminbase{
                 'pro'=>$data['pro'],
                 'cycle'=>$data['cycle'],
                 'status'=>$data['status'],
+                'company_id'=>$data['company_id'],
                 'pro_style_id'=>$data['pro_style_id'],
                 'desc'=>$data['desc'],
                 'createtime'=>time()
@@ -162,6 +163,7 @@ class Project extends Adminbase{
                 'pro'=>$data['pro'],
                 'cycle'=>$data['cycle'],
                 'status'=>$data['status'],
+                'company_id'=>$data['company_id'],
                 'pro_style_id'=>$data['pro_style_id'],
                 'desc'=>$data['desc'],
                 'createtime'=>time()
