@@ -9,21 +9,10 @@ use think\Request;
 class Project extends Adminbase{
 
 	/**
-	 * 项目列表
+	 * 用户列表
 	 */
 	public function index(){
-        $cate = session('admin_cate');
-        dump($cate);
-        $info = db('project')->alias('p')->field()->join('admin_company c','c.id=p.company_id')->where('p.company_id',$cate['cid'])->select();
-		dump($info);
-        if($cate['id']==1){
-
-        }elseif($cate['id']==4){
-
-
-        }else{
-            
-        }
+		
 		$data=Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po' , 'po.id=p.pro_style_id')->where('is_delete!=2')->select();
         foreach($data as $k=>$v){
             $arr = explode(',',$v['admin_id']);
@@ -49,7 +38,7 @@ class Project extends Adminbase{
 	}
 
     /**
-     * 添加项目
+     * 添加管理员
      */
     public function add(){
         if(Request::instance()->post()){
@@ -75,12 +64,10 @@ class Project extends Adminbase{
             }
         }else{
             $data = db('position')->select();
-            $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();
-            $info = Db::name('company')->where()->select();//dump($info);
+            $user = DB::name('admin')->field('id,username')->select();
             $assign=array(
                 'data'=>$data,
-                'user'=>$user,
-                'info'=>$info
+                'user'=>$user
                 );
 
             $this->assign($assign);

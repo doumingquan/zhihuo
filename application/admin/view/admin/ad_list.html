@@ -88,7 +88,28 @@
 
             {volist id="vo" name="admin"}
                     <div class="col-lg-2">
-                     
+                      <!--  <div class="panel">
+                            <div class="panel-body text-center">
+                                {if condition="$vo['headpic'] neq ''"}
+                                <img alt="Profile Picture" class="img-md img-circle mar-btm" src="/{$vo.headpic}">
+                                {else /}
+                                <img alt="Profile Picture" class="img-md img-circle mar-btm" src="__STATIC__/img/profile-photos/1.png">
+                                {/if}
+                                <p class="text-lg text-semibold mar-no text-main"></p>
+                                <p class="text-muted">{$vo.username}</p>
+                                <p class="text-sm"> {if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else /}{$vo.ename}{/if}</p>
+&lt;!&ndash;
+                                <a  href="javascript:;" ruleId="{$vo['id']}"  onclick="edit(this)" class="btn btn-primary mar-ver"><i class="demo-pli-male icon-fw"></i>详情</a>
+&ndash;&gt;
+
+                                <div class="list-group bg-trans pad-btm">
+                                    <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i> {$vo.email}</a>
+                                    <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.position}</a>
+                                    <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i> {$vo.mobile}</a>
+                                    <a class="label label-info pull-right" href="">详情</a>
+                                </div>
+                            </div>
+                        </div>-->
                         <div class="panel">
                             <div class="panel-body text-center ">
                                 {if condition="$vo['headpic'] neq ''"}
@@ -97,19 +118,18 @@
                                 <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="__STATIC__/img/profile-photos/1.png">
                                 {/if}
                                 <h4 class="mar-n">{$vo.username}</h4>
-                             <!--    <p class="text-sm">{if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else /}{$vo.ename}{/if}</p> -->
+                                <p class="text-sm">{if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else /}{$vo.ename}{/if}</p>
                             </div>
                             <ul class="list-unstyled text-center bord-top pad-top mar-no row">
 
                             </ul>
                             <div class="list-group bg-trans pad-btm">
-                                <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i>  {$vo.company}</a>
-                              <!--   <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> </a>
-                                <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i></a> -->
+                                <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i>  {$vo.email}</a>
+                                <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.position}</a>
+                                <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>{if condition="$vo['user_email'] eq ''"}暂无企业邮箱 {else /}{$vo.user_email}{/if}</a>
                             </div>
-                            {if condition="session('admin_cate')['id'] eq 1"}
-                            <!-- <a  href="javascript:;" id="{$vo.id}"   onclick="edit(this)" class="btn btn-primary mar-ver">详情</a> -->
-                            <a  href="{:url('ad_lists',array('id'=>$vo['id']))}"  class="btn btn-primary mar-ver">详情</a>
+                            {if condition="session('user')['remark'] eq 1"}
+                            <a  href="javascript:;" id="{$vo.id}"   onclick="edit(this)" class="btn btn-primary mar-ver">详情</a>
                             {/if}
                         </div>
                     </div>

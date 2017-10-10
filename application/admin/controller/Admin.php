@@ -20,7 +20,7 @@ class Admin extends Adminbase
     public function index()
     {
         //使用左连接查询
-        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=1')->paginate(15);
+        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('status=1')->paginate(15);
         //halt($info);exit;
         $this->assign('data', $info);
         // dump($info);
@@ -36,37 +36,21 @@ class Admin extends Adminbase
             $this->error('数据错误，请重试');
         }
         $admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id'=>$id))->find();
+
         $this->assign('admin', $admin);
+
         return view();
     }
 
     //公司员工列表
     public function ad_list()
-    {   
-        $cate=session('admin_cate');        //halt($cate);
-        $cate_id = session('admin_cate')['id'];//echo $cate_id;
-        if($cate_id==1){
-            //管理员调出公司信息
-           $info = db('company')->where('pid',session('admin_cate')['cid'])->select();//dump($info);
-            
-            $this->assign('admin', $info);
-            return view();
-           //dump($info);
-        }else{
-            //非管理员调出该公司所有员工信息
-            $data = db('admin')->where('company_id',$cate['cid'])->select();//dump($info);
-            $this->assign('admin', $data);
-            return view('ad_list2');
-        }
+    {
         //使用左连接查询
-        // $admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=2')->paginate(20);
+        $admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=2')->paginate(20);
         //halt($info);exit;
+        $this->assign('admin', $admin);
+        return view();
     }
-    //公司下的员工信息
-    public function ad_lists($id){
-            $info = $data = db('admin')->where('company_id',$id)->select();dump($info);
-    }
-
     public function ajax_admin(){
      $id=input('id');
      $ajax_admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id'=>$id))->find();
