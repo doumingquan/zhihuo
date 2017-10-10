@@ -56,7 +56,7 @@ class AdminBase extends Base
         // end菜单
         $result = $auth->check($rule_name, session('user')['id']);
 
-        $cate = db('auth_group_access')->alias('au')->field('g.id,c.id cid,c.pid,c.company')->join('__ADMIN__ a','a.id=au.uid')->join('admin_auth_group g','g.id=au.group_id')->join('__COMPANY__ c','c.id = a.company_id')->where('a.id',$this->uid)->find();// dump($cate);
+        $cate = db('auth_group_access')->alias('au')->field('g.id,c.id cid,c.pid,c.company')->join('__ADMIN__ a','a.id=au.uid')->join('admin_auth_group g','g.id=au.group_id')->join('__COMPANY__ c','c.id = a.company_id')->where('a.id',$this->uid)->find();//dump($cate);
         session('admin_cate',$cate);
         //超级管理员
         // switch ($cate['id']) {

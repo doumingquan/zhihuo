@@ -9,7 +9,7 @@ class Search extends Adminbase
     {
         $keywords=input('keywords');
 
-        $serRes=db('admin')->order('id desc')->where('username','like','%'.$keywords.'%')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('status=2')->paginate(15,false,$config = ['query'=>array('keywords'=>$keywords)]);
+        $serRes=db('admin')->order('id desc')->where('username','like','%'.$keywords.'%')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->paginate(15,false,$config = ['query'=>array('keywords'=>$keywords)]);
 
         $this->assign(array(
             'serRes'=>$serRes,

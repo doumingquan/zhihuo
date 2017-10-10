@@ -35,26 +35,30 @@ class Admin extends Adminbase
         if (empty($id)) {
             $this->error('数据错误，请重试');
         }
-        $admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id'=>$id))->find();
+        $admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => $id))->find();
         $this->assign('admin', $admin);
         return view();
     }
 
     //公司员工列表
     public function ad_list()
-    {   
-        $cate=session('admin_cate');        //halt($cate);
+    {
+        $cate = session('admin_cate');        //halt($cate);
         $cate_id = session('admin_cate')['id'];//echo $cate_id;
-        if($cate_id==1){
-            //管理员调出公司信息
-           $info = db('company')->where('pid',session('admin_cate')['cid'])->select();//dump($info);
-            
+        if ($cate_id == 1) {
+            //超级管理员调出公司信息
+            $info = db('company')->select();//dump($info);
             $this->assign('admin', $info);
             return view();
-           //dump($info);
-        }else{
+            //dump($info);
+        } elseif ($cate_id == 2) {
+            //一般管理员调出公司信息
+            $info = db('company')->where('pid', session('admin_cate')['cid'])->select();//dump($info);
+            $this->assign('admin', $info);
+            return view();
+        } else {
             //非管理员调出该公司所有员工信息
-            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.company_id',$cate['cid'])->select();//dump($data);
+            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.company_id', $cate['cid'])->select();//dump($data);
             $this->assign('admin', $data);
             return view('ad_list2');
         }
@@ -64,25 +68,27 @@ class Admin extends Adminbase
     }
 
     //公司下的员工信息
-    public function ad_lists($id){
-       // echo $id;
-            $info  = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id',$id)->where('a.status=2')->paginate(20); //halt($info);
-            // if(empty($info['id'])){
-            //     //echo 11;
-            //     $this->error('该公司下没有员工');exit;
-            // }
-            $this->assign('admin',$info);
-            return view();
+    public function ad_lists($id)
+    {
+        // echo $id;
+        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id', $id)->where('a.status=2')->paginate(20); //halt($info);
+        // if(empty($info['id'])){
+        //     //echo 11;
+        //     $this->error('该公司下没有员工');exit;
+        // }
+        $this->assign('admin', $info);
+        return view();
     }
 
-    public function ajax_admin(){
-     $id=input('id');
-     $ajax_admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id'=>$id))->find();
+    public function ajax_admin()
+    {
+        $id = input('id');
+        $ajax_admin = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => $id))->find();
 
-        $this->assign('ajax_admin',$ajax_admin);
-        return  ($ajax_admin);
+        $this->assign('ajax_admin', $ajax_admin);
+        return ($ajax_admin);
 
-       return $this->fetch('ad_list');
+        return $this->fetch('ad_list');
     }
 
     public function check_index()
@@ -217,32 +223,33 @@ class Admin extends Adminbase
     //     return $this->fetch();
     // }
     //个人修改个人信息
-    public function changestatus(){
-        if(request()->isAjax()){
-            $id=input('id');
-            $status=db('admin')->field('status')->where('id',$id)->find();
-            $status=$status['status'];
-            if($status==1){
-                db('admin')->where('id',$id)->update(['status'=>2]);
+    public function changestatus()
+    {
+        if (request()->isAjax()) {
+            $id = input('id');
+            $status = db('admin')->field('status')->where('id', $id)->find();
+            $status = $status['status'];
+            if ($status == 1) {
+                db('admin')->where('id', $id)->update(['status' => 2]);
                 echo 1;//未审核
-            }else{
-                db('admin')->where('id',$id)->update(['status'=>1]);
+            } else {
+                db('admin')->where('id', $id)->update(['status' => 1]);
                 echo 2;//由审核
             }
-        }else{
+        } else {
             $this->error("非法操作！");
         }
     }
-    public function del($id){
-        $del=db('admin')->delete($id);
-        if($del){
-            $this->success('删除管理员成功！','index');
-        }else{
+
+    public function del($id)
+    {
+        $del = db('admin')->delete($id);
+        if ($del) {
+            $this->success('删除管理员成功！', 'index');
+        } else {
             $this->error('删除管理员失败！');
         }
     }
-
-
 
 
 }
