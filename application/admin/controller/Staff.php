@@ -95,6 +95,8 @@ class Staff extends Adminbase{
                     $image->thumb(150,150);
                     $pics_small = 'uploads'. DS .$info->getSaveName();
                     $image->save($pics_small);
+
+                    $data['headpic'] = $pics_small;
                 }else{
                     // 上传失败获取错误信息
                     echo $file->getError();
@@ -102,7 +104,7 @@ class Staff extends Adminbase{
             }
             $data['birthday'] = strtotime($data['birthday']);
             $data['entry'] = strtotime($data['entry']);
-            $data['headpic'] = $pics_small;
+           
             //$data['password'] = md5($data['password']);
             $data['create_user_id'] = session('admin.admin_id');
             $data['create_time'] = time();
