@@ -102,8 +102,10 @@ class User extends Adminbase{
     public function edit_user($id){
         if(Request::instance()->post()){
             $data=input('post.');
-            //halt($data);
-            // dump($data);
+            if($data['password']!=''){               
+                $data['password']=md5($data['password']);
+            }
+
             Db::name('auth_group_access')->where(array('uid'=>$id))->delete();
             if (!empty($data['group_ids'])) {
                 foreach ($data['group_ids'] as $k => $v) {
@@ -121,10 +123,10 @@ class User extends Adminbase{
              //   $userup['password']=md5($data['password']);
             // }
             $userup=[
-                'password'=>md5($data['password']),
+                'password'=>$data['password'],
                 'username'=>$data['username'],
                 'mobile'=>$data['phone'],
-                // 'email'=>$data['email'],
+                'email'=>$data['email'],
                 'status'=>$data['status'],
 
             ];
