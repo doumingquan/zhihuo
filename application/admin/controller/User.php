@@ -115,14 +115,19 @@ class User extends Adminbase{
             }
             $user_id = session('user')['id'];
             $user_password=Db::name('admin')->field('password')->where(['id'=>$user_id])->find();//dump($user_password);exit;
-            if($user_password['password']==md5($data['password'])){
+            if(empty($data['password'])){
+                    //echo 123;
                     $userup['password']=$user_password['password'];
             }else{
+                    //echo 456;
                     $userup['password']=md5($data['password']);
             }
+//exit;
             $userup['username']=$data['username']; 
             $userup['mobile']=$data['mobile']; 
             $userup['status']=$data['status']; 
+            // dump($data['password']);
+            // dump($userup['password']);exit;
  //dump($userup);exit;            
             $result=Db::name('admin')->where(['id'=>$id])->update($userup);
             if($result){
