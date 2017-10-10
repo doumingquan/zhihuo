@@ -213,7 +213,7 @@
                                 <select name="pid" id="" class="form-control">
                                     <option value="0">顶级栏目</option>
                                     {volist id="vo" name="cateRes"}
-                                    <option {if condition="$cates['pid'] eq $vo['id']"} selected="selected" {/if} value="{$vo.id}">{$vo.company}</option>
+                                    <option {if condition="$cates['pid'] eq $vo['id']"} selected="selected" {/if} value="{$vo.id}"><?php echo str_repeat('-', $vo['level']*8);?>{$vo.company}</option>
                                     {/volist}
                                 </select>
                             </div>

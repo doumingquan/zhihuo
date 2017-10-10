@@ -35,6 +35,7 @@ class Company extends Adminbase
         }
         //获取公司名称
         $_company=db('company')->select();
+        $_company=model('company')->catetree($_company);
         //接受栏目id
         $cateid=input('cateid');
         $this->assign('company',$_company);
