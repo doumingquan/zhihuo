@@ -113,8 +113,8 @@ class User extends Adminbase{
                     Db::name('auth_group_access')->insert($group);
                 }
             }
-
-            $user_password=Db::name('admin')->field('password')->where(['id'=>$id])->find();//dump($user_password);exit;
+            $user_id = session('user')['id'];
+            $user_password=Db::name('admin')->field('password')->where(['id'=>$user_id])->find();//dump($user_password);exit;
             if($user_password['password']==md5($data['password'])){
                     $userup['password']=$user_password['password'];
             }else{
