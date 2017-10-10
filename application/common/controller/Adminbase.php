@@ -16,6 +16,9 @@ class AdminBase extends Base
      */
     public function _initialize()
     {
+       if(empty(session('user')['id']) || empty(session('user')['username'])){
+           $this->error('请先登录系统','login/login');
+       }
         parent::_initialize();
         $auth = new \think\Auth();
         $request = Request::instance();

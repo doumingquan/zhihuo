@@ -78,7 +78,7 @@ class Index extends Adminbase
    public function logout(){
 	   session('admin.admin_id',null);
 	   session('user',null);
-	   $this->success('退出成功、前往登录页面','index.php/admin/login/login');
+	   $this->success('退出成功、前往登录页面','login/login');
    }
    public function ajax_list(){
        $id=$this->uid;
