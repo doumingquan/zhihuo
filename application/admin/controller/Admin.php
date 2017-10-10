@@ -104,8 +104,9 @@ class Admin extends Adminbase
     //所有员工薪资
     public function user_pay()
     {
+        //echo session('admin_cate')['cid'];
         //使用左连接查询
-        $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('is_delete!=2')->select();
+        $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id',session('admin_cate')['cid'])->where('is_delete!=2')->paginate(15);
         //dump($info);
         // $info = db('pay')->alias('p')->field('')->join('admin a','a.id=p.admin_id','LEFT')->join('admin_depart d','a.depart_id=d.id','LEFT')->join('admin_company c','c.id=a.company_id','LEFT')->join('admin_position p','a.entry_pos=p.id','LEFT')->where('is_delete!=2')->paginate(2);
         //halt($info);exit;
