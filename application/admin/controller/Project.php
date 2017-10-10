@@ -9,11 +9,62 @@ use think\Request;
 class Project extends Adminbase{
 
 	/**
-	 * 用户列表
+	 * 项目列表
 	 */
 	public function index(){
-		
-		$data=Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po' , 'po.id=p.pro_style_id')->where('is_delete!=2')->select();
+        $cate=session('admin_cate');        //halt($cate);
+        $cate_id = session('admin_cate')['id'];//echo $cate_id;
+       
+        if($cate_id==1){
+            //管理员调出公司信息
+           $info = db('company')->where('pid',session('admin_cate')['cid'])->select();//dump($info);           
+            $this->assign('admin', $info);
+            return view();
+           //dump($info);
+        }else{
+            //非管理员调出该公司所有项目信息
+            $info = db('project')->alias('p')->field()->join('admin_company c','c.id=p.company_id')->where('p.company_id',$cate['cid'])->select();dump($info);exit;
+            $this->assign('admin', $data);
+            return view('index2');
+        }
+        //dump($cate);
+  //       $info = db('project')->alias('p')->field()->join('admin_company c','c.id=p.company_id')->where('p.company_id',$cate['cid'])->select();
+		// //dump($info);
+  //       if($cate['id']==1){
+
+  //       }elseif($cate['id']==4){
+
+
+  //       }else{
+            
+  //       }
+		// $data=Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po' , 'po.id=p.pro_style_id')->where('is_delete!=2')->select();
+  //       foreach($data as $k=>$v){
+  //           $arr = explode(',',$v['admin_id']);
+  //           //dump($arr);
+  //           $array = array();
+  //           foreach ($arr as $vv){
+  //               $admin_name = Db('admin')->field('id,username')->where(array('id'=>$vv))->find();
+  //               array_push($array, $admin_name['username']);
+  //               $data[$k]['username'] = implode(' ,',$array);               
+  //           }           
+  //       }
+       
+  //       // echo '<pre>';
+  //       // print_r($data);
+  //       // echo '</pre>';exit;
+        
+  //       $assign=array(
+  //           'data'=>$data
+  //           );
+
+  //       $this->assign($assign);
+  //       return $this->fetch();
+	}
+
+    public function index3($id){
+         $data=Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po' , 'po.id=p.pro_style_id')->where('is_delete!=2')->where('company_id',$id)->select();
+         //dump($data);
         foreach($data as $k=>$v){
             $arr = explode(',',$v['admin_id']);
             //dump($arr);
@@ -21,24 +72,23 @@ class Project extends Adminbase{
             foreach ($arr as $vv){
                 $admin_name = Db('admin')->field('id,username')->where(array('id'=>$vv))->find();
                 array_push($array, $admin_name['username']);
-                $data[$k]['username'] = implode(' ,',$array);               
-            }           
+                $join = implode(' ,',$array);               
+            } 
+            $data[$k]['username'] = $join;        
         }
-       
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';exit;
-        
+        //dump($data);
         $assign=array(
             'data'=>$data
+           
             );
 
         $this->assign($assign);
         return $this->fetch();
-	}
+        
+    }
 
     /**
-     * 添加管理员
+     * 添加项目
      */
     public function add(){
         if(Request::instance()->post()){
@@ -64,10 +114,12 @@ class Project extends Adminbase{
             }
         }else{
             $data = db('position')->select();
-            $user = DB::name('admin')->field('id,username')->select();
+            $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();
+            $info = Db::name('company')->where()->select();//dump($info);
             $assign=array(
                 'data'=>$data,
-                'user'=>$user
+                'user'=>$user,
+                'info'=>$info
                 );
 
             $this->assign($assign);
@@ -106,13 +158,15 @@ class Project extends Adminbase{
                 array_push($array,$value['username']);           
             }
             //dump($array);
-            $user = DB::name('admin')->field('id,username')->select();//dump($info);
-          
+            //取出该公司下的所有员工
+             $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();//dump($info);
+            $company = DB::name('company')->select();
       
             $position = db('position')->select();
             // $user = DB::name('admin')->field('id,username')->select();
             $this->assign('position',$position);
             $this->assign('string',$array);
+            $this->assign('company',$company);
             $this->assign('user',$user);
             $this->assign('data',$data);
 

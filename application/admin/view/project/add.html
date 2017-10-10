@@ -73,7 +73,17 @@
                                     <input type="text" id="demo-text-input" class="form-control" name="pro" placeholder="名称" value="{$data.pro}">
                                 </div>
                             </div>
-
+                              <div class="form-group">
+                                <label class="col-md-3 control-label" for="demo-text-input">选择公司</label>
+                                <div class="col-md-9">
+                                    <select name="company_id" id="" class="form-control">
+                                        {foreach name="info" item="v"}
+                                            <option value="{$v['id']}">{$v['company']}</option>
+                                        {/foreach}
+                                    </select>
+                               
+                                </div>
+                            </div>
                             <div class="form-group pad-ver">
                                 <label class="col-md-3 control-label">项目类型</label>
                                 <div class="col-md-9">
