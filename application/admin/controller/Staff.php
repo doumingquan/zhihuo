@@ -69,6 +69,15 @@ class Staff extends Adminbase{
     public function change_msg(){
         if(Request::instance()->post()){
             $data = input('post.'); 
+            $admin_pass = db('admin')->field('password')->where('id',session('user')['id'])->find();
+            //dump($admin_pass);exit;
+            if(empty($data['password'])){
+                $data['password'] =  $admin_pass['password'];
+            }else{
+                $data['password'] = md5($data['password']);
+            }
+            //exit;
+            //if(empty($data))
             $entry = $data['birthday'];
            // halt($data);
             $userpic = DB::name('admin')->field('headpic')->where(array('id'=>session('admin.admin_id')))->find();
@@ -94,7 +103,7 @@ class Staff extends Adminbase{
             $data['birthday'] = strtotime($data['birthday']);
             $data['entry'] = strtotime($data['entry']);
             $data['headpic'] = $pics_small;
-            $data['password'] = md5($data['password']);
+            //$data['password'] = md5($data['password']);
             $data['create_user_id'] = session('admin.admin_id');
             $data['create_time'] = time();
         //计算工龄 
@@ -121,6 +130,7 @@ class Staff extends Adminbase{
                 }
             }
             // halt($data['entry_year']);
+            //dump($data);exit;
             $info = db('admin')->where(array('id'=>session('admin.admin_id')))->update($data);
             if($info){
                 $this->success('操作成功!');
