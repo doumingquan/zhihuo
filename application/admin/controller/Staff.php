@@ -91,7 +91,7 @@ class Staff extends Adminbase{
             $info = $file->validate(['size'=>1567833,'ext'=>'jpg,png,gif'])->move(ROOT_PATH . 'public' . DS . 'uploads');
                 if($info){
                     $pics = ROOT_PATH . 'public' . DS . 'uploads'. DS .$info->getSaveName();//echo $pics;
-                    $image = \think\Image::open($pics);dump($image);
+                    $image = \think\Image::open($pics);         //dump($image);
                     $image->thumb(150,150);
                     $pics_small = 'uploads'. DS .$info->getSaveName();
                     $image->save($pics_small);
