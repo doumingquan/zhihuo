@@ -31,6 +31,7 @@ class Rule extends AdminBase{
      */
     public function add(){
         $data=input('post.');
+        $data['show']=1;
         unset($data['id']);
         $result=Db::name('auth_rule')->insert($data);
         if ($result) {
