@@ -102,10 +102,7 @@ class User extends Adminbase{
     public function edit_user($id){
         if(Request::instance()->post()){
             $data=input('post.');
-            if($data['password']!=''){               
-                $data['password']=md5($data['password']);
-            }
-
+//dump($data);
             Db::name('auth_group_access')->where(array('uid'=>$id))->delete();
             if (!empty($data['group_ids'])) {
                 foreach ($data['group_ids'] as $k => $v) {
@@ -116,28 +113,18 @@ class User extends Adminbase{
                     Db::name('auth_group_access')->insert($group);
                 }
             }
-            // $data=array_filter($data);
-            // 如果修改密码则md5
-            // p($data);die;
-            // if ($data['password']!=null) {
-             //   $userup['password']=md5($data['password']);
-            // }
-            $userup=[
-                'password'=>$data['password'],
-                'username'=>$data['username'],
-                'mobile'=>$data['phone'],
-                'email'=>$data['email'],
-                'status'=>$data['status'],
 
-            ];
-
-            $results=Db::name('admin')->where(['id'=>$id])->find();
+            $user_password=Db::name('admin')->field('password')->where(['id'=>$id])->find();//dump($user_password);exit;
+            if($user_password['password']==md5($data['password'])){
+                    $userup['password']=$user_password['password'];
+            }else{
+                    $userup['password']=md5($data['password']);
+            }
+            $userup['username']=$data['username']; 
+            $userup['mobile']=$data['mobile']; 
+            $userup['status']=$data['status']; 
+ //dump($userup);exit;            
             $result=Db::name('admin')->where(['id'=>$id])->update($userup);
-            // trace("****************************************************************************");
-            // trace($userup);
-            // trace($results);
-            // trace($result);
-            // trace("****************************************************************************");
             if($result){
                 // 操作成功
                 $this->success('编辑成功','Admin/User/index');
