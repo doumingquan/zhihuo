@@ -24,7 +24,7 @@
 
 
                         <li class="active-link">
-                            <a href="{:url('Admin/Index/index')}">
+                            <a href="{:url('/index')}">
                                 <i class="demo-psi-home"></i>
                                 <span class="menu-title">
                                                 <strong>后台首页</strong>
@@ -46,9 +46,9 @@
 
                             <ul class="collapse in" aria-expanded="true">
 
-                                <li><a href="{:url('Admin/Staff/index')}">个人基本资料</a></li>
-                                <li><a href="{:url('Admin/Staff/my_center')}">个人基本修改</a></li>
-                                <li><a href="{:url('Admin/Staff/my_salary')}">个人薪资</a></li>
+                                <li><a href="{:url('/staff_index')}">个人基本资料</a></li>
+                                <li><a href="{:url('/my_center')}">个人基本修改</a></li>
+                                <li><a href="{:url('/my_salary')}">个人薪资</a></li>
                             </ul>
                         </li>
                         {else /}
@@ -63,9 +63,9 @@
 
 
                             <ul class="collapse">
-                                <li><a href="{:url('Admin/Staff/index')}">个人基本资料</a></li>
-                                <li><a href="{:url('Admin/Staff/my_center')}">个人基本修改</a></li>
-                                <li><a href="{:url('Admin/Staff/my_salary')}">个人薪资</a></li>
+                                <li><a href="{:url('/staff_index')}">个人基本资料</a></li>
+                                <li><a href="{:url('/my_center')}">个人基本修改</a></li>
+                                <li><a href="{:url('/my_salary')}">个人薪资</a></li>
                             </ul>
                         </li>
                         {/if}
@@ -83,11 +83,11 @@
 
 
                             <ul class="collapse in" aria-expanded="true">
-                                <li><a href="{:url('admin/ad_list')}">公司员工</a></li>
-                                <li><a href="{:url('Admin/admin/index')}">未审核员工信息</a></li>
-                                <li><a href="{:url('Admin/admin/check_index')}">审核过员工信息</a></li>
-                                <li><a href="{:url('Admin/admin/user_pay')}">员工调薪</a></li>
-                                <li><a href="{:url('Admin/User/add_user')}">新增员工</a></li>
+                                <li><a href="{:url('/ad_list')}">公司员工</a></li>
+                                <li><a href="{:url('/ad_index')}">未审核员工信息</a></li>
+                                <li><a href="{:url('/check_index')}">审核过员工信息</a></li>
+                                <li><a href="{:url('/user_pay')}">员工调薪</a></li>
+                                <li><a href="{:url('/add_user')}">新增员工</a></li>
                             </ul>
                         </li>
                         {else /}
@@ -101,11 +101,11 @@
                             </a>
 
                             <ul class="collapse ">
-                                <li><a href="{:url('admin/ad_list')}">公司员工</a></li>
-                                <li><a href="{:url('Admin/admin/index')}">未审核员工信息</a></li>
-                                <li><a href="{:url('Admin/admin/check_index')}">审核过员工信息</a></li>
-                                <li><a href="{:url('Admin/admin/user_pay')}">员工调薪</a></li>
-                                <li><a href="{:url('Admin/User/add_user')}">新增员工</a></li>
+                                <li><a href="{:url('/ad_list')}">公司员工</a></li>
+                                <li><a href="{:url('/ad_index')}">未审核员工信息</a></li>
+                                <li><a href="{:url('/check_index')}">审核过员工信息</a></li>
+                                <li><a href="{:url('/user_pay')}">员工调薪</a></li>
+                                <li><a href="{:url('/add_user')}">新增员工</a></li>
 
                             </ul>
                         </li>
@@ -122,8 +122,8 @@
                             </a>
 
                             <ul class="collapse in" aria-expanded="true">
-                                <li><a href="{:url('Admin/project/index')}">项目基本信息</a></li>
-                                <li><a href="{:url('Admin/project/add')}">添加项目信息</a></li>
+                                <li><a href="{:url('/project_index')}">项目基本信息</a></li>
+                                <li><a href="{:url('/project_add')}">添加项目信息</a></li>
 
                             </ul>
                         </li>
@@ -139,8 +139,8 @@
 
 
                             <ul class="collapse ">
-                                <li><a href="{:url('Admin/project/index')}">项目基本信息</a></li>
-                                <li><a href="{:url('Admin/project/add')}">添加项目信息</a></li>
+                                <li><a href="{:url('/project_index')}">项目基本信息</a></li>
+                                <li><a href="{:url('/project_add')}">添加项目信息</a></li>
 
                             </ul>
                         </li>
@@ -159,9 +159,9 @@
                             </a>
 
                             <ul class="collapse in" aria-expanded="true">
-                                <li><a href="{:url('Admin/Rule/rule_list')}">权限管理</a></li>
-                                <li><a href="{:url('Admin/Rule/rule_group')}">角色管理</a></li>
-                                <li><a href="{:url('Admin/User/index')}">用户管理</a></li>
+                                <li><a href="{:url('/rule_list')}">权限管理</a></li>
+                                <li><a href="{:url('/rule_group')}">角色管理</a></li>
+                                <li><a href="{:url('/user_index')}">用户管理</a></li>
                             </ul>
                         </li>
                         {else /}
@@ -176,9 +176,9 @@
                             </a>
 
                             <ul class="collapse">
-                                <li><a href="{:url('Admin/Rule/rule_list')}">权限管理</a></li>
-                                <li><a href="{:url('Admin/Rule/rule_group')}">角色管理</a></li>
-                                <li><a href="{:url('Admin/User/index')}">用户管理</a></li>
+                                <li><a href="{:url('/rule_list')}">权限管理</a></li>
+                                <li><a href="{:url('/rule_group')}">角色管理</a></li>
+                                <li><a href="{:url('/user_index')}">用户管理</a></li>
                             </ul>
                         </li>
                         {/if}
