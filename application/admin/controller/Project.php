@@ -15,15 +15,15 @@ class Project extends Adminbase{
         $cate=session('admin_cate');        //halt($cate);
         $cate_id = session('admin_cate')['id'];//echo $cate_id;
        
-        if($cate_id==1 || $cate_id==2 ){
+        if($cate_id==1 ){
             //超级管理员调出公司信息
-           $info = db('company')->where('pid',session('admin_cate')['cid'])->select();dump($info);           
+           $info = db('company')->where('id',session('admin_cate')['cid'])->select();//dump($info);           
             $this->assign('admin', $info);
             return view();
            //dump($info);
-        }else{
-            //非管理员调出该公司所有项目信息
-            $data = db('project')->alias('p')->field()->join('admin_company c','c.id=p.company_id')->where('p.company_id',$cate['cid'])->select();//dump($data);
+        }elseif($cate_id==2){
+            //一般管理员调出该公司所有项目信息
+            $data = db('project')->alias('p')->field()->join('admin_company c','c.id=p.company_id')->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.company_id',$cate['cid'])->select();//dump($data);
             foreach($data as $k=>$v){
                 $arr = explode(',',$v['admin_id']);
                 //dump($arr);
@@ -37,6 +37,22 @@ class Project extends Adminbase{
             //dump($data);exit;
             $this->assign('data', $data);
             return view('index2');
+        }else{
+            //员工自己参与项目的信息
+            $id=session('user')['id'];
+            $data=db('project')->alias('p')->where("FIND_IN_SET($id, admin_id)")->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.is_delete!=2')->where('p.status=2')->select();//halt($data);
+            foreach($data as $k=>$v){
+                $arr = explode(',',$v['admin_id']);
+                //dump($arr);
+                $array = array();
+                foreach ($arr as $vv){
+                    $admin_name = Db('admin')->field('id,username')->where(array('id'=>$vv))->find();
+                    array_push($array, $admin_name['username']);
+                    $data[$k]['username'] = implode(' ,',$array);               
+                }           
+            }
+            $this->assign('data',$data);
+            return $this->fetch('index2');
         }
         //dump($cate);
   //       $info = db('project')->alias('p')->field()->join('admin_company c','c.id=p.company_id')->where('p.company_id',$cate['cid'])->select();
