@@ -54,7 +54,7 @@ class Admin extends Adminbase
            //dump($info);
         }else{
             //非管理员调出该公司所有员工信息
-            $data = db('admin')->where('company_id',$cate['cid'])->select();//dump($info);
+            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.company_id',$cate['cid'])->select();//dump($data);
             $this->assign('admin', $data);
             return view('ad_list2');
         }
@@ -65,8 +65,13 @@ class Admin extends Adminbase
 
     //公司下的员工信息
     public function ad_lists($id){
-            $info = $data = db('admin')->where('company_id',$id)->select();//dump($info);
-            $this->assign('admin',$data);
+       // echo $id;
+            $info  = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id',$id)->where('a.status=2')->paginate(20); //halt($info);
+            // if(empty($info['id'])){
+            //     //echo 11;
+            //     $this->error('该公司下没有员工');exit;
+            // }
+            $this->assign('admin',$info);
             return view();
     }
 

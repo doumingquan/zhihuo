@@ -88,13 +88,14 @@
 
             {volist id="vo" name="admin"}
                 <div class="col-lg-2">
+                    <a  href="{:url('index3',array('id'=>$vo['id']))}">
                     <div class="panel">
                         <div class="pad-all bg-success">
                             <div class="media">
                               
                                 <div class="media-body pad-top">
                                     <span class="text-lg text-semibold">{$vo['company']}</span>
-                                    <p class="text-sm">Designer</p>
+                                    <p class="text-sm"></p>
                                 </div>
                             </div>
                             <!--  <div class="btn-group btn-group-justified pad-top">
@@ -102,9 +103,10 @@
                                 <a href="#" class="btn btn-icon bord-no demo-psi-twitter icon-lg"></a>
                                 <a href="#" class="btn btn-icon bord-no demo-psi-google-plus icon-lg"></a>
                             </div> -->
-                            <a  href="{:url('index3',array('id'=>$vo['id']))}"  class="btn btn-primary mar-ver">项目详情</a>
+                            
                         </div>
                     </div>
+                    </a>
                  </div>
             {/volist}
                     <script>
