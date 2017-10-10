@@ -20,15 +20,12 @@
                         <!--Category name-->
 
 
-
-
-
                         <li class="active-link">
                             <a href="{:url('/index')}">
                                 <i class="demo-psi-home"></i>
                                 <span class="menu-title">
-                                                <strong>后台首页</strong>
-                                            </span>
+                                    <strong>后台首页</strong>
+                              </span>
                             </a>
                         </li>
 
@@ -54,8 +51,8 @@
                         {else /}
                         <li>
                             <a href="#">
-                                <i class="ion-arrow-up-a"></i>
-                                <span class="">
+                                <i class="demo-psi-bar-chart"></i>
+                                <span class="menu-title">
                                                 <strong>个人中心</strong>
                                             </span>
                                 <i class="arrow"></i>
@@ -216,7 +213,7 @@
                             </a>
 
 
-                            <ul class="collapse in" aria-expanded="true">
+                            <ul <?php if($name==$vo2['name']){echo 'class="collapse in"';}?>  aria-expanded="true">
                                 {foreach name="vo['children']" item="vo2"}
                                 <li<?php if($name==$vo2['name']){echo 'class="active"';}?>>
                                 <a href="{:url($vo2.name)}"> {$vo2.title}
