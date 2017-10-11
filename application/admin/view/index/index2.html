@@ -13,13 +13,12 @@
     <!--Open Sans Font [ OPTIONAL ]-->
 
 
-
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
     <link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!--Nifty Stylesheet [ REQUIRED ]-->
-   <link href="__STATIC__/css/nifty.min.css" rel="stylesheet">
+    <link href="__STATIC__/css/nifty.min.css" rel="stylesheet">
 
 
     <!--Nifty Premium Icon [ DEMONSTRATION ]-->
@@ -30,22 +29,17 @@
     <link href="__STATIC__/css/demo/nifty-demo.min.css" rel="stylesheet">
 
 
-        
-
-
-
-    
     <!--JAVASCRIPT-->
     <!--=================================================-->
 
     <!--Pace - Page Load Progress Par [OPTIONAL]-->
     <link href="__STATIC__/plugins/pace/pace.min.css" rel="stylesheet">
     <script src="__STATIC__/plugins/pace/pace.min.js"></script>
-<!--	<link href="__STATIC__/css/theme-navy.css" rel="stylesheet">-->
-	<link href="__STATIC__/css/theme-light.min.css" rel="stylesheet">
+    <!--	<link href="__STATIC__/css/theme-navy.css" rel="stylesheet">-->
+    <link href="__STATIC__/css/theme-light.min.css" rel="stylesheet">
     <!--jQuery [ REQUIRED ]-->
     <script src="__STATIC__/js/jquery-2.2.4.min.js"></script>
-	<script src="__STATIC__/js/echarts.common.min.js"></script>
+    <script src="__STATIC__/js/echarts.common.min.js"></script>
 
     <!--BootstrapJS [ RECOMMENDED ]-->
     <script src="__STATIC__/js/bootstrap.min.js"></script>
@@ -53,22 +47,15 @@
 
     <!--NiftyJS [ RECOMMENDED ]-->
     <script src="__STATIC__/js/nifty.min.js"></script>
-	<link rel="shortcut icon" href="__STATIC__/img/favicon.ico" type="image/x-icon" />
-
-
-
-
+    <link rel="shortcut icon" href="__STATIC__/img/favicon.ico" type="image/x-icon"/>
 
 
     <!--=================================================-->
-    
+
     <!--Demo script [ DEMONSTRATION ]-->
     <script src="__STATIC__/js/demo/nifty-demo.min.js"></script>
 
-    
 
-
-    
     <!--=================================================
 
     REQUIRED
@@ -101,249 +88,246 @@
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
-    <div id="container" class="effect aside-float aside-bright mainnav-lg">
-        
-        <!--NAVBAR-->
-        <!--===================================================-->
-       {include file="layout/header" /}
-        <!--===================================================-->
-        <!--END NAVBAR-->
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
 
-        <div class="boxed">
+    <!--NAVBAR-->
+    <!--===================================================-->
+    {include file="layout/header" /}
+    <!--===================================================-->
+    <!--END NAVBAR-->
 
-            <!--CONTENT CONTAINER-->
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+
+            <!--Page content-->
             <!--===================================================-->
-            <div id="content-container">
-                
+            <div id="page-content">
 
-                <!--Page content-->
-                <!--===================================================-->
-                <div id="page-content">
-                    
-					<div class="fixed-fluid">
+                <div class="fixed-fluid">
 
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-sm-12 col-lg-12">
-									<!--Sparkline Area Chart-->
-											<!--Placeholder-->
-									<div class="panel panel-info ">
-										<div id="main" style="width: 400px;height:300px;"></div>
-									</div>
-								</div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <!--Sparkline Area Chart-->
+                                <!--Placeholder-->
+                                <div class="panel panel-info ">
+                                    <div id="main" style="width: 400px;height:300px;"></div>
+                                </div>
+                            </div>
 
-							</div>
+                        </div>
 
-						</div>
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-sm-12 col-lg-12">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
 
-									<!--Sparkline Line Chart-->
-									<div class="panel panel-info">
-										<div id="main2" style="width: 450px;height:300px;"></div>
-									</div>
-								</div>
-							</div>
+                                <!--Sparkline Line Chart-->
+                                <div class="panel panel-info">
+                                    <div id="main2" style="width: 450px;height:300px;"></div>
+                                </div>
+                            </div>
+                        </div>
 
-						</div>
-                        {notempty name="data"}
-						<div class="col-xs-12">
-							<div class="panel">
-								<div class="panel-heading">
-									<h2 class="panel-title">项目流水统计</h2>
-								</div>
-								<!--Data Table-->
-								<!--===================================================-->
+                    </div>
+                    {notempty name="data"}
+                    <div class="col-xs-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">项目流水统计</h2>
+                            </div>
+                            <!--Data Table-->
+                            <!--===================================================-->
 
-									<div class="table-responsive">
-										<table class="table table-striped">
-											<thead>
-											<tr>
-												<th>项目编号</th>
-												<th>项目名称</th>
-												<th>开始时间</th>
-												<th>项目周期</th>
-												<th>项目状态</th>
-											</tr>
-											</thead>
-											<tbody>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>项目编号</th>
+                                        <th>项目名称</th>
+                                        <th>开始时间</th>
+                                        <th>项目周期</th>
+                                        <th>项目状态</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-											{volist id="vo" name="data"}
-											<tr>
-												<td><a href="#" class="btn-link">{$vo.id}</a></td>
-												<td>{$vo.pro}</td>
-												<td><span class="text-muted"><i class="fa fa-clock-o"></i> {$vo.createtime|date='Y-m-d',###}</span></td>
-												<td>{$vo.cycle}天</td>
-												<td>
-													{if condition="$vo['status'] eq 2"}
-													<div class="label label-table label-info">
-														完成
-													</div>
-													{elseif condition="$vo['status'] eq 1" /}
-													<div class="label label-table label-danger">未完成</div>
-													{else /}
-													<div class="label label-table label-warning">正在进行</div>
-													{/if}
-												</td>
+                                    {volist id="vo" name="data"}
+                                    <tr>
+                                        <td><a href="#" class="btn-link">{$vo.id}</a></td>
+                                        <td>{$vo.pro}</td>
+                                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> {$vo.createtime|date='Y-m-d',###}</span>
+                                        </td>
+                                        <td>{$vo.cycle}天</td>
+                                        <td>
+                                            {if condition="$vo['status'] eq 2"}
+                                            <div class="label label-table label-info">
+                                                完成
+                                            </div>
+                                            {elseif condition="$vo['status'] eq 1" /}
+                                            <div class="label label-table label-danger">未完成</div>
+                                            {else /}
+                                            <div class="label label-table label-warning">正在进行</div>
+                                            {/if}
+                                        </td>
 
-											</tr>
-											{/volist}
+                                    </tr>
+                                    {/volist}
 
 
-											</tbody>
-										</table>
-									</div>
+                                    </tbody>
+                                </table>
+                            </div>
 
 
-									<div class="pull-right">
-										{$data->render()}
-									</div>
-								</div>
-								<!--===================================================-->
-								<!--End Data Table-->
+                            <div class="pull-right">
+                                {$data->render()}
+                            </div>
+                        </div>
+                        <!--===================================================-->
+                        <!--End Data Table-->
 
-							</div>
-                        {/notempty}
-						</div>
-
-					</div>
-					
+                    </div>
+                    {/notempty}
                 </div>
-                <!--===================================================-->
-                <!--End page content-->
-
 
             </div>
-            <!--===================================================-->
-            <!--END CONTENT CONTAINER-->
-
-                               {include file="layout/left" /}
-
-
-                                <!--Widget-->
-                                <!--================================-->
-                        
-            <!--===================================================-->
-            <!--END MAIN NAVIGATION-->
 
         </div>
-
-
         <!--===================================================-->
-        <button class="scroll-top btn">
-            <i class="pci-chevron chevron-up"></i>
-        </button>
-        <!--===================================================-->
-
+        <!--End page content-->
 
 
     </div>
     <!--===================================================-->
-    <!-- END OF CONTAINER -->
+    <!--END CONTENT CONTAINER-->
+
+    {include file="layout/left" /}
 
 
-    
-        <!-- SETTINGS - DEMO PURPOSE ONLY -->
+    <!--Widget-->
+    <!--================================-->
+
     <!--===================================================-->
-   
-    <!--===================================================-->
-    <!-- END SETTINGS -->
-	<script type="text/javascript">
-        // 初始化两个数组，盛装从数据库中获取到的数据
+    <!--END MAIN NAVIGATION-->
 
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-        option = {
-            title : {
-                text: '公司工作完成统计',
-                subtext: '总共数据',
-                x:'center'
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                data: ['待办工作','完成工作','正在进行']
-            },
-            series : [
-                {
-                    name: '访问来源',
-                    type: 'pie',
-                    radius : '55%',
-                    center: ['50%', '60%'],
-                    data:[
-                        {value:'{$date2}', name:'未完成数量'},
-                        {value:'{$date}', name:'完成数量'},
-                        {value:'{$date3}', name:'正在进行'},
+</div>
 
-                    ],
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
+
+<!--===================================================-->
+<button class="scroll-top btn">
+    <i class="pci-chevron chevron-up"></i>
+</button>
+<!--===================================================-->
+
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+
+<!-- SETTINGS - DEMO PURPOSE ONLY -->
+<!--===================================================-->
+
+<!--===================================================-->
+<!-- END SETTINGS -->
+<script type="text/javascript">
+    // 初始化两个数组，盛装从数据库中获取到的数据
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    option = {
+        title: {
+            text: '公司工作完成统计',
+            subtext: '总共数据',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['待办工作', '完成工作', '正在进行']
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: '{$date2}', name: '未完成数量'},
+                    {value: '{$date}', name: '完成数量'},
+                    {value: '{$date3}', name: '正在进行'},
+
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
                 }
-            ]
-        };
+            }
+        ]
+    };
 
-        myChart.setOption(option);
-	</script>
-
-
-	<script type="text/javascript">
+    myChart.setOption(option);
+</script>
 
 
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main2'));
-        option = {
-            title : {
-                text: '本月工作完成统计',
-                subtext: '总共数据',
-                x:'center'
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                data: ['待办工作','完成工作','正在进行']
-            },
-            series : [
-                {
-                    name: '访问来源',
-                    type: 'pie',
-                    radius : '55%',
-                    center: ['50%', '60%'],
-                    data:[
-                        {value:'{$total1}', name:'未完成数量'},
-                        {value:'{$total2}', name:'完成数量'},
-                        {value:'{$total3}', name:'正在进行'},
+<script type="text/javascript">
 
-                    ],
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main2'));
+    option = {
+        title: {
+            text: '本月工作完成统计',
+            subtext: '总共数据',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['待办工作', '完成工作', '正在进行']
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: '{$total1}', name: '未完成数量'},
+                    {value: '{$total2}', name: '完成数量'},
+                    {value: '{$total3}', name: '正在进行'},
+
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
                 }
-            ]
-        };
+            }
+        ]
+    };
 
 
-
-
-        myChart.setOption(option);
-	</script>
+    myChart.setOption(option);
+</script>
 
 </body>
 </html>

@@ -1,71 +1,71 @@
 <header id="navbar">
-            <div id="navbar-container" class="boxed">
+    <div id="navbar-container" class="boxed">
 
-                <!--Brand logo & name-->
-                <!--================================-->
-                <div class="navbar-header">
-                    <a href="index.html" class="navbar-brand">
-                        <img src="__STATIC__/img/logo.png" alt="智火后台管理" class="brand-icon">
-                        <div class="brand-title">
-                            <span class="brand-text">智火后台管理</span>
-                        </div>
-                    </a>
+        <!--Brand logo & name-->
+        <!--================================-->
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">
+                <img src="__STATIC__/img/logo.png" alt="智火后台管理" class="brand-icon">
+                <div class="brand-title">
+                    <span class="brand-text">智火后台管理</span>
                 </div>
-                <!--================================-->
-                <!--End brand logo & name-->
+            </a>
+        </div>
+        <!--================================-->
+        <!--End brand logo & name-->
 
 
-                <!--Navbar Dropdown-->
-                <!--================================-->
-                <div class="navbar-content clearfix">
-                    <ul class="nav navbar-top-links pull-left">
+        <!--Navbar Dropdown-->
+        <!--================================-->
+        <div class="navbar-content clearfix">
+            <ul class="nav navbar-top-links pull-left">
 
-                        <!--Navigation toogle button-->
-                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                        <li class="tgl-menu-btn">
-                            <a class="mainnav-toggle" href="#">
-                                <i class="demo-pli-view-list"></i>
-                            </a>
-                        </li>
-                    
-                    </ul>
-                    <ul class="nav navbar-top-links pull-right">
+                <!--Navigation toogle button-->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <li class="tgl-menu-btn">
+                    <a class="mainnav-toggle" href="#">
+                        <i class="demo-pli-view-list"></i>
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-top-links pull-right">
 
 
- 
-                        <li id="dropdown-user" class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                <li id="dropdown-user" class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
                                 <span class="pull-right">
                                     <!--<img class="img-circle img-user media-object" src="images/profile-photos/1.png" alt="Profile Picture">-->
                                     <i class="demo-pli-male ic-user"></i>
                                 </span>
-                                <div class="username hidden-xs">{$Think.session.user.username}</div>
-                            </a>
+                        <div class="username hidden-xs">{$Think.session.user.username}</div>
+                    </a>
 
 
-                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
+                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
 
-                                <!-- Dropdown heading  -->
-                                <div class="pad-all bord-btm">
-                                    <p class="text-main mar-btm"><span class="text-bold">欢迎回来！{$Think.session.user.username}!</span></p>
-                                    <div class="pad-all bord-btm">
-                                       奋斗的青春最美丽！
-                                    </div>
-                                </div>
-
-                                <div class="pad-all text-right">
-                                    <a href="{:url('Admin/Index/logout')}" class="btn btn-primary">
-                                        <i class="demo-pli-unlock"></i> 退出登录
-                                    </a>
-                                </div>
+                        <!-- Dropdown heading  -->
+                        <div class="pad-all bord-btm">
+                            <p class="text-main mar-btm"><span
+                                    class="text-bold">欢迎回来！{$Think.session.user.username}!</span></p>
+                            <div class="pad-all bord-btm">
+                                奋斗的青春最美丽！
                             </div>
-                        </li>
-                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                        <!--End user dropdown-->
-                    </ul>
-                </div>
-                <!--================================-->
-                <!--End Navbar Dropdown-->
+                        </div>
 
-            </div>
- </header>
+                        <div class="pad-all text-right">
+                            <a href="{:url('Admin/Index/logout')}" class="btn btn-primary">
+                                <i class="demo-pli-unlock"></i> 退出登录
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <!--End user dropdown-->
+            </ul>
+        </div>
+        <!--================================-->
+        <!--End Navbar Dropdown-->
+
+    </div>
+</header>

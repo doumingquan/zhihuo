@@ -1,26 +1,31 @@
 <?php
+
 namespace app\admin\controller;
+
 use app\common\controller\Adminbase;
 use think\Db;
 use think\Request;
+
 /**
- * 
+ *
  * 后台权限管理
  */
-class Rule extends AdminBase{
+class Rule extends AdminBase
+{
 
 //******************权限***********************
 
     /*权限列表*/
-    public function rule_list(){
-      //  $data=Db::name('auth_rule')->getTreeData('tree','id','title');dump($data);exit;
-        $info=Db::name('auth_rule')->select();
+    public function rule_list()
+    {
+        //  $data=Db::name('auth_rule')->getTreeData('tree','id','title');dump($data);exit;
+        $info = Db::name('auth_rule')->select();
         $data = model('admin/admin')->getTree($info);
 
         //dump($data);
-        $assign=array(
-           'data'=>$data
-           );
+        $assign = array(
+            'data' => $data
+        );
 
         $this->assign($assign);
         return $this->fetch();
@@ -29,14 +34,15 @@ class Rule extends AdminBase{
     /**
      * 添加权限
      */
-    public function add(){
-        $data=input('post.');
-        $data['show']=1;
+    public function add()
+    {
+        $data = input('post.');
+        $data['show'] = 1;
         unset($data['id']);
-        $result=Db::name('auth_rule')->insert($data);
+        $result = Db::name('auth_rule')->insert($data);
         if ($result) {
-            $this->success('添加成功','Admin/Rule/rule_list');
-        }else{
+            $this->success('添加成功', 'Admin/Rule/rule_list');
+        } else {
             $this->error('添加失败');
         }
     }
@@ -44,14 +50,15 @@ class Rule extends AdminBase{
     /**
      * 修改权限
      */
-    public function edit(){
-        $data=input('post.');
-        $info=['title'=>$data['title'],'name'=>$data['name'],'show'=>$data['show']];
-        $result=Db::name('auth_rule')->where(["id"=>$data['id']])->update($info);
+    public function edit()
+    {
+        $data = input('post.');
+        $info = ['title' => $data['title'], 'name' => $data['name'], 'show' => $data['show']];
+        $result = Db::name('auth_rule')->where(["id" => $data['id']])->update($info);
         // $result=\app\admin\model\Admin::change(["id"=>$data['id']],$info);
         if ($result) {
-            $this->success('修改成功','Admin/Rule/rule_list');
-        }else{
+            $this->success('修改成功', 'Admin/Rule/rule_list');
+        } else {
             $this->error('您没有做任何修改');
         }
     }
@@ -59,14 +66,15 @@ class Rule extends AdminBase{
     /**
      * 删除权限
      */
-    public function delete($id){
-        $map=array(
-            'id'=>$id
-            );
-        $result=Db::name('auth_rule')->delete($map);
-        if($result){
-            $this->success('删除成功','Admin/Rule/rule_list');
-        }else{
+    public function delete($id)
+    {
+        $map = array(
+            'id' => $id
+        );
+        $result = Db::name('auth_rule')->delete($map);
+        if ($result) {
+            $this->success('删除成功', 'Admin/Rule/rule_list');
+        } else {
             $this->error('请先删除子权限');
         }
 
@@ -75,26 +83,28 @@ class Rule extends AdminBase{
     /**
      * 角色列表
      */
-    public function rule_group(){
-        $data=Db::name('auth_group')->select();
-        $assign=array(
-            'data'=>$data
-            );
+    public function rule_group()
+    {
+        $data = Db::name('auth_group')->select();
+        $assign = array(
+            'data' => $data
+        );
         $this->assign($assign);
         return $this->fetch();
     }
 
 
-     /**
+    /**
      * 添加角色
      */
-    public function add_group(){
-        $data=input('post.');
+    public function add_group()
+    {
+        $data = input('post.');
         unset($data['id']);
-        $result=Db::name('auth_group')->insert($data);
+        $result = Db::name('auth_group')->insert($data);
         if ($result) {
-            $this->success('添加成功','Admin/Rule/rule_group');
-        }else{
+            $this->success('添加成功', 'Admin/Rule/rule_group');
+        } else {
             $this->error('添加失败');
         }
     }
@@ -102,13 +112,14 @@ class Rule extends AdminBase{
     /**
      * 修改角色
      */
-    public function edit_group(){
-        $data=input('post.');
-        $result=Db::name('auth_group')->where(["id"=>$data['id']])->update(['title'=>$data['title']]);
+    public function edit_group()
+    {
+        $data = input('post.');
+        $result = Db::name('auth_group')->where(["id" => $data['id']])->update(['title' => $data['title']]);
         // $result=Db::name('auth_group')->editData($map,$data);
         if ($result) {
-            $this->success('修改成功','Admin/Rule/rule_group');
-        }else{
+            $this->success('修改成功', 'Admin/Rule/rule_group');
+        } else {
             $this->error('您没有做任何修改');
         }
     }
@@ -116,17 +127,18 @@ class Rule extends AdminBase{
     /**
      * 删除角色
      */
-    public function delete_group($id){
-        if ($id==1) {
+    public function delete_group($id)
+    {
+        if ($id == 1) {
             $this->error('该分组不能被删除');
         }
-        $map=array(
-            'id'=>$id
-            );
-        $result=Db::name('auth_group')->where($map)->delete();
+        $map = array(
+            'id' => $id
+        );
+        $result = Db::name('auth_group')->where($map)->delete();
         if ($result) {
-            $this->success('删除成功','Admin/Rule/rule_group');
-        }else{
+            $this->success('删除成功', 'Admin/Rule/rule_group');
+        } else {
             $this->error('删除失败');
         }
     }
@@ -135,41 +147,42 @@ class Rule extends AdminBase{
     /**
      * 分配权限
      */
-    public function rule_distribution($id){
-        if(Request::instance()->post()){
-           // echo $id;
-            $data=input('post.');
-            $datas['rules']=implode(',', $data['rule_ids']);
-            $result=Db::name('auth_group')->where(['id'=>$data['id']])->update($datas);//halt($result);
+    public function rule_distribution($id)
+    {
+        if (Request::instance()->post()) {
+            // echo $id;
+            $data = input('post.');
+            $datas['rules'] = implode(',', $data['rule_ids']);
+            $result = Db::name('auth_group')->where(['id' => $data['id']])->update($datas);//halt($result);
             // $result=Db::name('auth_group')->editData($map,$data);
             if ($result) {
-                $this->success('操作成功','Admin/Rule/rule_group');
-            }else{
+                $this->success('操作成功', 'Admin/Rule/rule_group');
+            } else {
                 $this->error('操作失败');
             }
-        }else{
-          //  echo $id;
-            $group_data=Db::name('auth_group')->where(array('id'=>$id))->find();//取出该管理员的所拥有的权限
+        } else {
+            //  echo $id;
+            $group_data = Db::name('auth_group')->where(array('id' => $id))->find();//取出该管理员的所拥有的权限
 
-            $group_data['rules']=explode(',', $group_data['rules']);
+            $group_data['rules'] = explode(',', $group_data['rules']);
             // 获取规则数据
-            $info=Db::name('auth_rule')->where('pid=0')->select();//halt($info);
-            foreach($info as $k=>$v){
-                    $info[$k]['_data'] = db('auth_rule')->where(['pid' => $v['id']])->select();
-                foreach($info[$k]['_data'] as $k1=>$v1){
-                    $info[$k]['_data'][$k1]['_data'] = db('auth_rule')->where(['pid'=>$v1['id']])->select();
+            $info = Db::name('auth_rule')->where('pid=0')->select();//halt($info);
+            foreach ($info as $k => $v) {
+                $info[$k]['_data'] = db('auth_rule')->where(['pid' => $v['id']])->select();
+                foreach ($info[$k]['_data'] as $k1 => $v1) {
+                    $info[$k]['_data'][$k1]['_data'] = db('auth_rule')->where(['pid' => $v1['id']])->select();
                 }
             }
             //halt($info);
             $rule_data = model('admin/admin')->treedata($info);
 
-            $assign=array(
-                'group_data'=>$group_data,
-                'rule_data'=>$info,
-               
-                );
+            $assign = array(
+                'group_data' => $group_data,
+                'rule_data' => $info,
+
+            );
             // dump($group_data);
-          
+
             $this->assign($assign);
             return $this->fetch();
         }

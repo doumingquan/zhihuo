@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>智火营销-员工信息</title>
 
-{include file='layout/top' /}
+    {include file='layout/top' /}
     <style type="text/css">
-        .close{
-            font-size:50px !important;
+        .close {
+            font-size: 50px !important;
         }
-        .mar-ver{
+
+        .mar-ver {
 
             margin-left: 40%;
         }
@@ -21,361 +22,376 @@
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
-    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
 
-        <!--NAVBAR-->
+    <!--NAVBAR-->
+    <!--===================================================-->
+    {include file='layout/header' /}
+    <!--===================================================-->
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
         <!--===================================================-->
-         {include file='layout/header' /}
-        <!--===================================================-->
-        <!--END NAVBAR-->
+        <div id="content-container">
 
-        <div class="boxed">
+            <!--Page Title-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div id="page-title">
+                <!-- <h1 class="page-header text-overflow">Data Tables</h1>
 
-            <!--CONTENT CONTAINER-->
+                <div class="searchbox">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search..">
+                        <span class="input-group-btn">
+                            <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End page title-->
+
+
+            <!--Breadcrumb-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <ol class="breadcrumb">
+                <li><a href="{:url('Admin/Index/index')}">首页</a></li>
+                <li>员工信息</li>
+                <li class="active">员工列表</li>
+            </ol>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End breadcrumb-->
+
+
+            <!--Page content-->
             <!--===================================================-->
-            <div id="content-container">
-
-                <!--Page Title-->
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <div id="page-title">
-                    <!-- <h1 class="page-header text-overflow">Data Tables</h1>
-
-                    <div class="searchbox">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search..">
-                            <span class="input-group-btn">
-                                <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
-                            </span>
-                        </div>
-                    </div> -->
-                </div>
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <!--End page title-->
+            <div id="page-content">
 
 
-                <!--Breadcrumb-->
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <ol class="breadcrumb">
-                    <li><a href="{:url('Admin/Index/index')}">首页</a></li>
-                    <li>员工信息</li>
-                    <li class="active">员工列表</li>
-                </ol>
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <!--End breadcrumb-->
-
-
-
-
-                <!--Page content-->
-                <!--===================================================-->
-                <div id="page-content">
-
-
-            {volist id="vo" name="admin"}
-                    <div class="col-lg-2">
-                      <!--  <div class="panel">
-                            <div class="panel-body text-center">
-                                {if condition="$vo['headpic'] neq ''"}
-                                <img alt="Profile Picture" class="img-md img-circle mar-btm" src="/{$vo.headpic}">
-                                {else /}
-                                <img alt="Profile Picture" class="img-md img-circle mar-btm" src="__STATIC__/img/profile-photos/1.png">
-                                {/if}
-                                <p class="text-lg text-semibold mar-no text-main"></p>
-                                <p class="text-muted">{$vo.username}</p>
-                                <p class="text-sm"> {if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else /}{$vo.ename}{/if}</p>
+                {volist id="vo" name="admin"}
+                <div class="col-lg-2">
+                    <!--  <div class="panel">
+                          <div class="panel-body text-center">
+                              {if condition="$vo['headpic'] neq ''"}
+                              <img alt="Profile Picture" class="img-md img-circle mar-btm" src="/{$vo.headpic}">
+                              {else /}
+                              <img alt="Profile Picture" class="img-md img-circle mar-btm" src="__STATIC__/img/profile-photos/1.png">
+                              {/if}
+                              <p class="text-lg text-semibold mar-no text-main"></p>
+                              <p class="text-muted">{$vo.username}</p>
+                              <p class="text-sm"> {if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else /}{$vo.ename}{/if}</p>
 &lt;!&ndash;
-                                <a  href="javascript:;" ruleId="{$vo['id']}"  onclick="edit(this)" class="btn btn-primary mar-ver"><i class="demo-pli-male icon-fw"></i>详情</a>
+                              <a  href="javascript:;" ruleId="{$vo['id']}"  onclick="edit(this)" class="btn btn-primary mar-ver"><i class="demo-pli-male icon-fw"></i>详情</a>
 &ndash;&gt;
 
-                                <div class="list-group bg-trans pad-btm">
-                                    <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i> {$vo.email}</a>
-                                    <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.position}</a>
-                                    <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i> {$vo.mobile}</a>
-                                    <a class="label label-info pull-right" href="">详情</a>
-                                </div>
-                            </div>
-                        </div>-->
-                        <div class="panel">
-                            <div class="panel-body text-center ">
-                                {if condition="$vo['headpic'] neq ''"}
-                                <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="/{$vo.headpic}">
-                                {else /}
-                                <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="__STATIC__/img/profile-photos/1.png">
-                                {/if}
-                                <h4 class="mar-n">{$vo.username}</h4>
-                                <p class="text-sm">{if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else /}{$vo.ename}{/if}</p>
-                            </div>
-                            <ul class="list-unstyled text-center bord-top pad-top mar-no row">
-
-                            </ul>
-                            <div class="list-group bg-trans pad-btm">
-                                <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i>  {$vo.email}</a>
-                                <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.position}</a>
-                                <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>{if condition="$vo['user_email'] eq ''"}暂无企业邮箱 {else /}{$vo.user_email}{/if}</a>
-                                 <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.weixin}</a>
-                                  <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.mobile}</a>
-                            </div>
-                            {if condition="session('user')['remark'] eq 1"}
-                            <a  href="javascript:;" id="{$vo.id}"   onclick="edit(this)" class="btn btn-primary mar-ver">详情</a>
+                              <div class="list-group bg-trans pad-btm">
+                                  <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i> {$vo.email}</a>
+                                  <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.position}</a>
+                                  <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i> {$vo.mobile}</a>
+                                  <a class="label label-info pull-right" href="">详情</a>
+                              </div>
+                          </div>
+                      </div>-->
+                    <div class="panel">
+                        <div class="panel-body text-center ">
+                            {if condition="$vo['headpic'] neq ''"}
+                            <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="/{$vo.headpic}">
+                            {else /}
+                            <img alt="Avatar" class="img-lg img-circle img-border mar-btm"
+                                 src="__STATIC__/img/profile-photos/1.png">
                             {/if}
+                            <h4 class="mar-n">{$vo.username}</h4>
+                            <p class="text-sm">{if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else
+                                /}{$vo.ename}{/if}</p>
                         </div>
+                        <ul class="list-unstyled text-center bord-top pad-top mar-no row">
+
+                        </ul>
+                        <div class="list-group bg-trans pad-btm">
+                            <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i>
+                                {$vo.email}</a>
+                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
+                                {$vo.position}</a>
+                            <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>{if
+                                condition="$vo['user_email'] eq ''"}暂无企业邮箱 {else /}{$vo.user_email}{/if}</a>
+                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
+                                {$vo.weixin}</a>
+                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
+                                {$vo.mobile}</a>
+                        </div>
+                        {if condition="session('user')['remark'] eq 1"}
+                        <a href="javascript:;" id="{$vo.id}" onclick="edit(this)" class="btn btn-primary mar-ver">详情</a>
+                        {/if}
                     </div>
+                </div>
                 {/volist}
-                    <script>
-                        function deletestaff($id){
+                <script>
+                    function deletestaff($id) {
                         $.ajax({
-                            url:"<?php echo url('delete_user'); ?>",
-                            data:{'id':$id},
-                            type:'post',
-                            dataType:'json',
-                            success:function(msg){
-                                if(msg.status==1000){
+                            url: "<?php echo url('delete_user'); ?>",
+                            data: {'id': $id},
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (msg) {
+                                if (msg.status == 1000) {
                                     alert('删除成功!');
-                                }else{
+                                } else {
                                     alert('删除失败!');
                                 }
                             }
                         })
                     }
-                    </script>
-                    <script>
-                        function examine($id){
-                             $.ajax({
-                                url:"<?php echo url('check_user'); ?>",
-                                data:{'id':$id},
-                                type:'post',
-                                dataType:'json',
-                                success:function(msg){
-                                    if(msg.status==1000){
-                                        alert('审核成功!');
-                                    }else{
-                                        alert(msg.msg);
-                                    }
+                </script>
+                <script>
+                    function examine($id) {
+                        $.ajax({
+                            url: "<?php echo url('check_user'); ?>",
+                            data: {'id': $id},
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (msg) {
+                                if (msg.status == 1000) {
+                                    alert('审核成功!');
+                                } else {
+                                    alert(msg.msg);
                                 }
-                            })
-                        }
-                    </script>
+                            }
+                        })
+                    }
+                </script>
                 <script type="text/javascript">
 
-        // 菜单
-        function edit(o){
-            var $id=$(o).attr('id');
+                    // 菜单
+                    function edit(o) {
+                        var $id = $(o).attr('id');
 
-            $.ajax({
-                type:"post",
-                dataType:"json",
-                data:{'id':$id},
-                url:"{:url('Admin/ajax_admin')}",
-                success:function(data){
-                    $('#demo-is-inputsmall').attr('value',data.username);
-                    $('#mobile2').attr('value',data.mobile);
-                    $('#email2').attr('value',data.email);
-                    $('#number2').attr('value',data.number);
-                    $('#position').attr('value',data.position);
-                    $('#name').attr('value',data.name);
-                    $('#native').attr('value',data.native);
-                    $('#weixin').attr('value',data.weixin);
-                    $('#qq').attr('value',data.qq);
-                    $('#age').attr('value',data.age);
-                    $('#height').attr('value',data.height);
-                    $('#address').attr('value',data.address);
-                    $('#company').attr('value',data.company);
-                    $('#depart').attr('value',data.depart);
-
-
-                }
-
-            });
-
-            $('#thinkright-edit').modal('show');
-        }
+                        $.ajax({
+                            type: "post",
+                            dataType: "json",
+                            data: {'id': $id},
+                            url: "{:url('Admin/ajax_admin')}",
+                            success: function (data) {
+                                $('#demo-is-inputsmall').attr('value', data.username);
+                                $('#mobile2').attr('value', data.mobile);
+                                $('#email2').attr('value', data.email);
+                                $('#number2').attr('value', data.number);
+                                $('#position').attr('value', data.position);
+                                $('#name').attr('value', data.name);
+                                $('#native').attr('value', data.native);
+                                $('#weixin').attr('value', data.weixin);
+                                $('#qq').attr('value', data.qq);
+                                $('#age').attr('value', data.age);
+                                $('#height').attr('value', data.height);
+                                $('#address').attr('value', data.address);
+                                $('#company').attr('value', data.company);
+                                $('#depart').attr('value', data.depart);
 
 
-    </script>
-                    <!--===================================================-->
-                    <!-- End Striped Table -->
+                            }
 
-                </div>
+                        });
+
+                        $('#thinkright-edit').modal('show');
+                    }
+
+
+                </script>
                 <!--===================================================-->
-                <!--End page content-->
-
+                <!-- End Striped Table -->
 
             </div>
+            <!--===================================================-->
+            <!--End page content-->
 
-
-          {include file="layout/left" /}
 
         </div>
 
 
-        {include file="layout/footer" /}
-
-        <!--===================================================-->
-        <!-- END FOOTER -->
-
-
-        <!-- SCROLL PAGE BUTTON -->
-        <!--===================================================-->
-        <button class="scroll-top btn">
-            <i class="pci-chevron chevron-up"></i>
-        </button>
-        <!--===================================================-->
-
-
+        {include file="layout/left" /}
 
     </div>
+
+
+    {include file="layout/footer" /}
+
     <!--===================================================-->
-    <!-- END OF CONTAINER -->
+    <!-- END FOOTER -->
 
 
-
-        <!-- SETTINGS - DEMO PURPOSE ONLY -->
-    <!-- END SETTINGS -->
-
-    <div class="modal fade" id="thinkright-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
 
 
-                </div>
-                <div class="modal-body">
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
 
-                </div>
+
+<!-- SETTINGS - DEMO PURPOSE ONLY -->
+<!-- END SETTINGS -->
+
+<div class="modal fade" id="thinkright-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+
+
             </div>
-        </div>
-    </div>
-
-
-
-
-    <!-- 调整薪资模态框开始 -->
-    <div class="modal fade" id="thinkright-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                       详细信息
-                    </h4>
-                </div>
-
-
-                        <!--Input Size-->
-                        <!--===================================================-->
-                        <form class="form-horizontal" method="post" action="">
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="demo-is-inputsmall">员工名称</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-sm" id="demo-is-inputsmall" value="{$ajax_admin.username}" name="username" required="required">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">电话号码</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" maxlength="11"  id="mobile2" class="form-control" value="{$ajax_admin.mobile}" name="mobile" required="required">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">邮箱</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" placeholder="E-mail" id="email2" class="form-control" value="" name="email" required="required">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">工号</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" placeholder="number" class="form-control" value="" name="number" id="number2" required="required" readonly="true">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">入职职位</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" placeholder="number" class="form-control" value="" id="position" required="required" readonly="true">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">身高</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text"  class="form-control" value="" name="birthday" id="height" required="required" readonly="true">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">年龄</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text"  class="form-control" value="0" name="birthday" id="age" required="required" readonly="true">
-                                    </div>
-                                </div>
-                              <!--  <div class="form-group">
-                                    <label class="col-sm-3 control-label">健康状态</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text"  class="form-control" name="birthday" required="required" readonly="true">
-                                    </div>
-                                </div>-->
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">微信号</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" placeholder="weixin" class="form-control" value="" id="weixin" name="weixin" required="required">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">qq号</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control" value="" name="qq" id="qq" required="required">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">籍贯</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" id="native" class="form-control" value="江苏淮安" name="native" required="required">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">家庭住址</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" id="address" class="form-control" value="江苏南通市涟水县" name="address" required="required">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">学历</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control" value="研究生" id="name"  name="address" required="required" readonly="true">
-
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">所在区域公司</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control" value="研究生"  id="company"  required="required" readonly="true">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">所在部门</label>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control" value="研究生" id="depart" name="address" required="required" readonly="true">
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-                        </form>
-                        <!--===================================================-->
-                        <!--End Input Size-->
-
+            <div class="modal-body">
 
             </div>
         </div>
     </div>
-    <!-- 添加项目模态框结束 -->
+</div>
 
+
+<!-- 调整薪资模态框开始 -->
+<div class="modal fade" id="thinkright-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    详细信息
+                </h4>
+            </div>
+
+
+            <!--Input Size-->
+            <!--===================================================-->
+            <form class="form-horizontal" method="post" action="">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="demo-is-inputsmall">员工名称</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-sm" id="demo-is-inputsmall"
+                                   value="{$ajax_admin.username}" name="username" required="required">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">电话号码</label>
+                        <div class="col-sm-6">
+                            <input type="text" maxlength="11" id="mobile2" class="form-control"
+                                   value="{$ajax_admin.mobile}" name="mobile" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">邮箱</label>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="E-mail" id="email2" class="form-control" value=""
+                                   name="email" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">工号</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" placeholder="number" class="form-control" value="" name="number"
+                                   id="number2" required="required" readonly="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">入职职位</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" placeholder="number" class="form-control" value="" id="position"
+                                   required="required" readonly="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">身高</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" class="form-control" value="" name="birthday" id="height"
+                                   required="required" readonly="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">年龄</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" class="form-control" value="0" name="birthday" id="age"
+                                   required="required" readonly="true">
+                        </div>
+                    </div>
+                    <!--  <div class="form-group">
+                          <label class="col-sm-3 control-label">健康状态</label>
+                          <div class="col-sm-6 ">
+                              <input type="text"  class="form-control" name="birthday" required="required" readonly="true">
+                          </div>
+                      </div>-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">微信号</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" placeholder="weixin" class="form-control" value="" id="weixin"
+                                   name="weixin" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">qq号</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" class="form-control" value="" name="qq" id="qq" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">籍贯</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" id="native" class="form-control" value="江苏淮安" name="native"
+                                   required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">家庭住址</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" id="address" class="form-control" value="江苏南通市涟水县" name="address"
+                                   required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">学历</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" class="form-control" value="研究生" id="name" name="address"
+                                   required="required" readonly="true">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所在区域公司</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" class="form-control" value="研究生" id="company" required="required"
+                                   readonly="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所在部门</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" class="form-control" value="研究生" id="depart" name="address"
+                                   required="required" readonly="true">
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+            <!--===================================================-->
+            <!--End Input Size-->
+
+
+        </div>
+    </div>
+</div>
+<!-- 添加项目模态框结束 -->
 
 
 </body>

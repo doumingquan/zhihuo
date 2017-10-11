@@ -12,215 +12,217 @@
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
-    <div id="container" class="effect aside-float aside-bright mainnav-lg">
-        
-         {include file='layout/header' /}  
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
 
-        <div class="boxed">
+    {include file='layout/header' /}
 
-            <!--CONTENT CONTAINER-->
-            <!--===================================================-->
-            <div id="content-container">
-                
-                <!--Page Title-->
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <div id="page-title">
-                    <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
+    <div class="boxed">
 
-                    <!--Searchbox-->
-                    <!-- <div class="searchbox">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search..">
-                            <span class="input-group-btn">
-                                <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
-                            </span>
-                        </div>
-                    </div> -->
-                </div>
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <!--End page title-->
-                <!--Breadcrumb-->
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <ol class="breadcrumb">
-                    <li><a href="#">首页</a></li>
-                    <li><a href="#">项目信息</a></li>
-                    <li class="active">基本信息</li>
-                </ol>
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <!--End breadcrumb-->
-              <!--  <div class="panel">
-                    &lt;!&ndash; <div class="panel-heading">
-                        <h3 class="panel-title">Add &amp; Remove Rows</h3>
-                    </div> &ndash;&gt;
-                
-                    &lt;!&ndash; Foo Table - Add & Remove Rows &ndash;&gt;
-                    &lt;!&ndash;===================================================&ndash;&gt;
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+            <!--Page Title-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div id="page-title">
+                <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
+
+                <!--Searchbox-->
+                <!-- <div class="searchbox">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search..">
+                        <span class="input-group-btn">
+                            <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End page title-->
+            <!--Breadcrumb-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">项目信息</a></li>
+                <li class="active">基本信息</li>
+            </ol>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End breadcrumb-->
+            <!--  <div class="panel">
+                  &lt;!&ndash; <div class="panel-heading">
+                      <h3 class="panel-title">Add &amp; Remove Rows</h3>
+                  </div> &ndash;&gt;
+
+                  &lt;!&ndash; Foo Table - Add & Remove Rows &ndash;&gt;
+                  &lt;!&ndash;===================================================&ndash;&gt;
+                  <div class="panel-body">
+                      <div class="pad-btm form-inline">
+                          <div class="row">
+                              <div class="col-sm-6 text-xs-center">
+                                  <div class="form-group">
+
+                                  </div>
+                              </div>
+                              <div class="col-sm-6 text-xs-center text-right">
+                                  &lt;!&ndash; <div class="form-group">
+                                      <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
+                                  </div> &ndash;&gt;
+                              </div>
+                          </div>
+                      </div>
+                      <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+                          <thead>
+                              <tr>
+                                  <th data-sort-initial="true" data-toggle="true">项目名</th>
+                                  <th data-sort-initial="true" data-toggle="true">项目类型</th>
+                                  <th>项目周期(单位:天)</th>
+                                  <th data-sort-initial="true" data-toggle="true">项目参与人员</th>
+
+                                  <th data-hide="phone, tablet">操作</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {foreach name="data" item="v"}
+                                  <tr>
+                                      <td>{$v['pro']}</td>
+                                      <td>{$v['position']}</td>
+                                      <td>{$v['cycle']}</td>
+                                      <td>{$v['username']}</td>
+                                      <td>
+                                          <a href="{:url('Admin/Project/edit',array('id'=>$v['id']))}">修改</a>|  <a href="javascript:" onclick="deleteproject({$v['id']})">删除</a>
+                                      </td>
+                                  </tr>
+                              {/foreach}
+                          </tbody>
+
+
+                          <tfoot>
+
+                          </tfoot>
+
+                      </table>
+
+                  </div>
+                  &lt;!&ndash;===================================================&ndash;&gt;
+                  &lt;!&ndash; End Foo Table - Add & Remove Rows &ndash;&gt;
+
+              </div>-->
+
+            <div class="col-xs-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">项目列表</h3>
+                    </div>
+
+                    <!--Data Table-->
+                    <!--===================================================-->
                     <div class="panel-body">
                         <div class="pad-btm form-inline">
-                            <div class="row">
-                                <div class="col-sm-6 text-xs-center">
-                                    <div class="form-group">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 text-xs-center text-right">
-                                    &lt;!&ndash; <div class="form-group">
-                                        <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
-                                    </div> &ndash;&gt;
-                                </div>
-                            </div>
+
                         </div>
-                        <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
-                            <thead>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
                                 <tr>
-                                    <th data-sort-initial="true" data-toggle="true">项目名</th>
-                                    <th data-sort-initial="true" data-toggle="true">项目类型</th>
+                                    <th>项目编号</th>
+                                    <th>项目名称</th>
+                                    <th>项目类型</th>
                                     <th>项目周期(单位:天)</th>
-                                    <th data-sort-initial="true" data-toggle="true">项目参与人员</th>
-                                    
-                                    <th data-hide="phone, tablet">操作</th>
+                                    <th>项目状态</th>
+                                    <th>项目参与人员</th>
+                                    <th>操作</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {foreach name="data" item="v"}
-                                    <tr>
-                                        <td>{$v['pro']}</td>
-                                        <td>{$v['position']}</td>
-                                        <td>{$v['cycle']}</td>
-                                        <td>{$v['username']}</td>
-                                        <td>
-                                            <a href="{:url('Admin/Project/edit',array('id'=>$v['id']))}">修改</a>|  <a href="javascript:" onclick="deleteproject({$v['id']})">删除</a>
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
+                                </thead>
+                                <tbody>
+                                {volist id="vo" name="data"}
+                                <tr>
+                                    <td><a href="#" class="btn-link">{$vo.id} </a></td>
+                                    <td>{$vo.pro}</td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i>{$vo.position} </span>
+                                    </td>
+                                    <td>{$vo.cycle}</td>
+                                    <td>
+                                        {if condition="$vo['status'] eq 2"}
+                                        <div class="label label-table label-info">
+                                            完成
+                                        </div>
+                                        {elseif condition="$vo['status'] eq 1" /}
+                                        <div class="label label-table label-danger">未完成</div>
+                                        {else /}
+                                        <div class="label label-table label-warning">正在进行</div>
+                                        {/if}
 
-                          
-                            <tfoot>
-                                
-                            </tfoot>
-
-                        </table>
-                       
-                    </div>
-                    &lt;!&ndash;===================================================&ndash;&gt;
-                    &lt;!&ndash; End Foo Table - Add & Remove Rows &ndash;&gt;
-                
-                </div>-->
-
-                <div class="col-xs-12">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">项目列表</h3>
-                        </div>
-
-                        <!--Data Table-->
-                        <!--===================================================-->
-                        <div class="panel-body">
-                            <div class="pad-btm form-inline">
-
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>项目编号</th>
-                                        <th>项目名称</th>
-                                        <th>项目类型</th>
-                                        <th>项目周期(单位:天)</th>
-                                        <th>项目状态</th>
-                                        <th >项目参与人员</th>
-                                        <th >操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {volist id="vo" name="data"}
-                                    <tr>
-                                        <td><a href="#" class="btn-link">{$vo.id} </a></td>
-                                        <td>{$vo.pro}</td>
-                                        <td><span class="text-muted"><i class="fa fa-clock-o"></i>{$vo.position} </span></td>
-                                        <td>{$vo.cycle}</td>
-                                        <td>
-                                            {if condition="$vo['status'] eq 2"}
-                                            <div class="label label-table label-info">
-                                                完成
-                                            </div>
-                                            {elseif condition="$vo['status'] eq 1" /}
-                                            <div class="label label-table label-danger">未完成</div>
-                                            {else /}
-                                            <div class="label label-table label-warning">正在进行</div>
-                                            {/if}
-
-                                        </td>
-                                        <td >
-                                            <div>{$vo.username}</div>
-                                        </td>
-                                        <td >
-                                            <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary">
-                                                修改
-                                            </a>
-                                            <a id="{$vo.id}" class="btn btn-danger btn-sm shiny"   href="javascript:" onclick="deletestaff(this);">删除</a>
-                                        </td>
-                                    </tr>
-                                    {/volist}
-                                    </tbody>
-                                </table>
-
-                            </div>
+                                    </td>
+                                    <td>
+                                        <div>{$vo.username}</div>
+                                    </td>
+                                    <td>
+                                        <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary">
+                                            修改
+                                        </a>
+                                        <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:"
+                                           onclick="deletestaff(this);">删除</a>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
 
                         </div>
-                        <!--===================================================-->
-                        <!--End Data Table-->
 
                     </div>
+                    <!--===================================================-->
+                    <!--End Data Table-->
+
                 </div>
             </div>
-            <!--===================================================-->
-            {include file="layout/left" /}
-
-                      
         </div>
-
-        
-
-        {include file="layout/footer" /}
-
-
-        <!-- SCROLL PAGE BUTTON -->
         <!--===================================================-->
-        <button class="scroll-top btn">
-            <i class="pci-chevron chevron-up"></i>
-        </button>
-        <!--===================================================-->
-
+        {include file="layout/left" /}
 
 
     </div>
-    <!--===================================================-->
-    <!-- END OF CONTAINER -->
-    <script>
-        function deletestaff(o){
-            var $id=$(o).attr("id");
-            $.ajax({
-                url:"{:url('Project/delete')}",
-                data:{'id':$id},
-                type:'post',
-                dataType:'json',
-                success:function(msg){
-                    if(msg.status==1000){
-                        alert('删除成功!');
-                        location.href='{:url('Admin/Project/index')}';
-                    }else{
-                        alert('删除失败!');
-                    }
-                }
-            })
-        }
-    </script>
 
-    
-        <!-- SETTINGS - DEMO PURPOSE ONLY -->
-    <!-- END SETTINGS -->
+
+    {include file="layout/footer" /}
+
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+<script>
+    function deletestaff(o) {
+        var $id = $(o).attr("id");
+        $.ajax({
+            url: "{:url('Project/delete')}",
+            data: {'id': $id},
+            type: 'post',
+            dataType: 'json',
+            success: function (msg) {
+                if (msg.status == 1000) {
+                    alert('删除成功!');
+                    location.href = '{:url('
+                    Admin / Project / index
+                    ')}';
+                } else {
+                    alert('删除失败!');
+                }
+            }
+        })
+    }
+</script>
+
+
+<!-- SETTINGS - DEMO PURPOSE ONLY -->
+<!-- END SETTINGS -->
 
 
 </body>
