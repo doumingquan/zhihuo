@@ -144,7 +144,7 @@
                                 <div class="col-md-9">
                                     <select name="company_id" id="" class="form-control">
                                         {foreach name="company" item="v"}
-                                            <option value="{$v['id']}">{$v['company']}</option>
+                                            <option value="{$v['id']}" {if condition="$v['id'] eq $data['company_id']"}selected="selected"{/if}>{$v['company']}</option>
                                         {/foreach}
                                     </select>
                                
