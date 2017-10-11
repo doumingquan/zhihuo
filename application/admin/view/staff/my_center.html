@@ -46,7 +46,7 @@
                     </div>
                     <div class="widget-body text-center">
                         <img alt="Profile Picture" class="widget-img img-circle img-border-light"
-                             src="/{$info['headpic']}">
+                             src="/zhihuo/public/{$info['headpic']}">
                         <h4 class="mar-no text-main">{$info.username}</h4>
                         <p class="text-muted mar-no">{$info.name}</p>
                     </div>
@@ -187,9 +187,7 @@
                                         <select id="" name="schooling" required="required" class="form-control">
                                             <option value="0">请选择</option>
                                             {foreach name="school" id="vo"}
-                                            <option value="{$vo['id']}" {if condition="$vo['id'] eq $info['schooling']"
-                                                    }selected="selected" {
-                                            /if} >{$vo['name']}</option>
+                                            <option value="{$vo['id']}" {if condition="$vo['id'] eq $info['schooling']"}selected="selected" {/if} >{$vo['name']}</option>
                                             {/foreach}
 
                                         </select>
@@ -201,9 +199,7 @@
                                         <select id="" name="company_id" required="required" class="form-control">
                                             <option value="0">请选择</option>
                                             {foreach name="company" id="vo"}
-                                            <option value="{$vo['id']}" {if condition="$vo['id'] eq $info['company_id']"
-                                                    }selected="selected" {
-                                            /if} >{$vo['company']}</option>
+                                            <option value="{$vo['id']}" {if condition="$vo['id'] eq $info['company_id']"}selected="selected" {/if} >{$vo['company']}</option>
                                             {/foreach}
 
                                         </select>
@@ -215,9 +211,7 @@
                                         <select id="" name="depart_id" required="required" class="form-control">
                                             <option value="0">请选择</option>
                                             {foreach name="department" id="vo"}
-                                            <option value="{$vo['id']}" {if condition="$vo['id'] eq $info['depart_id']"
-                                                    }selected="selected" {
-                                            /if} >{$vo['depart']}</option>
+                                            <option value="{$vo['id']}" {if condition="$vo['id'] eq $info['depart_id']"}selected="selected" {/if} >{$vo['depart']}</option>
                                             {/foreach}
 
                                         </select>
