@@ -12,6 +12,9 @@ class Project extends Adminbase{
 	 * 项目列表
 	 */
 	public function index(){
+        if(Request::instance()->get()){
+            echo 123;exit;
+        }
         $cate=session('admin_cate');        //halt($cate);
         $cate_id = session('admin_cate')['id'];//echo $cate_id;
        
@@ -90,8 +93,14 @@ class Project extends Adminbase{
 	}
 
     public function index3($id){
-         $data=Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po' , 'po.id=p.pro_style_id')->where('is_delete!=2')->where('company_id',$id)->select();
-         //dump($data);
+        if(Request::instance()->get()){
+            $keyword = input('keywords');
+            $where['pro']=array('like',"%$keyword%");
+            
+            // echo $keyword;exit;
+        }
+         $data=Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po' , 'po.id=p.pro_style_id')->where('is_delete!=2')->where('company_id',$id)->where($where)->select();
+        // dump($data);
         foreach($data as $k=>$v){
             $arr = explode(',',$v['admin_id']);
             //dump($arr);

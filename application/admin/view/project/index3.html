@@ -48,66 +48,24 @@
                     <li class="active">基本信息</li>
                 </ol>
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <!--End breadcrumb-->
-              <!--  <div class="panel">
-                    &lt;!&ndash; <div class="panel-heading">
-                        <h3 class="panel-title">Add &amp; Remove Rows</h3>
-                    </div> &ndash;&gt;
-                
-                    &lt;!&ndash; Foo Table - Add & Remove Rows &ndash;&gt;
-                    &lt;!&ndash;===================================================&ndash;&gt;
-                    <div class="panel-body">
-                        <div class="pad-btm form-inline">
-                            <div class="row">
-                                <div class="col-sm-6 text-xs-center">
-                                    <div class="form-group">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 text-xs-center text-right">
-                                    &lt;!&ndash; <div class="form-group">
-                                        <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
-                                    </div> &ndash;&gt;
-                                </div>
-                            </div>
-                        </div>
-                        <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
-                            <thead>
-                                <tr>
-                                    <th data-sort-initial="true" data-toggle="true">项目名</th>
-                                    <th data-sort-initial="true" data-toggle="true">项目类型</th>
-                                    <th>项目周期(单位:天)</th>
-                                    <th data-sort-initial="true" data-toggle="true">项目参与人员</th>
-                                    
-                                    <th data-hide="phone, tablet">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach name="data" item="v"}
+               
+                <div class="row">
+                        <div class="col-sm-12 table-toolbar-right">
+                            <div class="form-group">
+
+
+                                <form id="bdcs-search-form" autocomplete="off" class="bdcs-search-form"  method="get" action="">
                                     <tr>
-                                        <td>{$v['pro']}</td>
-                                        <td>{$v['position']}</td>
-                                        <td>{$v['cycle']}</td>
-                                        <td>{$v['username']}</td>
-                                        <td>
-                                            <a href="{:url('Admin/Project/edit',array('id'=>$v['id']))}">修改</a>|  <a href="javascript:" onclick="deleteproject({$v['id']})">删除</a>
-                                        </td>
+                                        <input type="text" placeholder="请输入项目名" id="bdcs-search-form-input" class="search-input" name="keywords" autocomplete="off" >
+                                        <input type="submit" value="搜索" id="bdcs-search-form-submit" class="btn btn-primary">
                                     </tr>
-                                {/foreach}
-                            </tbody>
+                                </form>
 
-                          
-                            <tfoot>
-                                
-                            </tfoot>
+                            </div>
 
-                        </table>
-                       
-                    </div>
-                    &lt;!&ndash;===================================================&ndash;&gt;
-                    &lt;!&ndash; End Foo Table - Add & Remove Rows &ndash;&gt;
-                
-                </div>-->
+                        </div>
+                </div>
+             
 
                 <div class="col-xs-12">
                     <div class="panel">

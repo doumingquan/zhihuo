@@ -12,12 +12,17 @@ class User extends Adminbase{
 	 * 用户列表
 	 */
 	public function index(){
-		
+		if(Request::instance()->get()){
+            $keyword = input('keywords');
+            $where['username']=array('like',"%$keyword%");
+        }
 		$data=Db::name('auth_group_access')
             ->alias('aga')
             ->field('u.id,u.username,u.email,aga.group_id,ag.title')
             ->join('__ADMIN__ u' , 'aga.uid=u.id','RIGHT')
             ->join('__AUTH_GROUP__ ag' , 'aga.group_id=ag.id','LEFT')
+            ->where('u.is_delete!=2')
+            ->where($where)
             ->select();
         $first=$data[0];
        // dump($data);
