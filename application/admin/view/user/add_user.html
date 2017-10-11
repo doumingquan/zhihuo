@@ -13,223 +13,247 @@
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
-<div id="container" class="effect aside-float aside-bright mainnav-lg">
-
-    <!--NAVBAR-->
-    <!--===================================================-->
-    {include file='layout/header' /}
-    <!--===================================================-->
-    <!--END NAVBAR-->
-
-    <div class="boxed">
-
-        <!--CONTENT CONTAINER-->
+    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+        
+        <!--NAVBAR-->
         <!--===================================================-->
-        <div id="content-container">
+    {include file='layout/header' /}  
+        <!--===================================================-->
+        <!--END NAVBAR-->
 
-            <!--Page Title-->
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <div id="page-title">
-                <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
+        <div class="boxed">
 
-                <!--Searchbox-->
-                <!-- <div class="searchbox">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search..">
-                        <span class="input-group-btn">
-                            <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
-                        </span>
-                    </div>
-                </div> -->
-            </div>
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <!--End page title-->
+            <!--CONTENT CONTAINER-->
+            <!--===================================================-->
+            <div id="content-container">
+                
+                <!--Page Title-->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <div id="page-title">
+                    <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
 
-
-            <!--Breadcrumb-->
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <ol class="breadcrumb">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">用户管理</a></li>
-                <li class="active">添加</li>
-            </ol>
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <!--End breadcrumb-->
-            <!--  <div class="panel">
-                  &lt;!&ndash; <div class="panel-heading">
-                      <h3 class="panel-title">Add &amp; Remove Rows</h3>
-                  </div> &ndash;&gt;
-
-                  &lt;!&ndash; Foo Table - Add & Remove Rows &ndash;&gt;
-                  &lt;!&ndash;===================================================&ndash;&gt;
-                  <div class="panel-body">
-                      <form class="form-inline" method="post">
-                          <table class="table table-striped table-bordered table-hover table-condensed">
-                              <tr>
-                                  <th>管理组</th>
-                                  <td>
-                                      {foreach name="data" item="v"}
-                                          {$v['title']}
-                                          <input class="xb-icheck" type="checkbox" name="group_ids[]" value="{$v['id']}">
-                                          &emsp;
-                                      {/foreach}
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th>手机号</th>
-                                  <td>
-                                      <input class="form-control" type="text" name="phone" required="required">
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th>登录账号</th>
-                                  <td>
-                                      <input class="form-control" type="text" name="username" required="required">
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th>初始密码</th>
-                                  <td>
-                                      <input class="form-control" type="text" name="password" required="required">
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th>状态</th>
-                                  <td>
-                                      <span class="inputword">允许登录</span>
-                                      <input class="xb-icheck" type="radio" name="status" value="1" checked="checked">
-                                      &emsp;
-                                      <span class="inputword">禁止登录</span>
-                                      <input class="xb-icheck" type="radio" name="status" value="0">
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th></th>
-                                  <td>
-                                      <input class="btn btn-success" type="submit" value="添加">
-                                  </td>
-                              </tr>
-                          </table>
-                      </form>
-                  </div>
-                  &lt;!&ndash;===================================================&ndash;&gt;
-                  &lt;!&ndash; End Foo Table - Add & Remove Rows &ndash;&gt;
-
-              </div>-->
-            <div class="panel">
-                <!-- <div class="panel-heading">
-                    <h3 class="panel-title">Add &amp; Remove Rows</h3>
-                </div> -->
-
-                <!-- Foo Table - Add & Remove Rows -->
-                <!--===================================================-->
-                <div class="panel-body">
-                    <form class="panel-body form-horizontal form-padding" method="post">
-                        <!--Text Input-->
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="demo-text-input">登录账号</label>
-                            <div class="col-md-9">
-                                <input type="text" id="demo-text-input" class="form-control" name="username">
-                            </div>
+                    <!--Searchbox-->
+                    <!-- <div class="searchbox">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search..">
+                            <span class="input-group-btn">
+                                <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                            </span>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="demo-text-input">初始密码</label>
-                            <div class="col-md-9">
-                                <input type="text" id="demo-text-input" class="form-control" name="password"
-                                       required="required">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="demo-text-input">选择公司</label>
-                            <div class="col-md-9">
-                                <select name="company_id" id="" class="form-control">
-                                    {foreach name="info" item="v"}
-                                    <option value="{$v['id']}">{$v['company']}</option>
-                                    {/foreach}
-                                </select>
-
-                            </div>
-                        </div>
-                        <div class="form-group pad-ver">
-                            <label class="col-md-3 control-label">管理组</label>
-                            <div class="col-md-9">
-                                <div class="checkbox">
-                                    <!-- Inline Checkboxes -->
-                                    {foreach name="data" item="v"}
-                                    <input id="demo-form-inline-checkbox-{$v['id']}" class="magic-checkbox"
-                                           type="checkbox" name="group_ids[]" value="{$v['id']}">
-                                    <label for="demo-form-inline-checkbox-{$v['id']}"> {$v['title']}</label>
-                                    {/foreach}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="demo-text-input">手机号</label>
-                            <div class="col-md-9">
-                                <input type="text" id="demo-text-input" class="form-control" name="phone">
-                            </div>
-                        </div>
-
-                        <div class="form-group pad-ver">
-                            <label class="col-md-3 control-label">状态</label>
-                            <div class="col-md-9">
-                                <div class="radio">
-                                    <!-- Inline radio buttons -->
-                                    <input id="demo-inline-form-radio-1" class="magic-radio" type="radio"
-                                           checked="checked" name="status" value="1">
-                                    <label for="demo-inline-form-radio-1">允许登录</label>
-                                    <input id="demo-inline-form-radio-2" class="magic-radio" type="radio" name="status"
-                                           value="0">
-                                    <label for="demo-inline-form-radio-2">禁止登录</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-footer text-right">
-                            <button class="btn btn-success" type="submit">提交</button>
-                        </div>
-                    </form>
+                    </div> -->
                 </div>
-                <!--===================================================-->
-                <!-- End Foo Table - Add & Remove Rows -->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <!--End page title-->
 
+
+                <!--Breadcrumb-->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <ol class="breadcrumb">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">用户管理</a></li>
+                    <li class="active">添加</li>
+                </ol>
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <!--End breadcrumb-->
+              <!--  <div class="panel">
+                    &lt;!&ndash; <div class="panel-heading">
+                        <h3 class="panel-title">Add &amp; Remove Rows</h3>
+                    </div> &ndash;&gt;
+                
+                    &lt;!&ndash; Foo Table - Add & Remove Rows &ndash;&gt;
+                    &lt;!&ndash;===================================================&ndash;&gt;
+                    <div class="panel-body">
+                        <form class="form-inline" method="post">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <tr>
+                                    <th>管理组</th>
+                                    <td>
+                                        {foreach name="data" item="v"}
+                                            {$v['title']}
+                                            <input class="xb-icheck" type="checkbox" name="group_ids[]" value="{$v['id']}">
+                                            &emsp;
+                                        {/foreach}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>手机号</th>
+                                    <td>
+                                        <input class="form-control" type="text" name="phone" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>登录账号</th>
+                                    <td>
+                                        <input class="form-control" type="text" name="username" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>初始密码</th>
+                                    <td>
+                                        <input class="form-control" type="text" name="password" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>状态</th>
+                                    <td>
+                                        <span class="inputword">允许登录</span>
+                                        <input class="xb-icheck" type="radio" name="status" value="1" checked="checked">
+                                        &emsp;
+                                        <span class="inputword">禁止登录</span>
+                                        <input class="xb-icheck" type="radio" name="status" value="0">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <input class="btn btn-success" type="submit" value="添加">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    &lt;!&ndash;===================================================&ndash;&gt;
+                    &lt;!&ndash; End Foo Table - Add & Remove Rows &ndash;&gt;
+                
+                </div>-->
+                <div class="panel">
+                    <!-- <div class="panel-heading">
+                        <h3 class="panel-title">Add &amp; Remove Rows</h3>
+                    </div> -->
+
+                    <!-- Foo Table - Add & Remove Rows -->
+                    <!--===================================================-->
+                    <div class="panel-body">
+                        <form id="demo-bv-accordion" class="form-horizontal" method="post">
+                            <!--Text Input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="demo-text-input">登录账号</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="demo-text-input" class="form-control" name="username" required="required">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="demo-text-input">初始密码</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="demo-text-input" class="form-control" name="password" required="required">
+                                </div>
+                            </div>
+                              <div class="form-group">
+                                <label class="col-md-3 control-label" for="demo-text-input">选择公司</label>
+                                <div class="col-md-9">
+                                    <select name="company_id" id="" class="form-control">
+                                        {foreach name="info" item="v"}
+                                            <option value="{$v['id']}">{$v['company']}</option>
+                                        {/foreach}
+                                    </select>
+                               
+                                </div>
+                            </div>
+
+                            <div class="form-group pad-ver">
+                                <label class="col-md-3 control-label">管理组</label>
+                                <div class="col-md-9">
+                                    <div class="checkbox">
+                                        <!-- Inline Checkboxes -->
+                                        {foreach name="data" item="v"}
+                                        <input id="demo-form-inline-checkbox-{$v['id']}" class="magic-checkbox"  type="checkbox" name="group_ids[]"  value="{$v['id']}" >
+                                        <label for="demo-form-inline-checkbox-{$v['id']}">  {$v['title']}</label>
+                                        {/foreach}
+                                    </div>
+                                </div>
+                            </div>
+
+                           <!--  <div class="form-group">
+
+                                <label class="col-md-3 control-label" for="demo-text-input">手机号</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="demo-text-input" lay-verify="phone" class="form-control" name="phone" >
+                                </div>
+                            </div>
+                             -->
+                             <div id="demo-acc-panel-3" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">电话号码</label>
+                                                    <div class="col-lg-7">
+                                                        <input type="text" class="form-control" name="phone" placeholder="必须是数字">
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                            </div>
+                                        </div>
+
+
+
+                            <div class="form-group pad-ver">
+                                <label class="col-md-3 control-label">状态</label>
+                                <div class="col-md-9">
+                                    <div class="radio">
+                                        <!-- Inline radio buttons -->
+                                        <input id="demo-inline-form-radio-1" class="magic-radio" type="radio" checked="checked"  name="status" value="1" >
+                                        <label for="demo-inline-form-radio-1">允许登录</label>
+                                        <input id="demo-inline-form-radio-2"  class="magic-radio" type="radio"  name="status" value="0" >
+                                        <label for="demo-inline-form-radio-2">禁止登录</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer text-right">
+                                 <div class="form-group">
+                                    <div class="col-lg-7 col-lg-offset-3">
+                                        <button type="submit" class="btn btn-primary" name="signup" >提交</button>
+                                    </div>
+                                </div>
+                               <!--  <button class="btn btn-success" type="submit">提交</button> -->
+                            </div>
+                        </form>
+                    </div>
+                    <!--===================================================-->
+                    <!-- End Foo Table - Add & Remove Rows -->
+
+                </div>
             </div>
+ 
+                    {include file="layout/left" /}
+
         </div>
 
-        {include file="layout/left" /}
+        
 
-        <!--Widget-->
-        <!--================================-->
+        <!-- FOOTER -->
+        <!--===================================================-->
+        {include file="layout/footer" /}
+        <!--===================================================-->
+        <!-- END FOOTER -->
+
+
+        <!-- SCROLL PAGE BUTTON -->
+        <!--===================================================-->
+        <button class="scroll-top btn">
+            <i class="pci-chevron chevron-up"></i>
+        </button>
+        <!--===================================================-->
+
 
 
     </div>
-
-
-    <!-- FOOTER -->
     <!--===================================================-->
-    {include file="layout/footer" /}
-    <!--===================================================-->
-    <!-- END FOOTER -->
+    <!-- END OF CONTAINER -->
 
 
-    <!-- SCROLL PAGE BUTTON -->
-    <!--===================================================-->
-    <button class="scroll-top btn">
-        <i class="pci-chevron chevron-up"></i>
-    </button>
-    <!--===================================================-->
-
-
-</div>
-<!--===================================================-->
-<!-- END OF CONTAINER -->
-
-
-<!-- SETTINGS - DEMO PURPOSE ONLY -->
-<!-- END SETTINGS -->
+    
+        <!-- SETTINGS - DEMO PURPOSE ONLY -->
+    <!-- END SETTINGS -->
 
 
 </body>
+<script>
+$('document').ready(function(){
+    $('#form').submit(function(){
+        var password=$
+    })
+})
+</script>
 </html>
