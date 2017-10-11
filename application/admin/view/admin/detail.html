@@ -98,7 +98,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">生日</label>
                                         <div class="col-sm-6 ">
-                                            <input type="text" placeholder="19990214" class="form-control" value="{$admin.birthday}" name="birthday" required="required">
+                                            <input type="text" placeholder="19990214" class="form-control" value="<?php echo (date('Y-m-d',$admin['birthday']));?>" name="birthday" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -117,7 +117,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">微信号</label>
                                         <div class="col-sm-6 ">
-                                            <input type="text"  class="form-control" value="{$info.weixin}" name="weixin" required="required" readOnly="true">
+                                            <input type="text"  class="form-control" value="{$admin.weixin}" name="weixin" required="required" readOnly="true">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -160,11 +160,10 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">入职时间</label>
                                         <div class="col-sm-6 ">
-                                            {if condition="$admin.entry eq 0000-00-00"}
-                                            <input type="text" placeholder="2017-02-19" class="form-control" value="" name="entry" required="required">
-                                            {else /}
-                                             <input type="text" placeholder="2017-01-01" class="form-control" value="{$admin.entry}" name="entry" required="required">
-                                            {/if}
+                                         
+                                            <input type="text" placeholder="2017-02-19" class="form-control" value="<?php echo date('Y-m-d',$admin['entry']);?>" name="entry" required="required">
+                                          
+                                       
                                         </div>
                                     </div>
 
