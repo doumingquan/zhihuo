@@ -45,13 +45,10 @@
                 <ol class="breadcrumb">
                     <li><a href="{:url('Admin/Index/index')}">首页</a></li>
                     <li>个人中心</li>
-                    <li class="active">基本资料</li>
+                    <li class="active">个人薪资</li>
                 </ol>
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <!--End breadcrumb-->
-
-
-        
 
                 <!--Page content-->
                 <!--===================================================-->
@@ -59,7 +56,7 @@
                     
                     <!-- Basic Data Tables -->
                     <!--===================================================-->
-                    <div class="panel">
+             <!--       <div class="panel">
                         
                         <div class="panel-body">
                             <table id="demo-dt-basic" class="table table-striped table-bordered  " cellspacing="0" width="100%">
@@ -114,6 +111,49 @@
                             </table>
                         </div>
                     
+                    </div>-->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">个人薪资</h3>
+                        </div>
+
+                        <!-- Striped Table -->
+                        <!--===================================================-->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>姓名</th>
+                                        <th>职位</th>
+                                        <th>所在公司</th>
+                                        <th>所在部门</th>
+                                        <th>工作年限</th>
+                                        <th>调整薪资</th>
+                                        <th>调整原因</th>
+                                        <th>调整后的总金额</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($data as $vo): ?>
+                                    <tr>
+                                        <td><a class="btn-link">{$vo['username']}</a></td>
+                                        <td>{$vo['position']}</td>
+                                        <td>{$vo['company']}</td>
+                                        <td>{$vo['depart']}</td>
+                                        <td>{$vo['entry_year']}</td>
+                                        <td>{$vo['adjust_salary']}</td>
+                                        <td>{$vo['adjust_reason']}</td>
+                                        <td>{$vo['salary']}</td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--===================================================-->
+                        <!-- End Striped Table -->
+
                     </div>
                     <script>
                         function deletestaff($id){
