@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人薪资</title>
+    <title>个人中心</title>
 
 {include file='layout/top' /}
 </head>
@@ -59,19 +59,21 @@
                     
                     <!-- Basic Data Tables -->
                     <!--===================================================-->
+                    <div class="row">
+                    <div class="col-lg-3 col-lg-offset-4" >
                     <div class="panel">
                         
                         <div class="panel-body">
 
                      
-                        <div class="fixed-sm-200 fixed-lg-250 pull-sm-left" >
+                        <div class="fixed-sm-200 fixed-lg-250 pull-sm-center" >
                             <div class="panel">
                                 <!-- Simple profile -->
                                 <div class="text-center pad-all bord-btm">
                                     <div class="pad-ver">
                                         <img src="/{$data['headpic']}" class="img-lg img-border img-circle" alt="Profile Picture">
                                     </div>
-                                    <h4 class="text-lg text-overflow mar-no">用户名&nbsp:&nbsp{$Think.Session.user.username}</h4>
+                                    <h4 class="text-lg text-overflow mar-no">{$Think.Session.user.username}</h4>
 
                                   
                                     <a href="{:url('/my_center')}"><button class="btn  btn-success">编辑资料</button></a>
@@ -83,28 +85,39 @@
                                    
                                     <li class="list-group-item list-item-sm text-primary text-semibold">
                                         <a href="#" class="btn-link text-semibold">
-                                            <i class="demo-pli-internet icon-lg icon-fw"></i> 所在城市:&nbsp&nbsp {$data['company']}
+                                            <i class="ion-pin icon-lg icon-fw"></i> 所在城市:&nbsp&nbsp {$data['company']}
                                         </a>
                                     </li>
                                     <li class="list-group-item list-item-sm text-primary text-semibold">
                                         <a href="#" class="btn-link text-semibold">
-                                            <i class="demo-pli-internet icon-lg icon-fw"></i> 所属部门:&nbsp&nbsp {$data['depart']}
+                                            <i class="ion-grid icon-lg icon-fw"></i> 所属部门:&nbsp&nbsp {$data['depart']}
                                         </a>
                                     </li>
                                     <li class="list-group-item list-item-sm text-primary text-semibold">
                                         <a href="#" class="btn-link text-semibold">
-                                            <i class="demo-pli-internet icon-lg icon-fw"></i> 职位:&nbsp&nbsp {$data['position']}
+                                            <i class="ion-arrow-graph-up-right icon-lg icon-fw"></i> 职位:&nbsp&nbsp {$data['position']}
                                         </a>
+                                    </li>
+                                    <li class="list-group-item list-item-sm">
+                                        <i class="ion-chatboxes icon-lg icon-fw"></i>qq号:&nbsp&nbsp {$data['qq']}
+                                    </li>
+                                    <li class="list-group-item list-item-sm">
+                                        <i class="ion-eye-disabled icon-lg icon-fw"></i>身高:&nbsp&nbsp {$data['height']}KG
+                                    </li>
+                                    <li class="list-group-item list-item-sm">
+                                        <i class="ion-happy icon-lg icon-fw"></i>年龄:&nbsp&nbsp {$data['age']}岁
                                     </li>
                                      <li class="list-group-item list-item-sm">
                                         <i class="demo-pli-map-marker-2 icon-lg icon-fw"></i>家庭住址:&nbsp&nbsp {$data['address']}
                                     </li>
                                     <li class="list-group-item list-item-sm">
-                                        <i class="demo-pli-map-marker-2 icon-lg icon-fw"></i>电话:&nbsp&nbsp {$data['mobile']}
+                                        <i class="ion-iphone icon-lg icon-fw"></i>电话:&nbsp&nbsp {$data['mobile']}
                                     </li>
                                     <li class="list-group-item list-item-sm">
-                                        <i class="demo-pli-map-marker-2 icon-lg icon-fw"></i>邮箱:&nbsp&nbsp {$data['email']}
+                                        <i class="ion-paper-airplane icon-lg icon-fw"></i>邮箱:&nbsp&nbsp {$data['email']}
                                     </li>
+
+
 
                                 </ul>
                                 <!-- <div class="pad-hor mar-btm">
@@ -173,6 +186,8 @@
                         </form> -->
                         </div>
                     
+                    </div>
+                    </div>
                     </div>
                     <script>
                         function deletestaff($id){
