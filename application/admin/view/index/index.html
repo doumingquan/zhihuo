@@ -118,8 +118,10 @@
 													<div class="label label-table label-info">
 															完成
 													</div>
-													{else /}
+													{elseif condition="$vo['status'] eq 1" /}
 													<div class="label label-table label-danger">未完成</div>
+													{else /}
+													<div class="label label-table label-warning">正在进行</div>
 													{/if}
 												</td>
 
