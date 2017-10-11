@@ -18,7 +18,7 @@
                             </div>
                             <a href="#profile-nav" class="box-block collapsed" data-toggle="collapse"
                                aria-expanded="false">
-                                           
+
                                 <p class="mnp-name">{$Think.session.user.username}</p>
                                 <span class="mnp-desc">{$Think.session.user.email}</span>
                             </a>
@@ -27,19 +27,6 @@
                     {if condition="session('user')['remark'] eq 1"}
 
                     <ul id="mainnav-menu" class="list-group">
-
-                        <!--Category name-->
-
-
-                        <li class="active">
-                            <a href="{:url('/index')}">
-                                <i class="demo-psi-home"></i>
-                                <span class="menu-title">
-                                    <strong>后台首页</strong>
-                              </span>
-                            </a>
-                        </li>
-
 
                         {if condition="$c eq 'Staff'" }
                         <li class="active">
@@ -51,9 +38,7 @@
                                 <i class="arrow"></i>
                             </a>
 
-
                             <ul class="collapse in" aria-expanded="true">
-
                                 <li><a href="{:url('/staff_index')}">个人基本资料</a></li>
                                 <li><a href="{:url('/my_center')}">个人基本修改</a></li>
                                 <li><a href="{:url('/my_salary')}">个人薪资</a></li>
