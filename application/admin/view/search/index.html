@@ -89,7 +89,7 @@
                 </div>
 
 
-                {if condition="$serRes"}
+                {if condition="$serRes['username']"}
                 {volist id="vo" name="serRes"}
                 <div class="col-lg-2">
                     <div class="panel">
@@ -101,8 +101,7 @@
                                  src="__STATIC__/img/profile-photos/1.png">
                             {/if}
                             <h4 class="mar-n">{$vo.username}</h4>
-                            <p class="text-sm">{if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else
-                                /}{$vo.ename}{/if}</p>
+                            <p class="text-sm">{if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else/}{$vo.ename}{/if}</p>
                         </div>
                         <ul class="list-unstyled text-center bord-top pad-top mar-no row">
 
@@ -112,25 +111,21 @@
                                 {$vo.email}</a>
                             <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
                                 {$vo.position}</a>
-                            <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>{if
-                                condition="$vo['user_email'] eq ''"}暂无企业邮箱 {else /}{$vo.user_email}{/if}</a>
+                            <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>
+                                {if condition="$vo['user_email'] eq ''"}暂无企业邮箱 {else /}{$vo.user_email}{/if}</a>
                         </div>
                         <a href="javascript:;" id="{$vo.id}" onclick="edit(this)" class="btn btn-primary mar-ver">详情</a>
                     </div>
                 </div>
                 {/volist}
                 {else /}
-                <div class="panel">
-
-                    <div class="panel-body">
-
-                        <!--Text Alignment-->
-                        <!--===================================================-->
-
-                        <h1 class="text-main">抱歉！没有找到相关的数据！</h1>
-
-                        <!--===================================================-->
-
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="pad-btm">
+                                <h1 class="text-main" style="text-align: center;">对不起！暂未搜索到你所输入的信息！</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {/if}
@@ -143,9 +138,9 @@
                             dataType: 'json',
                             success: function (msg) {
                                 if (msg.status == 1000) {
-                                    alert('删除成功!');
+                                    layer.alert('删除成功!');
                                 } else {
-                                    alert('删除失败!');
+                                    layer.alert('删除失败!');
                                 }
                             }
                         })
@@ -160,9 +155,9 @@
                             dataType: 'json',
                             success: function (msg) {
                                 if (msg.status == 1000) {
-                                    alert('审核成功!');
+                                    layer.alert('审核成功!');
                                 } else {
-                                    alert(msg.msg);
+                                    layer.alert(msg.msg);
                                 }
                             }
                         })

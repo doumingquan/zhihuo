@@ -133,9 +133,8 @@
                                 <select name="pid" id="" class="form-control">
                                     <option value="0">顶级栏目</option>
                                     {volist id="vo" name="cateRes"}
-                                    <option {if condition="$cates['pid'] eq $vo['id']" } selected="selected" {
-                                    /if} value="{$vo.id}"><?php echo str_repeat('-', $vo['level']*8);?>
-                                    {$vo.company}</option>
+                                    <option {if condition="$cates['pid'] eq $vo['id']" } selected="selected" {/if} value="{$vo.id}">
+                                    <?php echo str_repeat('-', $vo['level']*8);?>{$vo.company}</option>
                                     {/volist}
                                 </select>
                             </div>
@@ -171,13 +170,9 @@
                             <div class="col-md-9">
                                 <div class="radio">
                                     <!-- Inline radio buttons -->
-                                    <input id="demo-inline-form-radio-1" class="magic-radio" type="radio" {if
-                                           condition="$cates['status'] eq 1" } checked="checked" {/if} name="status"
-                                    value="1">
+                                    <input id="demo-inline-form-radio-1" class="magic-radio" type="radio" {if condition="$cates['status'] eq 1" } checked="checked" {/if} name="status" value="1">
                                     <label for="demo-inline-form-radio-1">显示</label>
-                                    <input id="demo-inline-form-radio-2" class="magic-radio" {if
-                                           condition="$cates['status'] eq 0" } checked="checked" {/if} type="radio"
-                                    name="status" value="0">
+                                    <input id="demo-inline-form-radio-2" class="magic-radio" {if condition="$cates['status'] eq 0" } checked="checked" {/if} type="radio" name="status" value="0">
                                     <label for="demo-inline-form-radio-2">隐藏</label>
                                 </div>
                             </div>

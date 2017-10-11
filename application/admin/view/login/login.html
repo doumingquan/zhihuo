@@ -70,9 +70,7 @@
                     </div>
                     <div class="layui-form-item form_code">
                         <input class="layui-input" name="code" placeholder="验证码" lay-verify="required" type="text">
-                        <div class="form-group"><img src="{:captcha_src()}" alt="captcha"
-                                                     onclick="this.src=this.src+'?'+Math.random()" width="116"
-                                                     height="36"></div>
+                        <div class="form-group"><img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src+'?'+Math.random()" width="116" height="36"></div>
                     </div>
 
                     <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>

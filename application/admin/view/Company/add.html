@@ -132,9 +132,8 @@
                                 <select name="pid" id="" class="form-control">
                                     <option value="0">顶级栏目</option>
                                     {volist id="vo" name="company"}
-                                    <option {if condition="$vo['id'] eq $cateid" } selected="selected" {
-                                    /if} value="{$vo.id}"><?php echo str_repeat('-', $vo['level']*8);?>
-                                    {$vo.company}</option>
+                                    <option {if condition="$vo['id'] eq $cateid" } selected="selected" {/if} value="{$vo.id}">
+                                    <?php echo str_repeat('-', $vo['level']*8);?>{$vo.company}</option>
                                     {/volist}
                                 </select>
                             </div>

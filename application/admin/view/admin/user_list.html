@@ -156,10 +156,8 @@
                                 dataType: 'json',
                                 success: function (msg) {
                                     if (msg.status == 1000) {
-                                        alert('删除成功!');
-                                        location.href = '{:url('
-                                        Admin / admin / index
-                                        ')}';
+                                        layer.alert('删除成功!');
+                                        location.href = '{:url('Admin/admin/index')}';
                                     } else {
                                         alert('删除失败!');
                                     }
@@ -182,10 +180,10 @@
                             data: {'id': $id},
                             url: "{:url('Admin/changestatus')}",
                             success: function (data) {
-                                if (data == 1) {
-                                    alert('审核成功')
+                                if (data== 1) {
+                                    layer.alert('审核成功')
                                 } else {
-                                    alert('审核失败')
+                                    layer.alert('审核失败')
                                 }
                             }
                         });

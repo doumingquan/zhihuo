@@ -182,7 +182,6 @@
                                         <a href="{:url('admin/detail',array('id'=>$vo['id']))}" class="btn btn-primary">
                                             详情
                                         </a>
-
                                         <a id="{$vo.id}" onclick="changestatus(this);" href="" class="btn btn-info">
                                             取消审核
                                         </a>
@@ -190,7 +189,6 @@
                                            class="btn btn-info">
                                             调整薪资
                                         </a>
-
                                         <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:"
                                            onclick="deletestaff(this);">删除
                                         </a>
@@ -219,9 +217,7 @@
                                 success: function (msg) {
                                     if (msg.status == 1000) {
                                         alert('删除成功!');
-                                        location.href = '{:url('
-                                        Admin / admin / check_index
-                                        ')}';
+                                        location.href = '{:url('Admin/admin/check_index')}';
                                     } else {
                                         alert('删除失败!');
                                     }
@@ -370,10 +366,10 @@
                 data: {'id': $id},
                 url: "{:url('Admin/changestatus')}",
                 success: function (data) {
-                    if (data == 1) {
-                        alert('审核通过')
+                    if (data== 1) {
+                       layer.alert('审核通过')
                     } else {
-                        alert('审核取消')
+                        layer.alert('审核取消')
                     }
                 }
             });

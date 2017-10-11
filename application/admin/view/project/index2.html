@@ -160,8 +160,7 @@
                                         <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary">
                                             修改
                                         </a>
-                                        <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:"
-                                           onclick="deletestaff(this);">删除</a>
+                                        <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:" onclick="deletestaff(this);">删除</a>
                                     </td>
                                 </tr>
                                 {/volist}
@@ -208,12 +207,10 @@
             dataType: 'json',
             success: function (msg) {
                 if (msg.status == 1000) {
-                    alert('删除成功!');
-                    location.href = '{:url('
-                    Admin / Project / index
-                    ')}';
+                    layer.alert('删除成功!');
+                    location.href = '{:url('Admin/Project/index')}';
                 } else {
-                    alert('删除失败!');
+                    layer.alert('删除失败!');
                 }
             }
         })

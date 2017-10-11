@@ -141,10 +141,10 @@
                 dataType:'json',
                 success:function(msg){
                     if(msg.status==1000){
-                        alert('删除成功!');
+                        layer.alert('删除成功!');
                         location.href='{:url('Admin/Company/index')}';
                     }else{
-                        alert('删除失败!');
+                        layer.alert('删除失败!');
                     }
                 }
             })
