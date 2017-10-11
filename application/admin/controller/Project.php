@@ -23,7 +23,7 @@ class Project extends Adminbase{
            //dump($info);
         }elseif($cate_id==2){
             //一般管理员调出该公司所有项目信息
-            $data = db('project')->alias('p')->field()->join('admin_company c','c.id=p.company_id')->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.company_id',$cate['cid'])->select();//dump($data);
+            $data = db('project')->alias('p')->field('p.*,po.position')->join('admin_company c','c.id=p.company_id')->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.company_id',$cate['cid'])->select();//dump($data);
             foreach($data as $k=>$v){
                 $arr = explode(',',$v['admin_id']);
                 //dump($arr);
@@ -179,6 +179,7 @@ class Project extends Adminbase{
                 $this->error('修改失败');
             }
         }else{
+          
             $data = DB::name('project')->where(array('id'=>$id))->find();//dump($data);
             $admin_id = $data['admin_id'];
             $info=db('admin')->field('username')->where("id", 'in',"$admin_id")->select();//dump($info);
@@ -188,7 +189,7 @@ class Project extends Adminbase{
             }
             //dump($array);
             //取出该公司下的所有员工
-             $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();//dump($info);
+            $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();//dump($info);
             $company = DB::name('company')->select();
       
             $position = db('position')->select();
