@@ -92,7 +92,7 @@
                                     <!-- Inline radio buttons -->
                                     {volist id="vo" name="data"}
                                     <input id="demo-inline-form-radio-{$vo.id}" class="magic-radio" type="radio"
-                                           name="pro_style_id" value="{$vo.id}">
+                                           name="pro_style_id" value="{$vo.id}" >
                                     <label for="demo-inline-form-radio-{$vo.id}">{$vo.position}</label>
                                     {/volist}
                                 </div>
@@ -114,7 +114,9 @@
                             <label class="col-md-3 control-label" for="demo-textarea-input">项目描述</label>
                             <div class="col-md-9">
                                 <textarea id="demo-textarea-input" rows="9" class="form-control" placeholder="填写项目描述"
-                                          name="desc"></textarea>
+                                          name="desc">
+
+                                </textarea>
                             </div>
                         </div>
 
@@ -149,7 +151,7 @@
                         </div>
 
                         <div class="panel-footer text-right">
-                            <button class="btn btn-success" type="submit">提交</button>
+                            <button class="btn btn-success submitbtn" type="submit">提交</button>
                         </div>
                     </form>
                 </div>
@@ -184,7 +186,23 @@
 
 <!-- SETTINGS - DEMO PURPOSE ONLY -->
 <!-- END SETTINGS -->
+<script>
+    $(function(){
+        $(".submitbtn").click(function(){
+            if($.trim($("input[name='pro']").val())==""){
+                layer.msg('请填写项目名称', {icon: 2});
+                return false;
+            }
 
+            if(!/^\d+$/.test($("input[name='cycle']").val())){
+                layer.msg('项目周期格式不正确', {icon: 2});
+                return false;
+            }
+
+            $(this).parents("form").submit();
+        });
+    });
+</script>
 
 </body>
 </html>

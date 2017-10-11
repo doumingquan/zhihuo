@@ -249,7 +249,23 @@
     
         <!-- SETTINGS - DEMO PURPOSE ONLY -->
     <!-- END SETTINGS -->
+    <script>
+        $(function(){
+            $(".submitbtn").click(function(){
+                if($.trim($("input[name='pro']").val())==""){
+                    layer.msg('请填写项目名称', {icon: 2});
+                    return false;
+                }
 
+                if(!/^\d+$/.test($("input[name='cycle']").val())){
+                    layer.msg('项目周期格式不正确', {icon: 2});
+                    return false;
+                }
+
+                $(this).parents("form").submit();
+            });
+        });
+    </script>
 
 </body>
 </html>
