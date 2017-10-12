@@ -67,6 +67,7 @@ class User extends Adminbase{
                 'mobile'=>$data['phone'],
                 'password'=>md5($data['password']),
                 'status'=>$data['status'],
+                'number'=>$data['number'],
                 'company_id'=>session('admin_cate')['cid']
 
             ];
@@ -148,7 +149,8 @@ class User extends Adminbase{
 //exit;
             $userup['username']=$data['username']; 
             $userup['mobile']=$data['mobile']; 
-            $userup['status']=$data['status']; 
+            $userup['status']=$data['status'];
+            $userup['number']=$data['number'];
             // dump($data['password']);
             // dump($userup['password']);exit;
  //dump($userup);exit;            

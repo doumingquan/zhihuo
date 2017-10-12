@@ -39,6 +39,7 @@ class Staff extends Adminbase
         }
         //halt($info);
         $this->assign('info', $info);
+
         $this->assign('school', $school);
         $this->assign('department', $depart);
         $this->assign('company', $company);
