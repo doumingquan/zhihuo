@@ -76,11 +76,12 @@ class Admin extends Adminbase
     public function ad_lists($id)
     {
         // echo $id;
-        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id', $id)->where('a.status=2')->paginate(20); //halt($info);
+        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id', $id)->paginate(20); //halt($info);
         // if(empty($info['id'])){
         //     //echo 11;
         //     $this->error('该公司下没有员工');exit;
         // }
+        //dump($info);
         $this->assign('admin', $info);
         return view();
     }

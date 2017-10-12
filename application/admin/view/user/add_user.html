@@ -140,13 +140,13 @@
                                 </div>
                             </div>
                               <div class="form-group">
-                                <label class="col-md-3 control-label" for="demo-text-input">选择公司</label>
+                                <label class="col-md-3 control-label" for="demo-text-input">公司</label>
                                 <div class="col-md-9">
-                                    <select name="company_id" id="" class="form-control">
-                                        {foreach name="info" item="v"}
-                                            <option value="{$v['id']}">{$v['company']}</option>
+                                 <input type="text" id="demo-text-input" class="form-control" readonly="readonly" value="{$company['company']}" required="required">
+                                   <!--  <select name="company_id" id="" class="form-control">                                     
+                                            <option value="{$company['id']}">{$company['company']}</option>
                                         {/foreach}
-                                    </select>
+                                    </select> -->
                                
                                 </div>
                             </div>
@@ -156,10 +156,17 @@
                                 <div class="col-md-9">
                                     <div class="checkbox">
                                         <!-- Inline Checkboxes -->
+                                {if condition="session('admin_cate')['id'] eq 1"}
                                         {foreach name="data" item="v"}
                                         <input id="demo-form-inline-checkbox-{$v['id']}" class="magic-checkbox"  type="checkbox" name="group_ids[]"  value="{$v['id']}" >
                                         <label for="demo-form-inline-checkbox-{$v['id']}">  {$v['title']}</label>
                                         {/foreach}
+                                {else /}
+                                      <input id="demo-form-inline-checkbox-10" class="magic-checkbox"  type="checkbox" name="group_ids"  value="10" >
+                                        <label for="demo-form-inline-checkbox-10"> 员工</label>
+                                {/if}
+
+
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +208,7 @@
                             <div class="panel-footer text-right">
                                  <div class="form-group">
                                     <div class="col-lg-7 col-lg-offset-3">
-                                        <button type="submit" class="btn btn-primary" name="signup" >提交</button>
+                                        <button type="submit" class="btn btn-primary"  >提交</button>
                                     </div>
                                 </div>
                                <!--  <button class="btn btn-success" type="submit">提交</button> -->
