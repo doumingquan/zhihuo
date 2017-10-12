@@ -86,7 +86,7 @@
                         </div>
 
                     </div>
-                </div>
+
 
                 {volist id="vo" name="admin"}
 
@@ -125,9 +125,15 @@
 
                 </div>
                 {/volist}
-                <div>
+
+
                 </div>
-                {$admin->render()}
+
+                <div class="pull-right">
+                    {$admin->render()}
+                </div>
+                </div>
+
                 <script>
                     function deletestaff($id) {
                         $.ajax({
@@ -202,7 +208,7 @@
                 <!--===================================================-->
                 <!-- End Striped Table -->
 
-            </div>
+  
             <!--===================================================-->
             <!--End page content-->
 
