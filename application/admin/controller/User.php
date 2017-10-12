@@ -75,7 +75,12 @@ class User extends Adminbase{
      */
     public function add_user(){
         if(Request::instance()->post()){
+
             $data=input('post.');
+            $validate = \think\Loader::validate('User');
+            if(!$validate->scene('add')->check($data)){
+                $this->error($validate->getError());
+            }
             //halt($data);
             $userdata=[
                 'username'=>$data['username'],
@@ -142,6 +147,10 @@ class User extends Adminbase{
         if(Request::instance()->post()){
             $data=input('post.');
 //dump($data);
+            $validate = \think\Loader::validate('User');
+            if(!$validate->scene('edit')->check($data)){
+                $this->error($validate->getError());
+            }
             Db::name('auth_group_access')->where(array('uid'=>$id))->delete();
             if (!empty($data['group_ids'])) {
                 foreach ($data['group_ids'] as $k => $v) {
