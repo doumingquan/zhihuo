@@ -160,6 +160,7 @@
                                     <th>姓名</th>
                                     <th>职位</th>
                                     <th>联系方式</th>
+                                    <th>薪资</th>
                                     <th>所在地区公司</th>
                                     <th>是否审核</th>
                                     <th>操作</th>
@@ -173,6 +174,7 @@
                                     <td><span class="text-muted"> {if condition="$vo['position'] eq ''"}暂未安排工作{else/}{$vo.position}{/if}</span>
                                     </td>
                                     <td>{$vo.mobile}</td>
+                                    <td>{$vo.salary}</td>
                                     <td>
                                         <div>{if condition="$vo['company'] eq 0"}暂未安排公司{else /}{$vo.company}{/if}</div>
                                     </td>
@@ -216,10 +218,10 @@
                                 dataType: 'json',
                                 success: function (msg) {
                                     if (msg.status == 1000) {
-                                        alert('删除成功!');
+                                        layer.alert('删除成功!');
                                         location.href = '{:url('Admin/admin/check_index')}';
                                     } else {
-                                        alert('删除失败!');
+                                        layer.alert('删除失败!');
                                     }
                                 }
                             });
@@ -303,21 +305,30 @@
                         </div> -->
                         <input type="hidden" name="id">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整的薪资</label>
+                            <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整</label>
                             <div class="col-sm-9">
-
+                                <select name="add_or_less" id="" class="form-control">
+                                  <option value="1">增加</option>
+                                  <option value="2">减少</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整的金额</label>
+                            <div class="col-sm-9">
                                 <input type="text" id="demo-hor-inputemail" class="form-control" name="adjust_salary"
                                        required="required">
                             </div>
                         </div>
-                        <div class="form-group">
+
+                       <!--  <div class="form-group">
                             <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整后的总薪资</label>
                             <div class="col-sm-9">
 
                                 <input type="text" id="demo-hor-inputemail" class="form-control" name="salary"
                                        required="required">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整的原因</label>
                             <div class="col-sm-9">

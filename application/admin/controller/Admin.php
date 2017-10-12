@@ -118,7 +118,7 @@ class Admin extends Adminbase
         }
         //echo session('admin_cate')['cid'];
         //使用左连接查询
-        $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id', session('admin_cate')['cid'])->where('is_delete!=2')->where($where)->paginate(15);
+        $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id', session('admin_cate')['cid'])->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
         //dump($info);
         // $info = db('pay')->alias('p')->field('')->join('admin a','a.id=p.admin_id','LEFT')->join('admin_depart d','a.depart_id=d.id','LEFT')->join('admin_company c','c.id=a.company_id','LEFT')->join('admin_position p','a.entry_pos=p.id','LEFT')->where('is_delete!=2')->paginate(2);
         //halt($info);exit;
@@ -133,23 +133,32 @@ class Admin extends Adminbase
     public function adjust()
     {
         if (Request::instance()->isPost('')) {
-            $data = input('post.');
-            //halt($data);
+            $data = input('post.'); //halt($data); 
             $id = $data['id'];
             $admin = db('admin')->field('salary,entry')->where(array('id' => $id))->find();
+            if($data['add_or_less']==1){    //增加
+                $data['salary']  =  $admin['salary'] + $data['adjust_salary'];
+            }
+            if($data['add_or_less']==2){    //减少
+                $data['salary']  =  $admin['salary'] - $data['adjust_salary'];
+            }
+           
+            //$admin = db('admin')->field('salary,entry')->where(array('id' => $id))->find();
             if ($admin['salary'] == $data['salary']) {
                 $this->error('薪资没有调整');
                 exit;
             }
-            //计算工龄
-
+           
+    //halt($data); 
             $result = db('admin')->where(array('id' => $id))->update(array('salary' => $data['salary']));//更新个人总工资
             if ($result) {
 
                 //创建新数据
                 $info['admin_id'] = $data['id'];
+                $info['add_or_less'] = $data['add_or_less'];
                 $info['adjust_salary'] = $data['adjust_salary'];
                 $info['adjust_reason'] = $data['adjust_reason'];
+                $info['total_money'] = $data['salary'];
                 $info['update_user_id'] = session('admin.admin_id');
                 $info['update_time'] = time();
 
