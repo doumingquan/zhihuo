@@ -27,7 +27,7 @@ class Staff extends Adminbase
         //职位
         $position = db('position')->where(array('title' => 4))->select();
 
-        $info = db('admin')->alias('a')->where(array('id' => $id))->find();
+        $info = db('admin')->alias('a')->field('a.*,c.company')->join('admin_company c','c.id=a.company_id')->where(array('a.id' => $id))->find();
         if ($info['birthday'] == 0) {
             $info['birthday'] = "";
         }
@@ -78,23 +78,17 @@ class Staff extends Adminbase
         if (Request::instance()->post()) {
             $data = input('post.');
             $admin_pass = db('admin')->field('password')->where('id', session('user')['id'])->find();
-            //dump($admin_pass);exit;
             if (empty($data['password'])) {
                 $data['password'] = $admin_pass['password'];
             } else {
                 $data['password'] = md5($data['password']);
             }
-            //exit;
-            //if(empty($data))
             $entry = $data['birthday'];
-            // halt($data);
             $userpic = DB::name('admin')->field('headpic')->where(array('id' => session('admin.admin_id')))->find();
             if (!empty($userpic['headpic'])) {
                 unlink($userpic['headpic']);
             }
-
             $file = request()->file('headpic');
-
             if ($file) {
                 $info = $file->validate(['size' => 1567833, 'ext' => 'jpg,png,gif'])->move(ROOT_PATH . 'public' . DS . 'uploads');
                 if ($info) {
@@ -113,13 +107,11 @@ class Staff extends Adminbase
             $data['birthday'] = strtotime($data['birthday']);
             $data['entry'] = strtotime($data['entry']);
 
-            //$data['password'] = md5($data['password']);
             $data['create_user_id'] = session('admin.admin_id');
             $data['create_time'] = time();
             //计算工龄
             $datenow = date('Y-m-d', time());
             $result = model('admin/admin')->diffDate($datenow, $entry);
-
             if ($result['year'] == '0') {
                 if ($result['month'] == '0') {
                     $data['entry_year'] = $result['day'] . '天';
@@ -139,8 +131,7 @@ class Staff extends Adminbase
                     $data['entry_year'] = $result['year'] . '年' . $result['month'] . '月';
                 }
             }
-            // halt($data['entry_year']);
-            //dump($data);exit;
+
             $info = db('admin')->where(array('id' => session('admin.admin_id')))->update($data);
             if ($info) {
                 $this->success('操作成功!');
