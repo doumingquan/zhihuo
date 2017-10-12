@@ -132,7 +132,7 @@ class Admin extends Adminbase
         //使用左连接查询
         if(session('admin_cate')['id']==1){
                 
-             $info = db('admin')->alias('a')->field('a.*')->where('is_delete!=2')->where($where)->order('a.id desc')->paginate(15); //dump($info);
+             $info = db('admin')->alias('a')->field('a.id,a.username,a.mobile,a.salary')->where('is_delete!=2')->where($where)->order('a.id desc')->paginate(15); //dump($info);
         }
         //dump($info);
         if(session('admin_cate')['id']==2){

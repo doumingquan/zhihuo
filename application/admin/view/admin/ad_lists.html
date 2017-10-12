@@ -73,8 +73,8 @@
                         <div class="form-group">
 
 
-                            <form id="bdcs-search-form" autocomplete="off" class="bdcs-search-form" target="_blank"
-                                  method="get" action="{:url('admin/search/index')}">
+                            <form id="bdcs-search-form" autocomplete="off" class="bdcs-search-form" 
+                                  method="get" action="">
                                 <tr>
                                     <input type="text" placeholder="请输入关键词" id="bdcs-search-form-input"
                                            class="" name="keywords" autocomplete="off">
@@ -94,7 +94,7 @@
                     <div class="panel">
                         <div class="panel-body text-center ">
                             {if condition="$vo['headpic'] neq ''"}
-                            <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="/{$vo.headpic}">
+                            <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="/zhihuo/public/{$vo.headpic}">
                             {else /}
                             <img alt="Avatar" class="img-lg img-circle img-border mar-btm"
                                  src="__STATIC__/img/profile-photos/1.png">
@@ -125,6 +125,9 @@
 
                 </div>
                 {/volist}
+                <div>
+                </div>
+                {$admin->render()}
                 <script>
                     function deletestaff($id) {
                         $.ajax({
