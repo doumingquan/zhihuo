@@ -152,59 +152,52 @@
                                   </div>-->
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>ID编号</th>
-                                    <th>姓名</th>
-                                    <th>职位</th>
-                                    <th>联系方式</th>
-                                    <th>薪资</th>
-                                    <th>所在地区公司</th>
-                                    <th>是否审核</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {volist name="data" id="vo"}
-                                <tr>
-                                    <td><a class="btn-link" href="#"> {$vo.id}</a></td>
-                                    <td>{$vo.username}</td>
-                                    <td><span class="text-muted"> {if condition="$vo['position'] eq ''"}暂未安排工作{else/}{$vo.position}{/if}</span>
-                                    </td>
-                                    <td>{$vo.mobile}</td>
-                                    <td>{$vo.salary}</td>
-                                    <td>
-                                        <div>{if condition="$vo['company'] eq 0"}暂未安排公司{else /}{$vo.company}{/if}</div>
-                                    </td>
-                                    <td class="">{if condition="$vo['status'] eq 2"}审核{else /}未审核{/if}</td>
-                                    <td>
+                        {volist id="vo" name="data"}
+                        <div class="col-lg-2">
+                            <div class="panel">
+                                <div class="panel-body text-center ">
+                                    {if condition="$vo['headpic'] neq ''"}
+                                    <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="/{$vo.headpic}">
+                                    {else /}
+                                    <img alt="Avatar" class="img-lg img-circle img-border mar-btm"
+                                         src="__STATIC__/img/profile-photos/1.png">
+                                    {/if}
+                                    <h4 class="mar-n">{$vo.username}</h4>
+                                    <p class="text-sm">{if condition="$vo['ename'] eq '' "}暂无英文名！{else
+                                        /}{$vo.ename}{/if}</p>
+                                </div>
+                                <ul class="list-unstyled text-center bord-top pad-top mar-no row">
+                                </ul>
+                                <div class="list-group bg-trans pad-btm">
+                                    <a class="list-group-item"><i class="ion-iphone icon-lg icon-fw"></i>
+                                        {$vo.email}</a>
+                                    <a class="list-group-item" ><i class="ion-pin icon-lg icon-fw"></i>
+                                        {$vo.company}</a>
+                                    <a class="list-group-item" ><i class="ion-pinpoint icon-lg icon-fw"></i>
+                                        {$vo.depart}</a>
 
-                                        <a href="{:url('admin/detail',array('id'=>$vo['id']))}" class="btn btn-primary">
-                                            详情
-                                        </a>
-                                        <a id="{$vo.id}" onclick="changestatus(this);" href="" class="btn btn-info">
-                                            取消审核
-                                        </a>
-                                        <a href="javascript:;" ruleId="{$vo['id']}" onclick="edit(this);"
-                                           class="btn btn-info">
-                                            调整薪资
-                                        </a>
-                                        <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:"
-                                           onclick="deletestaff(this);">删除
-                                        </a>
+                                    <a class="list-group-item" ><i class="ion-load-d icon-lg icon-fw"></i>{$vo.salary}元/月</a>
+                                    <div class="list-unstyled text-center  mar-no row">
+                                        {if condition="session('user')['remark'] eq 1"}
+                                        <a href="{:url('admin/detail',array('id'=>$vo['id']))}" class="btn btn-mint btn-sm shiny">详情</a>
+                                        {/if}
+                                        <a href="javascript:;" id="{$vo.id}" onclick="changestatus(this)" class="btn btn-primary btn-sm ">取消审核</a>
+                                        <a href="javascript:;" ruleId="{$vo['id']}" onclick="edit(this);" class="btn btn-info">调整薪资</a>
+                                        <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:" onclick="deletestaff(this);">删除</a>
+                                    </div>
+                                </div>
 
-                                    </td>
-                                </tr>
-                                {/volist}
+                            </div>
 
-
-                                </tbody>
-                            </table>
                         </div>
+                        {/volist}
+
+                    </div>
+                    <div class="pull-right">
                         {$data->render()}
                     </div>
+                    </div>
+
                 </div>
 
                 <script>
@@ -379,8 +372,10 @@
                 success: function (data) {
                     if (data== 1) {
                        layer.alert('审核通过')
+                        location.href = '{:url('Admin/admin/check_index')}';
                     } else {
                         layer.alert('审核取消')
+                        location.href='{:url('Admin/admin/check_index')}'
                     }
                 }
             });
