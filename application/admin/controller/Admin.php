@@ -75,8 +75,12 @@ class Admin extends Adminbase
     //公司下的员工信息
     public function ad_lists($id)
     {
+         if (Request::instance()->get()) {
+            $keyword = input('keywords');
+            $where['username'] = array('like', "%$keyword%");
+        }
         // echo $id;
-        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id', $id)->paginate(20); //halt($info);
+        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id', $id)->where($where)->paginate(4); //halt($info);
         // if(empty($info['id'])){
         //     //echo 11;
         //     $this->error('该公司下没有员工');exit;
@@ -127,19 +131,43 @@ class Admin extends Adminbase
         //echo session('admin_cate')['cid'];
         //使用左连接查询
         if(session('admin_cate')['id']==1){
-                $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
+                
+             $info = db('admin')->alias('a')->field('a.*')->where('is_delete!=2')->where($where)->order('a.id desc')->paginate(15); //dump($info);
         }
+        //dump($info);
         if(session('admin_cate')['id']==2){
-             $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id', session('admin_cate')['cid'])->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
+             $info = db('admin')->alias('a')->field('a.*')->join('admin_pay p', 'a.id=p.admin_id', 'LEFT')->where('is_delete!=2')->where('a.company_id', session('admin_cate')['cid'])->where($where)->order('p.id desc')->paginate(15);
+
+             // $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id', session('admin_cate')['cid'])->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
         }
        
-        //dump($info);
-        // $info = db('pay')->alias('p')->field('')->join('admin a','a.id=p.admin_id','LEFT')->join('admin_depart d','a.depart_id=d.id','LEFT')->join('admin_company c','c.id=a.company_id','LEFT')->join('admin_position p','a.entry_pos=p.id','LEFT')->where('is_delete!=2')->paginate(2);
-        //halt($info);exit;
         $this->assign('data', $info);
         // dump($info);
         return $this->fetch();
     }
+     /**
+     * 查看历史薪资
+     */
+    
+    public function history_list($id){
+        // echo $id; 
+        $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('is_delete!=2')->where('admin_id',$id)->where($where)->order('p.id desc')->paginate(15);
+        // dump($info);exit;
+         if($info){
+            $this->assign('data',$info);
+         }else{
+            $this->error('没有薪资记录');exit;
+         }
+        return  $this->fetch(); 
+    }
+
+    //  public function delete_pay($id){
+    //      $id = input('post.id');//dump($id);
+        
+    //     // dump($info);exit;
+        
+    // }
+
 
     /**
      * 工资调整

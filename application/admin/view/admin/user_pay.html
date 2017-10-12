@@ -138,12 +138,9 @@
                                     <tr>
                                         <th>流水ID</th>
                                         <th>员工姓名</th>
-                                        <th>增加/减少</th>
-                                        <th>调整金额</th>
-                                        <th>调整后的金额</th>
-                                        <th>调整原因</th>
-                                        <th>工龄</th>
-                                        <th>调整时间</th>
+                                        <th>手机号码</th>
+                                        <th>操作</th>
+                                       
                                     </tr>
 
                                     </thead>
@@ -151,18 +148,18 @@
                                     {volist id="vo" name="data"}
                                     <tr>
                                         <td>{$vo.id}</td>
-                                        <td><a href="javascript:;" class="btn-link">{$vo.username}</a></td>
-                                        <td><?php if($vo['add_or_less']==1){echo "增加";} ?>
-                                            <?php if($vo['add_or_less']==2){echo "减少";} ?></td>
-                                        <td>{$vo.adjust_salary}</td>
-                                        <td>{$vo.total_money}</td>
-                                        <td>{$vo.adjust_reason}</td>
-                                        <td>{$vo.entry_year}</td>
-                                        <td><?php echo date('Y-m-d',$vo['update_time']);?></td>
+                                        <td><a href="javascript:;" >{$vo.username}</a></td>
+                                        <td><a href="javascript:;" >{$vo.mobile}</a></td>
+                                       
+                                       <td> <a href="{:url('history_list',array('id'=>$vo['id']))}" class="btn btn-primary">
+                                            查看历史薪资
+                                        </a>
+                                       </td>
                                     </tr>
                                     {/volist}
                                     </tbody>
                                 </table>
+                                {$data->render()}
                             </div>
                         </div>
                         <!--===================================================-->

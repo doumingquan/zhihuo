@@ -24,7 +24,7 @@
                             </a>
                         </div>
                     </div>
-                    {if condition="session('user')['remark'] eq 1"}
+                    {if condition="session('admin_cate')['id'] eq 1"}
 
                     <ul id="mainnav-menu" class="list-group">
 
@@ -74,12 +74,11 @@
                                 <i class="arrow"></i>
                             </a>
 
-
                             <ul class="collapse in" aria-expanded="true">
-                                <li><a href="{:url('/ad_list')}">公司员工</a></li>
+                                <li><a href="{:url('/ad_list')}">公司</a></li>
                                 <li><a href="{:url('/ad_index')}">未审核员工信息</a></li>
                                 <li><a href="{:url('/check_index')}">审核过员工信息</a></li>
-                                <li><a href="{:url('/user_pay')}">员工调薪</a></li>
+                                <li><a href="{:url('/user_pay')}">员工调薪信息</a></li>
                                 <li><a href="{:url('/add_user')}">新增员工</a></li>
                             </ul>
                         </li>
@@ -97,7 +96,7 @@
                                 <li><a href="{:url('/ad_list')}">公司</a></li>
                                 <li><a href="{:url('/ad_index')}">未审核员工信息</a></li>
                                 <li><a href="{:url('/check_index')}">审核过员工信息</a></li>
-                                <li><a href="{:url('/user_pay')}">员工调薪</a></li>
+                                <li><a href="{:url('/user_pay')}">员工调薪信息</a></li>
                                 <li><a href="{:url('/add_user')}">新增员工</a></li>
 
                             </ul>
