@@ -61,20 +61,21 @@ class User extends Adminbase{
     public function add_user(){
         if(Request::instance()->post()){
             $data=input('post.');
-           //halt($data);
+            //halt($data);
             $userdata=[
                 'username'=>$data['username'],
                 'mobile'=>$data['phone'],
                 'password'=>md5($data['password']),
                 'status'=>$data['status'],
-                'company_id'=>$data['company_id']
+                'company_id'=>session('admin_cate')['cid']
 
             ];
-            //dump($userdata);exit;
+            //dump($userdata);//exit;
             $result=Db::name('admin')->insert($userdata);
             $datagroup=Db::name('admin')->where(['username'=>$data['username']])->find();
+            //dump($datagroup);exit;
             if($result){
-                if (!empty($data['group_ids'])) {
+                if (!empty($data['group_ids'])&&is_array($data['group_ids'])) {
                     foreach ($data['group_ids'] as $k => $v) {
                         $group=array(
                             'uid'=>$datagroup['id'],
@@ -82,6 +83,12 @@ class User extends Adminbase{
                             );
                         Db::name('auth_group_access')->insert($group);
                     }                   
+                }else{
+                   $group=array(
+                            'uid'=>$datagroup['id'],
+                            'group_id'=>4
+                            ); 
+                    Db::name('auth_group_access')->insert($group);
                 }
                 // 操作成功
                 $this->success('添加成功','Admin/User/index');
@@ -89,11 +96,20 @@ class User extends Adminbase{
                 $this->error('修改失败');
             }
         }else{
-            $data=Db::name('auth_group')->select();
-            $info = Db::name('company')->where()->select();//dump($info);
+            
+            if(session('admin_cate')['id']==1){
+                $data=Db::name('auth_group')->select();
+             }
+           if(session('admin_cate')['id']==2){
+                 $data=Db::name('auth_group')->where('id',4)->select();
+             }
+          
+            $company = session('admin_cate');
+            //dump($company);
+            //$info = Db::name('company')->where()->select();//dump($info);
             $assign=array(
                 'data'=>$data,
-                'info'=>$info
+                'company'=>$company
                 );
             $this->assign($assign);
             return $this->fetch();

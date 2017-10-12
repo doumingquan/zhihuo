@@ -82,7 +82,6 @@ class Admin extends Adminbase
         //     $this->error('该公司下没有员工');exit;
         // }
         $this->assign('admin', $info);
-
         return view();
     }
 
@@ -104,7 +103,13 @@ class Admin extends Adminbase
             $where['username'] = array('like', "%$keyword%");
         }
         //使用左连接查询
-        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=2')->where($where)->paginate(15);
+        if(session('admin_cate')['id']==1){
+            $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=2')->where($where)->paginate(15);
+        }
+        if(session('admin_cate')['id']==2){
+             $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.company_id', session('admin_cate')['cid'])->where('a.status=2')->where($where)->paginate(15);
+        }
+        
         //halt($info);exit;
         $this->assign('data', $info);
         // dump($info);
