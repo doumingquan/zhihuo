@@ -142,12 +142,16 @@
                               <div class="form-group">
                                 <label class="col-md-3 control-label" for="demo-text-input">公司</label>
                                 <div class="col-md-9">
-                                 <input type="text" id="demo-text-input" class="form-control" readonly="readonly" value="{$company['company']}" required="required">
-                                   <!--  <select name="company_id" id="" class="form-control">                                     
-                                            <option value="{$company['id']}">{$company['company']}</option>
+                               <!--   <input type="text" id="demo-text-input" class="form-control" readonly="readonly" value="{$company['company']}" required="required"> -->
+                                {if condition="session('admin_cate')['id'] eq 1"}
+                                <select name="company_id" id="" class="form-control">   
+                                        {foreach name="company" item="v"}                                                                      
+                                            <option value="{$company['id']}">{$v['company']}</option>
                                         {/foreach}
-                                    </select> -->
-                               
+                                    </select>
+                                {else /}
+                                      <input type="text" id="demo-text-input" class="form-control" readonly="readonly" value="{$company['company']}" required="required">
+                                {/if}
                                 </div>
                             </div>
 
@@ -171,20 +175,12 @@
                                 </div>
                             </div>
 
-                           <!--  <div class="form-group">
-
-                                <label class="col-md-3 control-label" for="demo-text-input">手机号</label>
-                                <div class="col-md-9">
-                                    <input type="text" id="demo-text-input" lay-verify="phone" class="form-control" name="phone" >
-                                </div>
-                            </div>
-                             -->
                              <div id="demo-acc-panel-3" class="panel-collapse collapse in">
                                             <div class="panel-body">
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">电话号码</label>
                                                     <div class="col-lg-7">
-                                                        <input type="text" class="form-control" name="phone" placeholder="必须是数字">
+                                                        <input type="text" class="form-control" name="phone" maxlength="11" placeholder="必须是数字">
                                                     </div>
                                                 </div>
                                             </div>

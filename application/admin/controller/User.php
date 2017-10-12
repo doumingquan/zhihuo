@@ -99,9 +99,11 @@ class User extends Adminbase{
             
             if(session('admin_cate')['id']==1){
                 $data=Db::name('auth_group')->select();
+                $info = Db::name('company')->select();
              }
            if(session('admin_cate')['id']==2){
-                 $data=Db::name('auth_group')->where('id',4)->select();
+                $data=Db::name('auth_group')->where('id',4)->select();
+                $info = session('admin_cate');
              }
           
             $company = session('admin_cate');
@@ -109,7 +111,7 @@ class User extends Adminbase{
             //$info = Db::name('company')->where()->select();//dump($info);
             $assign=array(
                 'data'=>$data,
-                'company'=>$company
+                'company'=>$info
                 );
             $this->assign($assign);
             return $this->fetch();
