@@ -16,7 +16,8 @@ class User extends Adminbase{
             $keyword = input('keywords');
             $where['username']=array('like',"%$keyword%");
         }
-		$data=Db::name('auth_group_access')
+        if(session('admin_cate')['id']==1){
+            $data=Db::name('auth_group_access')
             ->alias('aga')
             ->field('u.id,u.username,u.email,aga.group_id,ag.title')
             ->join('__ADMIN__ u' , 'aga.uid=u.id','RIGHT')
@@ -24,6 +25,20 @@ class User extends Adminbase{
             ->where('u.is_delete!=2')
             ->where($where)
             ->select();
+        }
+         if(session('admin_cate')['id']==2){
+            $data=Db::name('auth_group_access')
+            ->alias('aga')
+            ->field('u.id,u.username,u.email,aga.group_id,ag.title')
+            ->join('__ADMIN__ u' , 'aga.uid=u.id','RIGHT')
+            ->join('__AUTH_GROUP__ ag' , 'aga.group_id=ag.id','LEFT')
+            ->where('u.company_id',session('admin_cate')['cid'])
+            ->where('u.is_delete!=2')
+            ->where($where)
+            ->select();
+        }
+
+		
         $first=$data[0];
        // dump($data);
         $first['title']=array();
