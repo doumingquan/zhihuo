@@ -23,8 +23,9 @@ class Admin extends Adminbase
             $keyword = input('keywords');
             $where['username'] = array('like', "%$keyword%");
         }
+        //dump(session('admin_cate'));
         //使用左连接查询
-        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where($where)->where('a.status=1')->paginate(15);
+        $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.company_id',session('admin_cate')['cid'])->where($where)->where('a.status=1')->paginate(15);
         //halt($info);exit;
         $this->assign('data', $info);
         // dump($info);
@@ -118,7 +119,13 @@ class Admin extends Adminbase
         }
         //echo session('admin_cate')['cid'];
         //使用左连接查询
-        $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id', session('admin_cate')['cid'])->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
+        if(session('admin_cate')['id']==1){
+                $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
+        }
+        if(session('admin_cate')['id']==2){
+             $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id', session('admin_cate')['cid'])->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
+        }
+       
         //dump($info);
         // $info = db('pay')->alias('p')->field('')->join('admin a','a.id=p.admin_id','LEFT')->join('admin_depart d','a.depart_id=d.id','LEFT')->join('admin_company c','c.id=a.company_id','LEFT')->join('admin_position p','a.entry_pos=p.id','LEFT')->where('is_delete!=2')->paginate(2);
         //halt($info);exit;
