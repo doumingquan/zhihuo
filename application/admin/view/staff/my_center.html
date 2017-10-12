@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人资料修改-</title>
+    <title>个人资料修改-智火后台管理</title>
     <script src="__STATIC__/js/jquery-2.2.4.min.js"></script>
     <script language="javascript" type="text/javascript" src="__STATIC__/js/My97DatePicker/WdatePicker.js"></script>
     <link rel="stylesheet" type="text/css" href="__STATIC__/js/uploadify/uploadify.css">
@@ -294,11 +294,11 @@
                             <label class="col-sm-3 control-label">工号</label>
                             <div class="col-sm-6 ">
                                 {if condition="$info.number==0"}
-                                <input type="text" placeholder="number" class="form-control" value=""
-                                       name="number" required="required">
+                                <input type="text" placeholder="number" class="form-control" value="{$info.number}"
+                                       name="number" required="required"  readonly="readonly" >
                                 {else /}
                                 <input type="text" placeholder="number" class="form-control"
-                                       value="{$info.number}" name="number" required="required">
+                                       value="{$info.number}" name="number" readonly="readonly" required="required">
                                 {/if}
                             </div>
                         </div>
