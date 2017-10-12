@@ -82,6 +82,7 @@ class Admin extends Adminbase
         //     $this->error('该公司下没有员工');exit;
         // }
         $this->assign('admin', $info);
+
         return view();
     }
 

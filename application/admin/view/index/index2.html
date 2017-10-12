@@ -147,6 +147,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
+                                        <th>所属公司</th>
                                         <th>项目编号</th>
                                         <th>项目名称</th>
                                         <th>开始时间</th>
@@ -158,7 +159,8 @@
 
                                     {volist id="vo" name="data"}
                                     <tr>
-                                        <td><a href="#" class="btn-link">{$vo.id}</a></td>
+                                        <td><a class="btn-link">{$vo.company}</a></td>
+                                        <td><a class="btn-link">{$vo.id}</a></td>
                                         <td>{$vo.pro}</td>
                                         <td><span class="text-muted"><i class="fa fa-clock-o"></i> {$vo.createtime|date='Y-m-d',###}</span>
                                         </td>

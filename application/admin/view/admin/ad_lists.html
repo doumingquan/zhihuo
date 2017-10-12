@@ -77,7 +77,7 @@
                                   method="get" action="{:url('admin/search/index')}">
                                 <tr>
                                     <input type="text" placeholder="请输入关键词" id="bdcs-search-form-input"
-                                           class="form-control" name="keywords" autocomplete="off">
+                                           class="" name="keywords" autocomplete="off">
                                     <input type="submit" value="搜索" id="bdcs-search-form-submit"
                                            class="btn btn-purple">
                                 </tr>
@@ -89,29 +89,8 @@
                 </div>
 
                 {volist id="vo" name="admin"}
-                <div class="col-lg-2">
-                    <!--  <div class="panel">
-                          <div class="panel-body text-center">
-                              {if condition="$vo['headpic'] neq ''"}
-                              <img alt="Profile Picture" class="img-md img-circle mar-btm" src="/{$vo.headpic}">
-                              {else /}
-                              <img alt="Profile Picture" class="img-md img-circle mar-btm" src="__STATIC__/img/profile-photos/1.png">
-                              {/if}
-                              <p class="text-lg text-semibold mar-no text-main"></p>
-                              <p class="text-muted">{$vo.username}</p>
-                              <p class="text-sm"> {if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else /}{$vo.ename}{/if}</p>
-&lt;!&ndash;
-                              <a  href="javascript:;" ruleId="{$vo['id']}"  onclick="edit(this)" class="btn btn-primary mar-ver"><i class="demo-pli-male icon-fw"></i>详情</a>
-&ndash;&gt;
 
-                              <div class="list-group bg-trans pad-btm">
-                                  <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i> {$vo.email}</a>
-                                  <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> {$vo.position}</a>
-                                  <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i> {$vo.mobile}</a>
-                                  <a class="label label-info pull-right" href="">详情</a>
-                              </div>
-                          </div>
-                      </div>-->
+                <div class="col-lg-2">
                     <div class="panel">
                         <div class="panel-body text-center ">
                             {if condition="$vo['headpic'] neq ''"}
@@ -121,26 +100,30 @@
                                  src="__STATIC__/img/profile-photos/1.png">
                             {/if}
                             <h4 class="mar-n">{$vo.username}</h4>
-                            <p class="text-sm">{if condition="$vo['ename'] eq '' "}我还没有想好英文名！{else
+                            <p class="text-sm">{if condition="$vo['ename'] eq '' "}暂无英文名！{else
                                 /}{$vo.ename}{/if}</p>
                         </div>
                         <ul class="list-unstyled text-center bord-top pad-top mar-no row">
-
                         </ul>
                         <div class="list-group bg-trans pad-btm">
-                            <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i>
+                            <a class="list-group-item"><i class="ion-iphone icon-lg icon-fw"></i>
                                 {$vo.email}</a>
-                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
-                                {$vo.position}</a>
-                            <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>{if
-                                condition="$vo['user_email'] eq ''"}暂无企业邮箱 {else /}{$vo.user_email}{/if}</a>
-                        </div>
-                        {if condition="session('user')['remark'] eq 1"}
-                        <a href="javascript:;" id="{$vo.id}" onclick="edit(this)" class="btn btn-primary mar-ver">详情</a>
-                        {/if}
-                    </div>
-                </div>
+                            <a class="list-group-item" ><i class="ion-pin icon-lg icon-fw"></i>
+                                {$vo.company}</a>
+                            <a class="list-group-item" ><i class="ion-pinpoint icon-lg icon-fw"></i>
+                                {$vo.depart}</a>
+                            <a class="list-group-item" ><i class="ion-load-d icon-lg icon-fw"></i>{$vo.salary}元/月</a>
+                            <div class="list-unstyled text-center  mar-no row">
+                                {if condition="session('user')['remark'] eq 1"}
+                                <a id="{$vo.id}" onclick="edit(this)" class="btn btn-mint btn-sm shiny">详情</a>
+                                {/if}
 
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
                 {/volist}
                 <script>
                     function deletestaff($id) {
@@ -318,13 +301,22 @@
                                    id="number2" required="required" readonly="true">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">入职职位</label>
+                        <label class="col-sm-3 control-label">所在区域公司</label>
                         <div class="col-sm-6 ">
-                            <input type="text" placeholder="number" class="form-control" value="" id="position"
+                            <input type="text" class="form-control" value="" id="company" required="required"
+                                   readonly="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所在部门</label>
+                        <div class="col-sm-6 ">
+                            <input type="text" class="form-control" value="" id="depart" name="address"
                                    required="required" readonly="true">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label">身高</label>
                         <div class="col-sm-6 ">
@@ -361,39 +353,26 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">籍贯</label>
                         <div class="col-sm-6 ">
-                            <input type="text" id="native" class="form-control" value="江苏淮安" name="native"
+                            <input type="text" id="native" class="form-control" value="" name="native"
                                    required="required">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">家庭住址</label>
                         <div class="col-sm-6 ">
-                            <input type="text" id="address" class="form-control" value="江苏南通市涟水县" name="address"
+                            <input type="text" id="address" class="form-control" value="" name="address"
                                    required="required">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">学历</label>
                         <div class="col-sm-6 ">
-                            <input type="text" class="form-control" value="研究生" id="name" name="address"
+                            <input type="text" class="form-control" value="" id="name" name="address"
                                    required="required" readonly="true">
 
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">所在区域公司</label>
-                        <div class="col-sm-6 ">
-                            <input type="text" class="form-control" value="研究生" id="company" required="required"
-                                   readonly="true">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">所在部门</label>
-                        <div class="col-sm-6 ">
-                            <input type="text" class="form-control" value="研究生" id="depart" name="address"
-                                   required="required" readonly="true">
-                        </div>
-                    </div>
+
 
 
                 </div>

@@ -37,7 +37,13 @@ class Index extends Adminbase
 
             // $this->assign('date3',$date3);
 
-            $data = Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po', 'po.id=p.pro_style_id')->where('is_delete!=2')->order('id desc')->paginate(10);
+            $data = Db::name('project')
+                ->alias('p')->field('p.*,po.position,c.company')
+                ->join('admin_position po', 'po.id=p.pro_style_id')
+                ->join('admin_company c','c.id=p.company_id')
+                ->where('is_delete!=2')
+                ->order('id desc')
+                ->paginate(10);
 
             // echo '<pre>';
             // print_r($data);
@@ -46,6 +52,7 @@ class Index extends Adminbase
                 'data' => $data
             );
             $this->assign($assign);
+
             return $this->fetch('index2');
         } else {
             //完成数量
@@ -66,7 +73,7 @@ class Index extends Adminbase
             $this->assign('total1', $total1);
             $this->assign('total2', $total2);
             $this->assign('total3', $total3);
-            $data = Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po', 'po.id=p.pro_style_id')->where("FIND_IN_SET($id, admin_id)")->where('is_delete!=2')->order('id desc')->paginate(10);
+            $data = Db::name('project')->alias('p')->field('p.*,po.position,c.company')->join('admin_position po', 'po.id=p.pro_style_id')->join('admin_company c','c.id=p.company_id')->where("FIND_IN_SET($id, admin_id)")->where('is_delete!=2')->order('id desc')->paginate(10);
             $assign = array(
                 'data' => $data
             );
