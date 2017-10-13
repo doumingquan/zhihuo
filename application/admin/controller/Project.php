@@ -29,7 +29,7 @@ class Project extends Adminbase{
            //dump($info);
         }elseif($cate_id==2){
             //一般管理员调出该公司所有项目信息
-            $data = db('project')->alias('p')->field('p.*,po.position')->join('admin_company c','c.id=p.company_id')->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.company_id',$cate['cid'])->select();//dump($data);
+            $data = db('project')->alias('p')->field('p.*,po.position')->join('admin_company c','c.id=p.company_id')->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.company_id',$cate['cid'])->where('is_delete!=2')->select();//dump($data);
             foreach($data as $k=>$v){
                 $arr = explode(',',$v['admin_id']);
                 //dump($arr);
@@ -40,6 +40,8 @@ class Project extends Adminbase{
                     $data[$k]['username'] = implode(' ,',$array);               
                 }           
             }
+
+            //$data2 = $data->paginate(15);halt($data);
             //dump($data);exit;
             $this->assign('data', $data);
             return view('index2');
@@ -221,7 +223,7 @@ class Project extends Adminbase{
     }
 
     public function delete(){
-          $id = input('id');
+          $id = input('id');echo $id;
             $result = DB::name('project')->where(array('id'=>$id))->update(array('is_delete'=>2));
             if($result){
                 echo json_encode(array('status'=>1000,'msg'=>'删除成功!'));

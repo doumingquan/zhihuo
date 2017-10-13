@@ -84,15 +84,29 @@ class User extends Adminbase{
                 $this->error($validate->getError());
             }
             //halt($data);
-            $userdata=[
-                'username'=>$data['username'],
-                'mobile'=>$data['phone'],
-                'password'=>md5($data['password']),
-                'status'=>$data['status'],
-                'number'=>$data['number'],
-                'company_id'=>$data['company_id']
+            if(session('admin_cate')['id']==2){
+                    $userdata=[
+                    'username'=>$data['username'],
+                    'mobile'=>$data['phone'],
+                    'password'=>md5($data['password']),
+                    'status'=>$data['status'],
+                    'number'=>$data['number'],
+                    'company_id'=>session('admin_cate')['cid']
 
-            ];
+                ];
+            }
+            if(session('admin_cate')['id']==1){
+                    $userdata=[
+                    'username'=>$data['username'],
+                    'mobile'=>$data['phone'],
+                    'password'=>md5($data['password']),
+                    'status'=>$data['status'],
+                    'number'=>$data['number'],
+                    'company_id'=>$data['company_id']
+
+                ];
+            }
+            
             //dump($userdata);//exit;
             $result=Db::name('admin')->insert($userdata);
             $datagroup=Db::name('admin')->where(['username'=>$data['username']])->find();
