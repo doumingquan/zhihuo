@@ -17,6 +17,7 @@ class Staff extends Adminbase
     public function my_center()
     {
         $cate_id = session('admin_cate')['id'];//echo $cate_id;
+
         $id = session('admin.admin_id');//echo $id;
         //学历
         $school = db('infomation')->where(array('title' => 1))->select();
@@ -76,7 +77,7 @@ class Staff extends Adminbase
             // dump($data);
             $this->assign('data', $data);
             return $this->fetch();
-        }else{
+        }elseif($cate_id == 2){
             //统计公司信息
          $count_user=db('admin')->field('id,company_id')->where(array('company_id'=>$cate))->count();
          $count_project=db('project')->where(array('company_id'=>$cate,'status'=>1))->count();
@@ -90,8 +91,13 @@ class Staff extends Adminbase
             // dump($data);
             $this->assign('data', $data);
             return view('index2');
+        }else{
+            //使用左连接查询
+            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => session('admin.admin_id')))->find();
+            // dump($data);
+            $this->assign('data', $data);
+            return $this->fetch();
         }
-
 
     }
 

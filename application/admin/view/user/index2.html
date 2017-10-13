@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户列表</title>
+    {include file='layout/top' /}
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+    <!--NAVBAR-->
+    <!--===================================================-->
+    {include file="layout/header" /}
+    <!--===================================================-->
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+            <!--Page Title-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div id="page-title">
+                <!-- <h1 class="page-header text-overflow">Collapsed Navigation</h1> -->
+
+                <!--Searchbox-->
+                <!-- <div class="searchbox">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search..">
+                        <span class="input-group-btn">
+                            <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End page title-->
+
+
+            <!--Breadcrumb-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">权限控制</a></li>
+                <li class="active">用户管理</li>
+            </ol>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End breadcrumb-->
+            <div class="panel">
+
+
+
+                <!--===================================================-->
+                <div class="panel-body">
+                    <div class="pad-btm form-inline">
+                        <div class="row">
+                            <div class="col-sm-12 table-toolbar-right">
+                                <div class="form-group">
+                                    <form id="bdcs-search-form" autocomplete="off" class="bdcs-search-form" method="get"
+                                          action="">
+                                        <tr>
+                                            <input type="text" placeholder="请输入用户名" id="bdcs-search-form-input"
+                                                   class=" form-control" name="keywords" autocomplete="off">
+                                            <input type="submit" value="搜索" id="bdcs-search-form-submit"
+                                                   class="btn btn-purple">
+                                        </tr>
+                                    </form>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6 text-xs-center">
+                                <div class="form-group">
+                                    <a href="{:url('Admin/User/add_user')}">
+                                        <button id="demo-btn-addrow" class="btn btn-purple"><i
+                                                class="demo-pli-plus"></i> 增加员工
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 text-xs-center text-right">
+                                <!-- <div class="form-group">
+                                    <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle"
+                           data-page-size="7">
+                        <thead>
+                        <tr>
+                            <th data-sort-initial="true" data-toggle="true">用户名</th>
+                            <th>拥有角色</th>
+                            <th data-hide="phone, tablet">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name="data" item="v"}
+                        <tr>
+                            <td>{$v['username']}</td>
+                            <td>{$v['title']}</td>
+                            <td>
+                                <a href="{:url('Admin/User/edit_user',array('id'=>$v['id']))}">修改</a>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!--===================================================-->
+                <!-- End Foo Table - Add & Remove Rows -->
+
+            </div>
+        </div>
+        <!--===================================================-->
+        {include file="layout/left" /}
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <!--===================================================-->
+    {include file="layout/footer" /}
+    <!--===================================================-->
+    <!-- END FOOTER -->
+
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+
+<!-- SETTINGS - DEMO PURPOSE ONLY -->
+<!-- END SETTINGS -->
+
+
+</body>
+</html>

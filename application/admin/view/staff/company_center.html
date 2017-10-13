@@ -44,14 +44,15 @@
                     <div class="widget-body text-center">
                         <img alt="Profile Picture" class="widget-img img-circle img-border-light"
                              src="/{$info['headpic']}">
-                        <h4 class="mar-no text-main">{$info.username}</h4>
+
+                        <h4 class="mar-no text-main">{$info.company}</h4>
                         <p class="text-muted mar-no">{$info.name}</p>
                     </div>
                 </div>
 
                 <form class="form-horizontal" method="post" action="change_msg" enctype="multipart/form-data">
 
-                <div class="col-lg-3">
+                <div class="col-lg-12">
                 <div class="panel">
                     <div class="panel-heading">
                         <h3 class="panel-title">公司联系资料</h3>
@@ -134,7 +135,16 @@
                                        value="{$info.address}" name="address" required="required">
                             </div>
                         </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-9 col-sm-offset-6">
+                                    <button class="btn btn-warning btn-rounded submitbtn" type="submit">确认修改</button>
+                                    <!-- <button class="btn btn-info btn-rounded" type="reset">重置</button> -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 </div>
 
@@ -195,9 +205,7 @@
                 success: function (data) {
                     if (data.code == 0) {
                         layer.alert('修改成功、前往登录页面');
-                        location.href = '{:url('
-                        Home / Index / index
-                        ')}';
+                        location.href = '{:url('Home/Index/index')}';
                     } else {
                         layer.alert('没有更改任何东西');
                     }
@@ -209,25 +217,6 @@
         });
     });
 </script>
-<script>
-    $(function(){
-        $(".submitbtn").click(function(){
-            if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='user_email']").val())){
-                layer.msg('企业邮箱格式不正确！', {icon: 2});
-                return false;
-            }
-            if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='email']").val())){
-                layer.msg('邮箱格式不正确！', {icon: 2});
-                return false;
-            }
-            if(!/^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/.test($("input[name='mobile']").val())){
-                layer.msg('手机号格式不正确！', {icon: 2});
-                return false;
-            }
 
-            $(this).parents("form").submit();
-        });
-    });
-</script>
 </body>
 </html>
