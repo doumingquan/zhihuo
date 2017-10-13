@@ -83,9 +83,9 @@ class Staff extends Adminbase
          $count_project=db('project')->where(array('company_id'=>$cate,'status'=>1))->count();
          $count_project2=db('project')->where(array('company_id'=>$cate,'status'=>2))->count();
             $this->assign([
-                'count_user'  => $count_project2,
+                'count_user'  => $count_user,
                 'count_project' => $count_project,
-                'count_project2'=>$count_user,
+                'count_project2'=>$count_project2,
             ]);
             $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => session('admin.admin_id')))->find();
             // dump($data);
