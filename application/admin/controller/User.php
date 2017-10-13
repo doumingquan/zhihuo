@@ -74,10 +74,11 @@ class User extends Adminbase{
      * 添加管理员
      */
     public function add_user(){
+        $cid = session('admin_cate')['cid'];
         if(Request::instance()->post()){
 
             $data=input('post.');
-            halt($data);
+            //halt($data);
             $validate = \think\Loader::validate('User');
             if(!$validate->scene('add')->check($data)){
                 $this->error($validate->getError());
@@ -89,7 +90,7 @@ class User extends Adminbase{
                 'password'=>md5($data['password']),
                 'status'=>$data['status'],
                 'number'=>$data['number'],
-                'company_id'=>$data['number']
+                'company_id'=>$cid
 
             ];
             //dump($userdata);//exit;
@@ -108,7 +109,7 @@ class User extends Adminbase{
                 }else{
                    $group=array(
                             'uid'=>$datagroup['id'],
-                            'group_id'=>session('admin_cate')['id']
+                            'group_id'=>4
                             ); 
                     Db::name('auth_group_access')->insert($group);
                 }
@@ -124,13 +125,13 @@ class User extends Adminbase{
                // $info = Db::name('company')->select();
              }
            if(session('admin_cate')['id']==2){
-                $data=Db::name('auth_group')->where('id',4)->select();
+                $data=Db::name('auth_group')->where('id',4)->select(); //halt($data);
                 //$info = session('admin_cate');
              }
-          
+         
             //$company = session('admin_cate');
             //dump($company);
-            $info = Db::name('company')->select();//dump($info);
+            $info = Db::name('company')->where('id',$cid)->find();//dump($info);
             $assign=array(
                 'data'=>$data,
                 'company'=>$info

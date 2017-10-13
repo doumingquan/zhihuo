@@ -12,15 +12,18 @@ class Project extends Adminbase{
 	 * 项目列表
 	 */
 	public function index(){
-        if(Request::instance()->get()){
-            echo 123;exit;
-        }
+        // if(Request::instance()->get()){
+            
+        // }
         $cate=session('admin_cate');        //halt($cate);
         $cate_id = session('admin_cate')['id'];//echo $cate_id;
-       
+        $cateid = session('admin_cate')['cid'];
         if($cate_id==1 ){
             //超级管理员调出公司信息
-           $info = db('company')->where('id',session('admin_cate')['cid'])->select();//dump($info);           
+           $info = db('company')->where('id',session('admin_cate')['cid'])->select();//dump($info); //总公司
+           $resultid = model('company')->childrenids($cateid);  //dump($resultid);exit;//调出分公司的名称
+           $data=Db::name('company')->where('id','in',$resultid)->select();//halt($info);
+           $info = array_merge($info,$data);//dump($info);exit;
             $this->assign('admin', $info);
             return view();
            //dump($info);
@@ -125,6 +128,7 @@ class Project extends Adminbase{
      * 添加项目
      */
     public function add(){
+        $cid = session('admin_cate')['cid'];
         if(Request::instance()->post()){
             $data=input('post.');
     //dump($data);exit;
@@ -132,7 +136,7 @@ class Project extends Adminbase{
                 'pro'=>$data['pro'],
                 'cycle'=>$data['cycle'],
                 'status'=>$data['status'],
-                'company_id'=>$data['company_id'],
+                'company_id'=>$cid,
                 'pro_style_id'=>$data['pro_style_id'],
                 'desc'=>$data['desc'],
                 'createtime'=>time()
@@ -150,7 +154,7 @@ class Project extends Adminbase{
         }else{
             $data = db('position')->select();
             $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();
-            $info = Db::name('company')->where()->select();//dump($info);
+            $info = Db::name('company')->field('company')->where('id',$cid)->find();          //dump($info);
             $assign=array(
                 'data'=>$data,
                 'user'=>$user,
