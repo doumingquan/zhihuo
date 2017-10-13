@@ -16,7 +16,7 @@ class Staff extends Adminbase
 //员工个人信息
     public function my_center()
     {
-
+        $cate_id = session('admin_cate')['id'];//echo $cate_id;
         $id = session('admin.admin_id');//echo $id;
         //学历
         $school = db('infomation')->where(array('title' => 1))->select();
@@ -26,7 +26,6 @@ class Staff extends Adminbase
         $company = db('company')->where(array('title' => 5))->select();
         //职位
         $position = db('position')->where(array('title' => 4))->select();
-
         $info = db('admin')->alias('a')->field('a.*,c.company')->join('admin_company c','c.id=a.company_id')->where(array('a.id' => $id))->find();
         if ($info['birthday'] == 0) {
             $info['birthday'] = "";
@@ -43,7 +42,12 @@ class Staff extends Adminbase
         $this->assign('department', $depart);
         $this->assign('company', $company);
         $this->assign('position', $position);
-        return $this->fetch();
+        if ($cate_id == 2){
+            return $this->fetch('company_center');
+        }else{
+            return $this->fetch();
+        }
+
     }
 
 

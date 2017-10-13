@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司资料修改-智火后台管理</title>
+    <script src="__STATIC__/js/jquery-2.2.4.min.js"></script>
+    <script language="javascript" type="text/javascript" src="__STATIC__/js/My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/js/uploadify/uploadify.css">
+    <script src="__STATIC__/js/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+
+    {include file='layout/top' /}
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+    <!--NAVBAR-->
+    <!--===================================================-->
+    {include file='layout/header' /}
+    <!--===================================================-->
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
+
+                <!-- <hr class="new-section-sm bord-no"> -->
+
+                <div class="panel widget">
+                    <div class="widget-header bg-purple">
+                        <img class="widget-bg img-responsive" src="{$Think.config.web_root}/img/thumbs/img3.jpg"
+                             alt="Image">
+                    </div>
+                    <div class="widget-body text-center">
+                        <img alt="Profile Picture" class="widget-img img-circle img-border-light"
+                             src="/{$info['headpic']}">
+                        <h4 class="mar-no text-main">{$info.username}</h4>
+                        <p class="text-muted mar-no">{$info.name}</p>
+                    </div>
+                </div>
+
+                <form class="form-horizontal" method="post" action="change_msg" enctype="multipart/form-data">
+
+                <div class="col-lg-3">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">公司联系资料</h3>
+                    </div>
+
+
+                    <!--Input Size-->
+                    <!--===================================================-->
+
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="demo-is-inputsmall">用户名</label>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="Username" class="form-control input-sm"
+                                       id="demo-is-inputsmall" value="{$info.username}" name="username"
+                                       required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="demo-is-inputsmall">英文名</label>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="英文昵称" class="form-control input-sm"
+                                       id="demo-is-inputsmall2" value="{$info.ename}" name="ename"
+                                       required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="demo-is-inputnormal" class="col-sm-3 control-label">密码</label>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="默认不填则不修改密码" class="form-control"
+                                       id="demo-is-inputnormal" name="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">公司头像</label>
+                            <div class="col-sm-6 ">
+                                <input type="file" id="file_upload" class="form-control" value=""
+                                       name="headpic">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">公司电话</label>
+                            <div class="col-sm-6">
+                                <input type="text" maxlength="11" placeholder="" class="form-control"
+                                       value="{$info.mobile}" name="mobile" required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">公司邮箱</label>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="E-mail" class="form-control"
+                                       value="{$info.email}" name="email" required="required">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">公司微信号</label>
+                            <div class="col-sm-6 ">
+                                <input type="text" placeholder="weixin" class="form-control"
+                                       value="{$info.weixin}" name="weixin" required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">公司QQ号</label>
+                            <div class="col-sm-6 ">
+                                <input type="text" placeholder="" class="form-control"
+                                       value="{$info.qq}" name="qq" required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">公司住址</label>
+                            <div class="col-sm-6 ">
+                                <input type="text" placeholder="" class="form-control"
+                                       value="{$info.address}" name="address" required="required">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                </form>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+
+
+        {include file="layout/left"}
+
+    </div>
+
+
+    {include file="layout/footer"}
+
+    <!--===================================================-->
+    <!-- END FOOTER -->
+
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+
+<!-- SETTINGS - DEMO PURPOSE ONLY -->
+<!-- END SETTINGS -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#change_msg").click(function () {
+            // alert("hahah ");
+            username = $("input[name='username']").val();
+            password = $("input[name='password']").val();
+            email = $("input[name='email']").val();
+            phone = $("input[name='phone']").val();
+            var data = {
+                username: username,
+                password: password,
+                email: email,
+                phone: phone,
+            };
+            // layer.alert('内容');
+            console.log(data);
+
+            $.ajax({
+                type: "POST",
+                url: "change_msg",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.code == 0) {
+                        layer.alert('修改成功、前往登录页面');
+                        location.href = '{:url('
+                        Home / Index / index
+                        ')}';
+                    } else {
+                        layer.alert('没有更改任何东西');
+                    }
+                }
+
+            });
+
+
+        });
+    });
+</script>
+<script>
+    $(function(){
+        $(".submitbtn").click(function(){
+            if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='user_email']").val())){
+                layer.msg('企业邮箱格式不正确！', {icon: 2});
+                return false;
+            }
+            if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='email']").val())){
+                layer.msg('邮箱格式不正确！', {icon: 2});
+                return false;
+            }
+            if(!/^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/.test($("input[name='mobile']").val())){
+                layer.msg('手机号格式不正确！', {icon: 2});
+                return false;
+            }
+
+            $(this).parents("form").submit();
+        });
+    });
+</script>
+</body>
+</html>
