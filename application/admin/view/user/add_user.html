@@ -154,7 +154,7 @@
                                 {if condition="session('admin_cate')['id'] eq 1"}
                                 <select name="company_id" id="" class="form-control">   
                                         {foreach name="company" item="v"}                                                                      
-                                            <option value="{$company['id']}">{$v['company']}</option>
+                                            <option value="{$v['id']}">{$v['company']}</option>
                                         {/foreach}
                                     </select>
                                 {else /}

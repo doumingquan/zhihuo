@@ -77,6 +77,7 @@ class User extends Adminbase{
         if(Request::instance()->post()){
 
             $data=input('post.');
+            halt($data);
             $validate = \think\Loader::validate('User');
             if(!$validate->scene('add')->check($data)){
                 $this->error($validate->getError());
@@ -88,7 +89,7 @@ class User extends Adminbase{
                 'password'=>md5($data['password']),
                 'status'=>$data['status'],
                 'number'=>$data['number'],
-                'company_id'=>session('admin_cate')['cid']
+                'company_id'=>$data['number']
 
             ];
             //dump($userdata);//exit;
@@ -107,7 +108,7 @@ class User extends Adminbase{
                 }else{
                    $group=array(
                             'uid'=>$datagroup['id'],
-                            'group_id'=>4
+                            'group_id'=>session('admin_cate')['id']
                             ); 
                     Db::name('auth_group_access')->insert($group);
                 }
@@ -120,16 +121,16 @@ class User extends Adminbase{
             
             if(session('admin_cate')['id']==1){
                 $data=Db::name('auth_group')->select();
-                $info = Db::name('company')->select();
+               // $info = Db::name('company')->select();
              }
            if(session('admin_cate')['id']==2){
                 $data=Db::name('auth_group')->where('id',4)->select();
-                $info = session('admin_cate');
+                //$info = session('admin_cate');
              }
           
-            $company = session('admin_cate');
+            //$company = session('admin_cate');
             //dump($company);
-            //$info = Db::name('company')->where()->select();//dump($info);
+            $info = Db::name('company')->select();//dump($info);
             $assign=array(
                 'data'=>$data,
                 'company'=>$info
@@ -146,7 +147,7 @@ class User extends Adminbase{
     public function edit_user($id){
         if(Request::instance()->post()){
             $data=input('post.');
-//dump($data);
+halt($data);
             $validate = \think\Loader::validate('User');
             if(!$validate->scene('edit')->check($data)){
                 $this->error($validate->getError());
