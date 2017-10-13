@@ -4,12 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>已审核员工信息</title>
+    <title>公司员工信息</title>
 
     {include file='layout/top' /}
 
 </head>
-
+<style>
+    #blur{
+        filter:blur(10px);
+        -webkit-filter:blur(10px);
+        -moz-filter:blur(10px);
+        -ms-filter:blur(10px);
+        -o-filter:blur(10px);
+    }
+</style>
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
@@ -155,17 +163,33 @@
                         {volist id="vo" name="data"}
                         <div class="col-lg-2">
                             <div class="panel">
-                                <div class="panel-body text-center ">
+                        {if condition="$vo['status'] eq 1 "}
+                                <div class="panel-body text-center "  id="blur" >
                                     {if condition="$vo['headpic'] neq ''"}
                                     <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="/{$vo.headpic}">
                                     {else /}
-                                    <img alt="Avatar" class="img-lg img-circle img-border mar-btm"
+                                    <img alt="Avatar"  class="img-lg img-circle img-border mar-btm"
                                          src="__STATIC__/img/profile-photos/1.png">
                                     {/if}
                                     <h4 class="mar-n">{$vo.username}</h4>
                                     <p class="text-sm">{if condition="$vo['ename'] eq '' "}暂无英文名！{else
                                         /}{$vo.ename}{/if}</p>
                                 </div>
+
+                                {else /}
+                                <div class="panel-body text-center " >
+                                    {if condition="$vo['headpic'] neq ''"}
+                                    <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="/{$vo.headpic}">
+                                    {else /}
+                                    <img alt="Avatar"  class="img-lg img-circle img-border mar-btm"
+                                         src="__STATIC__/img/profile-photos/1.png">
+                                    {/if}
+                                    <h4 class="mar-n">{$vo.username}</h4>
+                                    <p class="text-sm">{if condition="$vo['ename'] eq '' "}暂无英文名！{else
+                                        /}{$vo.ename}{/if}</p>
+                                </div>
+                                {/if}
+                                
                                 <ul class="list-unstyled text-center bord-top pad-top mar-no row">
                                 </ul>
                                 <div class="list-group bg-trans pad-btm">
@@ -178,10 +202,12 @@
 
                                     <a class="list-group-item" ><i class="ion-load-d icon-lg icon-fw"></i>{$vo.salary}元/月</a>
                                     <div class="list-unstyled text-center  mar-no row">
-                                        {if condition="session('user')['remark'] eq 1"}
+
                                         <a href="{:url('admin/detail',array('id'=>$vo['id']))}" class="btn btn-mint btn-sm shiny">详情</a>
-                                        {/if}
-                                        <a href="javascript:;" id="{$vo.id}" onclick="changestatus(this)" class="btn btn-primary btn-sm ">取消审核</a>
+
+
+                                        <a href="javascript:;" id="{$vo.id}" onclick="changestatus(this)" class="btn btn-primary btn-sm ">{if condition="$vo['status'] eq 2"}取消审核{else /} 审核{/if}</a>
+
                                         <a href="javascript:;" ruleId="{$vo['id']}" onclick="edit(this);" class="btn btn-info">调整薪资</a>
                                         <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:" onclick="deletestaff(this);">删除</a>
                                     </div>

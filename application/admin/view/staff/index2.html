@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司中心</title>
+
+    {include file='layout/top' /}
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+    {include file='layout/header' /}
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+            <!--Page Title-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div id="page-title">
+                <!-- <h1 class="page-header text-overflow">Data Tables</h1>
+
+                <div class="searchbox">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search..">
+                        <span class="input-group-btn">
+                            <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End page title-->
+
+
+            <!--Breadcrumb-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <ol class="breadcrumb">
+                <li><a href="{:url('Admin/Index/index')}">首页</a></li>
+                <li>公司中心</li>
+                <li class="active">基本资料</li>
+            </ol>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End breadcrumb-->
+
+
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content" style="">
+
+                <!-- Basic Data Tables -->
+                <!--===================================================-->
+                <div class="row">
+                    <div class="col-lg-3 col-lg-offset-4">
+                        <div class="panel">
+
+                            <div class="panel-body">
+
+
+                                <div class="fixed-sm-200 fixed-lg-250 pull-sm-center">
+                                    <div class="">
+                                        <!-- Simple profile -->
+                                        <div class="text-center pad-all bord-btm">
+                                            <div class="pad-ver">
+                                                <img src="/{$data['headpic']}" class="img-lg img-border img-circle" alt="Profile Picture">
+                                            </div>
+                                            <h4 class="text-lg text-overflow mar-no">{$data['company']}</h4>
+
+                                        </div>
+                                        <p class="text-semibold text-main pad-all mar-no">公司介绍</p>
+                                        <ul class="list-group bg-trans text-sm">
+
+                                            <!-- Profile Details -->
+
+                                            <li class="list-group-item list-item-sm text-primary text-semibold">
+                                                <a href="#" class="btn-link text-semibold">
+                                                    <i class="ion-pin icon-lg icon-fw"></i> 所在城市:&nbsp&nbsp{$data['company']}
+                                                </a>
+                                            </li>
+
+                                            <li class="list-group-item list-item-sm">
+                                                <i class="ion-chatboxes icon-lg icon-fw"></i>qq号:&nbsp&nbsp{$data['qq']}
+                                            </li>
+
+                                            <li class="list-group-item list-item-sm">
+                                                <i class="demo-pli-map-marker-2 icon-lg icon-fw"></i>公司住址:&nbsp&nbsp{$data['address']}
+                                            </li>
+                                            <li class="list-group-item list-item-sm">
+                                                <i class="ion-iphone icon-lg icon-fw"></i>联系电话:&nbsp&nbsp{$data['mobile']}
+                                            </li>
+                                            <li class="list-group-item list-item-sm">
+                                                <i class="ion-paper-airplane icon-lg icon-fw"></i>公司邮箱:&nbsp&nbsp{$data['email']}
+                                            </li>
+
+                                        </ul>
+                                        <ul class="list-unstyled text-center bord-top pad-top mar-no row">
+                                            <li class="col-xs-4">
+                                                <span class="text-lg text-semibold text-main">{$count_user}</span>
+                                                <p class="text-muted mar-no">公司员工</p>
+                                            </li>
+                                            <li class="col-xs-4">
+                                                <span class="text-lg text-semibold text-main">{$count_project2}</span>
+                                                <p class="text-muted mar-no">完成总项目</p>
+                                            </li>
+                                            <li class="col-xs-4">
+                                                <span class="text-lg text-semibold text-main">{$count_project}</span>
+                                                <p class="text-muted mar-no">未完成项目</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+        {include file="layout/left" /}
+
+    </div>
+
+
+    {include file="layout/footer" /}
+
+
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+
+</div>
+
+
+</body>
+</html>

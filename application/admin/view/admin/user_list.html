@@ -111,6 +111,7 @@
                             <div class="list-unstyled text-center  mar-no row">
                                 {if condition="session('user')['remark'] eq 1"}
                                 <a href="{:url('detail',array('id'=>$vo['id']))}"  class="btn btn-mint btn-sm shiny">详情</a>
+                                <a href="javascript:;" ruleId="{$vo['id']}" onclick="edit(this);" class="btn btn-info">调整薪资</a>
                                 {/if}
                                 <a href="javascript:;" id="{$vo.id}" onclick="changestatus(this)" class="btn btn-primary btn-sm ">审核</a>
                                 <a id="{$vo.id}" class="btn btn-danger btn-sm shiny" href="javascript:" onclick="deletestaff(this);">删除</a>
@@ -206,6 +207,21 @@
                     }
 
 
+                </script>
+
+                <script type="text/javascript">
+
+
+                    // 修改菜单
+                    function edit2(obj) {
+                        var ruleId = $(obj).attr('ruleId');
+                        var ruletitle = $(obj).attr('ruletitle');
+                        var ruleName = $(obj).attr('ruleName');
+                        $("input[name='id']").val(ruleId);
+                        $("input[name='title']").val(ruletitle);
+                        $("input[name='name']").val(ruleName);
+                        $('#thinkright-edit').modal('show');
+                    }
                 </script>
                 <!--===================================================-->
                 <!-- End Striped Table -->

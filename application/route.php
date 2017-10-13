@@ -25,9 +25,10 @@ Route::rule('project_add','admin/project/add');
 Route::rule('rule_list','admin/Rule/rule_list');
 Route::rule('rule_group','admin/Rule/rule_group');
 Route::rule('user_index','admin/User/index');
-Route::rule('company_index','admin/company/index');
+/*Route::rule('company_index','admin/company/index');*/
 Route::rule('depart_list','admin/depart/depart_list');
 Route::rule('position_list','admin/position/position_list');
 Route::rule('depart_list','admin/depart/depart_list');
 Route::rule('change_msg','admin/Staff/change_msg');
+
 /*Route::rule('rule_distribution/:id','admin/rule/rule_distribution','GET',['ext'=>'html'],['id'=>'\d{1,5}']);*/

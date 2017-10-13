@@ -39,7 +39,6 @@ class Staff extends Adminbase
         }
         //halt($info);
         $this->assign('info', $info);
-
         $this->assign('school', $school);
         $this->assign('department', $depart);
         $this->assign('company', $company);
@@ -51,6 +50,7 @@ class Staff extends Adminbase
 //个人薪资
     public function my_salary()
     {
+
         //使用左连接查询
         $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position,pa.adjust_salary,adjust_reason,seniority')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->join('admin_pay pa', 'pa.admin_id=a.id', 'LEFT')->where(array('a.id' => session('admin.admin_id')))->paginate();
         //  dump($data);
@@ -63,14 +63,32 @@ class Staff extends Adminbase
     //员工个人信息展示
     public function index()
     {
-        //使用左连接查询
-        $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => session('admin.admin_id')))->find();
-        // dump($data);
+        $cate=session('admin_cate')['cid'];
+
+        $cate_id = session('admin_cate')['id'];//echo $cate_id;
+        if($cate_id == 1){
+            //使用左连接查询
+            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => session('admin.admin_id')))->find();
+            // dump($data);
+            $this->assign('data', $data);
+            return $this->fetch();
+        }else{
+            //统计公司信息
+         $count_user=db('admin')->field('id,company_id')->where(array('company_id'=>$cate))->count();
+         $count_project=db('project')->where(array('company_id'=>$cate,'status'=>1))->count();
+         $count_project2=db('project')->where(array('company_id'=>$cate,'status'=>2))->count();
+            $this->assign([
+                'count_user'  => $count_project2,
+                'count_project' => $count_project,
+                'count_project2'=>$count_user,
+            ]);
+            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => session('admin.admin_id')))->find();
+            // dump($data);
+            $this->assign('data', $data);
+            return view('index2');
+        }
 
 
-        $this->assign('data', $data);
-
-        return $this->fetch();
     }
 
     //个人修改个人信息

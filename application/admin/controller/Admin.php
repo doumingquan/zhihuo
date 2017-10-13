@@ -25,9 +25,12 @@ class Admin extends Adminbase
         }
         //dump(session('admin_cate'));
         //使用左连接查询
+
+        $cate = session('admin_cate');
         $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.company_id',session('admin_cate')['cid'])->where($where)->where('a.status=1')->paginate(15);
         //halt($info);exit;
         $this->assign('data', $info);
+        $this->assign('cate', $cate);
         // dump($info);
         return $this->fetch('user_list');
     }
@@ -59,6 +62,7 @@ class Admin extends Adminbase
         } elseif ($cate_id == 2) {
             //一般管理员调出公司信息
             $info = db('company')->where('pid', session('admin_cate')['cid'])->select();//dump($info);
+
             $this->assign('admin', $info);
             return view();
         } else {
@@ -109,10 +113,10 @@ class Admin extends Adminbase
         }
         //使用左连接查询
         if(session('admin_cate')['id']==1){
-            $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.status=2')->where($where)->paginate(15);
+            $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where($where)->paginate(15);
         }
         if(session('admin_cate')['id']==2){
-             $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.company_id', session('admin_cate')['cid'])->where('a.status=2')->where($where)->paginate(15);
+             $info = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('is_delete!=2')->where('a.company_id', session('admin_cate')['cid'])->where($where)->paginate(15);
         }
         
         //halt($info);exit;
