@@ -147,11 +147,11 @@ class User extends Adminbase{
     public function edit_user($id){
         if(Request::instance()->post()){
             $data=input('post.');
-halt($data);
+//halt($data);
             $validate = \think\Loader::validate('User');
-            if(!$validate->scene('edit')->check($data)){
-                $this->error($validate->getError());
-            }
+            // if(!$validate->scene('edit')->check($data)){
+            //     $this->error($validate->getError());
+            // }
             Db::name('auth_group_access')->where(array('uid'=>$id))->delete();
             if (!empty($data['group_ids'])) {
                 foreach ($data['group_ids'] as $k => $v) {
@@ -176,6 +176,7 @@ halt($data);
             $userup['mobile']=$data['mobile']; 
             $userup['status']=$data['status'];
             $userup['number']=$data['number'];
+            $userup['company_id']=$data['company_id'];
             // dump($data['password']);
             // dump($userup['password']);exit;
  //dump($userup);exit;            
