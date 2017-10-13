@@ -90,7 +90,7 @@ class User extends Adminbase{
                 'password'=>md5($data['password']),
                 'status'=>$data['status'],
                 'number'=>$data['number'],
-                'company_id'=>$cid
+                'company_id'=>$data['company_id']
 
             ];
             //dump($userdata);//exit;
@@ -131,7 +131,11 @@ class User extends Adminbase{
          
             //$company = session('admin_cate');
             //dump($company);
-            $info = Db::name('company')->where('id',$cid)->find();//dump($info);
+            if(session('admin_cate')['id']==1){
+                 $info = Db::name('company')->select();//dump($info);
+             }else{
+                 $info = Db::name('company')->where('id',$cid)->find();//dump($info);
+             }          
             $assign=array(
                 'data'=>$data,
                 'company'=>$info

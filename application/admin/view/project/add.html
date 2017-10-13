@@ -77,13 +77,17 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="demo-text-input">公司</label>
                             <div class="col-md-9">
-                                <!-- <select name="company_id" id="" class="form-control">
+                            {if condition="session('admin_cate')['id'] eq 1"}
+                                <select name="company_id" id="" class="form-control">
+
                                     {foreach name="info" item="v"}
                                     <option value="{$v['id']}">{$v['company']}</option>
                                     {/foreach}
-                                </select> -->
+                                </select>
+                            {else /}
                                 <input type="text" id="demo-text-input" class="form-control" readonly="readonly" name="company_id" placeholder="公司"
                                        value="{$info.company}">
+                            {/if}
                             </div>
                         </div>
                         <div class="form-group pad-ver">
@@ -141,15 +145,15 @@
                             <div class="col-md-9">
                                 <div class="radio">
                                     <!-- Inline radio buttons -->
-                                    <input id="demo-inline-form-radio-1" class="magic-radio" type="radio"
+                                    <input id="demo-inline-form-radio-999" class="magic-radio" type="radio"
                                            checked="checked" name="status" value="1">
-                                    <label for="demo-inline-form-radio-1">未完成</label>
-                                    <input id="demo-inline-form-radio-3" class="magic-radio" type="radio" name="status"
+                                    <label for="demo-inline-form-radio-999">未完成</label>
+                                    <input id="demo-inline-form-radio-988" class="magic-radio" type="radio" name="status"
                                            value="3">
-                                    <label for="demo-inline-form-radio-3">正在进行</label>
-                                    <input id="demo-inline-form-radio-2" class="magic-radio" type="radio" name="status"
+                                    <label for="demo-inline-form-radio-988">正在进行</label>
+                                    <input id="demo-inline-form-radio-989" class="magic-radio" type="radio" name="status"
                                            value="2">
-                                    <label for="demo-inline-form-radio-2">已完成</label>
+                                    <label for="demo-inline-form-radio-989">已完成</label>
                                     
                                 </div>
                             </div>

@@ -416,24 +416,24 @@
     });
 </script>
 <script>
-    $(function(){
-        $(".submitbtn").click(function(){
-            if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='user_email']").val())){
-                layer.msg('企业邮箱格式不正确！', {icon: 2});
-                return false;
-            }
-            if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='email']").val())){
-                layer.msg('邮箱格式不正确！', {icon: 2});
-                return false;
-            }
-            if(!/^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/.test($("input[name='mobile']").val())){
-                layer.msg('手机号格式不正确！', {icon: 2});
-                return false;
-            }
+    // $(function(){
+    //     $(".submitbtn").click(function(){
+    //         if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='user_email']").val())){
+    //             layer.msg('企业邮箱格式不正确！', {icon: 2});
+    //             return false;
+    //         }
+    //         if(!/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/.test($("input[name='email']").val())){
+    //             layer.msg('邮箱格式不正确！', {icon: 2});
+    //             return false;
+    //         }
+    //         if(!/^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/.test($("input[name='mobile']").val())){
+    //             layer.msg('手机号格式不正确！', {icon: 2});
+    //             return false;
+    //         }
 
-            $(this).parents("form").submit();
-        });
-    });
+    //         $(this).parents("form").submit();
+    //     });
+    // });
 </script>
 </body>
 </html>

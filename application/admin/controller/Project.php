@@ -154,7 +154,12 @@ class Project extends Adminbase{
         }else{
             $data = db('position')->select();
             $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();
-            $info = Db::name('company')->field('company')->where('id',$cid)->find();          //dump($info);
+            if(session('admin_cate')['id']==1){
+                $info = Db::name('company')->field('company')->select(); 
+            }else{
+                  $info = Db::name('company')->field('company')->where('id',$cid)->find();          //dump($info
+            }
+          
             $assign=array(
                 'data'=>$data,
                 'user'=>$user,
