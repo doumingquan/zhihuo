@@ -54,7 +54,7 @@
             <ol class="breadcrumb">
                 <li><a href="{:url('Admin/Index/index')}">首页</a></li>
                 <li>员工信息</li>
-                <li class="active">已审核员工信息</li>
+                <li class="active">员工信息</li>
             </ol>
             <div class="row">
                 <div class="col-sm-12 table-toolbar-right">
@@ -200,7 +200,7 @@
                                     <a class="list-group-item" ><i class="ion-pinpoint icon-lg icon-fw"></i>
                                         {$vo.depart}</a>
 
-                                    <a class="list-group-item" ><i class="ion-load-d icon-lg icon-fw"></i>{$vo.salary}元/月</a>
+                                    <a class="list-group-item" ><i class="ion-social-usd icon-lg icon-fw"></i>{$vo.salary}元/月</a>
                                     <div class="list-unstyled text-center  mar-no row">
 
                                         <a href="{:url('admin/detail',array('id'=>$vo['id']))}" class="btn btn-mint btn-sm shiny">详情</a>
@@ -389,7 +389,7 @@
     //ajax异步修改栏目显示状态
     function changestatus(o) {
         var $id = $(o).attr("id");
-        if (confirm('确认要取消审核吗?')) {
+        if (confirm('确认对审核状态进行修改吗?')) {
             $.ajax({
                 type: "post",
                 dataType: "json",
