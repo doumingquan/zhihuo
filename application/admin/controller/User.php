@@ -122,8 +122,9 @@ class User extends Adminbase{
                     }                   
                 }else{
                    $group=array(
+                    //3代表员工
                             'uid'=>$datagroup['id'],
-                            'group_id'=>4
+                            'group_id'=>3
                             ); 
                     Db::name('auth_group_access')->insert($group);
                 }
