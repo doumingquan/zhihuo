@@ -112,7 +112,8 @@ class Staff extends Adminbase
             } else {
                 $data['password'] = md5($data['password']);
             }
-            $entry = $data['entry'];
+            $entry = strtotime($data['entry']);
+            $data['entry'] = $entry;
             $userpic = DB::name('admin')->field('headpic')->where(array('id' => session('admin.admin_id')))->find();
             if (!empty($userpic['headpic'])) {
                 unlink($userpic['headpic']);
@@ -164,7 +165,7 @@ class Staff extends Adminbase
                     $data['entry_year'] = $result['year'] . '年' . $result['month'] . '月';
                 }
             }
-
+//halt($data);
             $info = db('admin')->where(array('id' => session('admin.admin_id')))->update($data);
             if ($info) {
                 $this->success('操作成功!');
