@@ -56,6 +56,10 @@ class Admin extends Adminbase
         if ($cate_id == 1) {
             //超级管理员调出公司信息
             $info = db('company')->select();//dump($info);
+            foreach ($info as $k => $v) {
+                        $data = db('admin')->where('company_id',$v['id'])->count();//dump($data);
+                        $info[$k]['count'] = $data;
+                    }            
             $this->assign('admin', $info);
             return view();
             // dump($info);
