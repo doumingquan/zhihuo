@@ -68,7 +68,12 @@
                                         <!-- Simple profile -->
                                         <div class="text-center pad-all bord-btm">
                                             <div class="pad-ver">
+                                                {if condition="$data['headpic'] eq ''"}
+                                                <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="__STATIC__/img/profile-photos/1.png">
+
+                                                {else /}
                                                 <img src="/{$data['headpic']}" class="img-lg img-border img-circle" alt="Profile Picture">
+                                                {/if}
                                             </div>
                                             <h4 class="text-lg text-overflow mar-no">{$Think.Session.user.username}</h4>
                                             <a href="{:url('/my_center')}"><button class="btn btn-primary mar-ver">详情</button></a>
