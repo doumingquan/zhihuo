@@ -200,19 +200,18 @@
                         <ul id="mainnav-menu" class="list-group">
                             {foreach name="menu" item="vo"}
 
-                            <li
-                            <?php $arr=explode('/',$vo['name']);$pcon=$arr[1];if($pcon==$c){echo 'class="active"';}?>>
-                            <a href="#" aria-expanded="true">
+                            <li <?php $arr=explode('/',$vo['name']);$pcon=$arr[1];if($pcon==$c){echo 'class="active"';}?>>
+                            <a href="#" <?php $arr=explode('/',$vo['name']);$pcon=$arr[1];if($pcon==$c){echo 'aria-expanded="true"';}?> >
                                 <i class="demo-psi-split-vertical-2"></i>
                                 <span class="menu-title">
-                                                <strong>{$vo.title}</strong>
+                                            <strong>{$vo.title}</strong>
                                             </span>
                                 <i class="arrow"></i>
                             </a>
 
 
-                            <ul
-                            <?php if($name==$vo2['name']){echo 'class="collapse in"';}?>  aria-expanded="true">
+                            <ul>
+                          
                             {foreach name="vo['children']" item="vo2"}
                             <li
                             <?php if($name==$vo2['name']){echo 'class="active"';}?>>
