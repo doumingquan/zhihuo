@@ -112,7 +112,7 @@ class Staff extends Adminbase
             } else {
                 $data['password'] = md5($data['password']);
             }
-            $entry = $data['birthday'];
+            $entry = $data['entry'];
             $userpic = DB::name('admin')->field('headpic')->where(array('id' => session('admin.admin_id')))->find();
             if (!empty($userpic['headpic'])) {
                 unlink($userpic['headpic']);
@@ -134,13 +134,17 @@ class Staff extends Adminbase
                 }
             }
             $data['birthday'] = strtotime($data['birthday']);
-            $data['entry'] = strtotime($data['entry']);
 
             $data['create_user_id'] = session('admin.admin_id');
             $data['create_time'] = time();
             //计算工龄
-            $datenow = date('Y-m-d', time());
-            $result = model('admin/admin')->diffDate($datenow, $entry);
+            $datenow = date('Y-m-d', time()); 
+            // dump($data['birthday']);  
+            // dump($data['create_time']); 
+            $age1 = date('Y',$data['create_time']);
+            $age2 = date('Y',$data['birthday']);
+            $data['age'] =  $age1-$age2;//halt($data['age']) ;
+            $result = model('admin/admin')->diffDate($datenow, $entry);//halt($result);
             if ($result['year'] == '0') {
                 if ($result['month'] == '0') {
                     $data['entry_year'] = $result['day'] . '天';
