@@ -59,7 +59,7 @@ class Admin extends Adminbase
             foreach ($info as $k => $v) {
                         $data = db('admin')->where('company_id',$v['id'])->count();//dump($data);
                         $info[$k]['count'] = $data;
-                    }            
+                    }
             $this->assign('admin', $info);
             return view();
             // dump($info);
