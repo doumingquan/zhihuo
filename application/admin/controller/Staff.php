@@ -96,6 +96,7 @@ class Staff extends Adminbase
             $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where(array('a.id' => session('admin.admin_id')))->find();
             // dump($data);
             $this->assign('data', $data);
+            //dump($data);
             return $this->fetch();
         }
 
@@ -115,6 +116,7 @@ class Staff extends Adminbase
             }
             $entry = strtotime($data['entry']);
             $data['entry'] = $entry;
+            $entrys = date('Y-m-d',$entry);
             $userpic = DB::name('admin')->field('headpic')->where(array('id' => session('admin.admin_id')))->find();
             if (!empty($userpic['headpic'])) {
                 unlink($userpic['headpic']);
@@ -146,7 +148,7 @@ class Staff extends Adminbase
             $age1 = date('Y',$data['create_time']);
             $age2 = date('Y',$data['birthday']);
             $data['age'] =  $age1-$age2;//halt($data['age']) ;
-            $result = model('admin/admin')->diffDate($datenow, $entry);//halt($result);
+            $result = model('admin/admin')->diffDate($datenow, $entrys);halt($result);
             if ($result['year'] == '0') {
                 if ($result['month'] == '0') {
                     $data['entry_year'] = $result['day'] . '天';
