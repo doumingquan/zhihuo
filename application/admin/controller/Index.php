@@ -10,7 +10,15 @@ class Index extends Adminbase
     //protected $user_model,$role_model;
     public function index()
     {
+
         $id = $this->uid;
+        $info = db('admin')->where('id',$id)->find();//dump($info);
+    
+        if(empty($info['true_name']) || empty($info['headpic']) || empty($info['email'])){
+        
+             $this->success('请完善个人资料','Admin/Staff/my_center');
+        }
+
         // $statue=db('admin')->field('id,remark')->where(array('id'=>$id))->find();
         // $statue=$statue['remark'];
         $statue = session('admin_cate')['id'];//echo $statue;
