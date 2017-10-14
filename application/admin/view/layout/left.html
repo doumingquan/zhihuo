@@ -17,8 +17,12 @@
                     <div id="mainnav-profile" class="mainnav-profile">
                         <div class="profile-wrap">
                             <div class="pad-btm">
-                                <img class="img-circle img-sm img-border" src="\{$Think.session.admin_cate.headpic}"
-                                     alt="Profile Picture">
+                                {if condition="$Think.session.admin_cate.headpic eq ''"}
+                                <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="__STATIC__/img/profile-photos/1.png">
+
+                                {else /}
+                                <img class="img-circle img-sm img-border" src="\{$Think.session.admin_cate.headpic}"alt="Profile Picture">
+                                {/if}
                             </div>
                             <a href="#profile-nav" class="box-block collapsed" data-toggle="collapse"
                                aria-expanded="false">

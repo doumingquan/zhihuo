@@ -42,8 +42,11 @@
                              alt="Image">
                     </div>
                     <div class="widget-body text-center">
-                        <img alt="Profile Picture" class="widget-img img-circle img-border-light"
-                             src="/{$info['headpic']}">
+                        {if condition="$info['headpic'] eq ''"}
+                        <img alt="Avatar" class="img-lg img-circle img-border mar-btm" src="__STATIC__/img/profile-photos/1.png">
+                        {else /}
+                        <img alt="Profile Picture" class="widget-img img-circle img-border-light" src="/{$info['headpic']}">
+                        {/if}
                         <h4 class="mar-no text-main">{$info.username}</h4>
                         <p class="text-muted mar-no">{$info.name}</p>
                     </div>
