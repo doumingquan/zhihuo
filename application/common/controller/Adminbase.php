@@ -31,9 +31,9 @@ class AdminBase extends Base
         // 菜单
         $group = $auth->getGroups(session('user')['id']);
         $this->uid=(session('user')['id']);
+        $this->cid=(session('admin_cate')['id']);
         /*var_dump(session('user')['id']);*/
         $rules = explode(',', $group[0]['rules']);
-
         $menu = array();
         $map['pid'] = ['=', 0];
         $map['show'] = ['=', 1];
@@ -56,8 +56,11 @@ class AdminBase extends Base
         // end菜单
         $result = $auth->check($rule_name, session('user')['id']);
 
-        $cate = db('auth_group_access')->alias('au')->field('g.id,c.id cid,c.pid,c.company')->join('__ADMIN__ a','a.id=au.uid')->join('admin_auth_group g','g.id=au.group_id')->join('__COMPANY__ c','c.id = a.company_id')->where('a.id',$this->uid)->find();//dump($cate);
+        $cate = db('auth_group_access')->alias('au')->field('g.id,c.id cid,c.pid,c.company,a.headpic')->join('__ADMIN__ a','a.id=au.uid')->join('admin_auth_group g','g.id=au.group_id')->join('__COMPANY__ c','c.id = a.company_id')->where('a.id',$this->uid)->find();//dump($cate);
+
         session('admin_cate',$cate);
+
+
         //超级管理员
         // switch ($cate['id']) {
         //     case 1://超级管理员
@@ -88,15 +91,17 @@ class AdminBase extends Base
       
 
 
-        /*if (!$result) {
+      /*  if (!$result) {
             $this->error('您没有权限访问');
         }*/
 
     }
 
-    public function header_404(){
-        require('404.html');
-        exit();
+    function http_404(){
+        $theme = get_system_value('site_theme');
+        $template = 'template/index/'. $theme .'/Public_404.html';
+        // $info = Request::instance()->header();
+        return \think\Response::create($template, 'view', '404');
     }
 
 
