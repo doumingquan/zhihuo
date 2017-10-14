@@ -175,6 +175,26 @@ class Staff extends Adminbase
             }
         }
     }
+     public function password_msg(){
+            if(request()->isPost()){
+                $data = input('post.');
+         /*       var_dump($data);*/
+                $admin_pass = db('admin')->field('password')->where('id', session('user')['id'])->find();
+                $this->assign('admin_pass',$admin_pass);
+                if (empty($data['password'])) {
+                    $data['password'] = $admin_pass['password'];
+                } else {
+                    $data['password'] = md5($data['password']);
+                }
+                $info=db('admin')->where(array('id'=>session('user')['id']))->update($data);
+                if ($info){
+                    $this->success('修改密码成功','admin/staff/index');
+                }else{
+                    $this->error('修改密码失败');
+                }
+            }
+            return view('password_center');
+     }
 
 
 }

@@ -14,6 +14,8 @@ Route::rule('search/[:keywords]','Search/index','GET|POST');
 Route::rule('index','admin/index/index');
 Route::rule('staff_index','admin/staff/index');
 Route::rule('my_center','admin/staff/my_center');
+//修改密码
+Route::rule('password_msg','admin/staff/password_msg');
 Route::rule('my_salary','admin/staff/my_salary');
 Route::rule('ad_list','admin/admin/ad_list');
 Route::rule('ad_index','admin/admin/index');
