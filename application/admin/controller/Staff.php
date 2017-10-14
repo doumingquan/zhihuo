@@ -20,13 +20,13 @@ class Staff extends Adminbase
 
         $id = session('admin.admin_id');//echo $id;
         //学历
-        $school = db('infomation')->where(array('title' => 1))->select();
+        $school = db('infomation')->select();
         //部门
-        $depart = db('depart')->where(array('title' => 2))->select();//dump($depart);
+        $depart = db('depart')->select();//dump($depart);
         //公司
-        $company = db('company')->where(array('title' => 5))->select();
+        $company = db('company')->select();
         //职位
-        $position = db('position')->where(array('title' => 4))->select();
+        $position = db('position')->select();
         $info = db('admin')->alias('a')->field('a.*,c.company')->join('admin_company c','c.id=a.company_id')->where(array('a.id' => $id))->find();
         if ($info['birthday'] == 0) {
             $info['birthday'] = "";
