@@ -148,7 +148,7 @@ class Staff extends Adminbase
             $age1 = date('Y',$data['create_time']);
             $age2 = date('Y',$data['birthday']);
             $data['age'] =  $age1-$age2;//halt($data['age']) ;
-            $result = model('admin/admin')->diffDate($datenow, $entrys);halt($result);
+            $result = model('admin/admin')->diffDate($datenow, $entrys);//halt($result);
             if ($result['year'] == '0') {
                 if ($result['month'] == '0') {
                     $data['entry_year'] = $result['day'] . '天';
