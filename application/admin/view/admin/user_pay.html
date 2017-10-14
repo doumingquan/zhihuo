@@ -142,7 +142,7 @@
                                         <th>手机号码</th>
                                         <th>当前薪资</th>
                                         <th>操作</th>
-                                       
+                                        <th>调整薪资</th>
                                     </tr>
 
                                     </thead>
@@ -159,6 +159,8 @@
                                             查看历史薪资
                                         </a>
                                        </td>
+                                        <td>  <a href="javascript:;" ruleId="{$vo['id']}" onclick="edit(this);" class="btn btn-info">调整薪资</a></td>
+
                                     </tr>
                                     {/volist}
                                     </tbody>
@@ -393,27 +395,36 @@
                         </div> -->
                         <input type="hidden" name="id">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整的薪资</label>
+                            <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整</label>
                             <div class="col-sm-9">
-
-                                <input type="text" placeholder="500" id="demo-hor-inputemail" class="form-control"
-                                       name="adjust_salary" required="required">
+                                <select name="add_or_less" id="" class="form-control">
+                                    <option value="1">增加</option>
+                                    <option value="2">减少</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整后的总薪资</label>
+                            <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整的金额</label>
                             <div class="col-sm-9">
-
-                                <input type="text" placeholder="5555500" id="demo-hor-inputemail" class="form-control"
-                                       name="salary" required="required">
+                                <input type="text" id="demo-hor-inputemail" class="form-control" name="adjust_salary"
+                                       required="required">
                             </div>
                         </div>
+
+                        <!--  <div class="form-group">
+                             <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整后的总薪资</label>
+                             <div class="col-sm-9">
+
+                                 <input type="text" id="demo-hor-inputemail" class="form-control" name="salary"
+                                        required="required">
+                             </div>
+                         </div> -->
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="demo-hor-inputemail">调整的原因</label>
                             <div class="col-sm-9">
 
-                                <input type="text" placeholder="加班工资" id="demo-hor-inputemail" class="form-control"
-                                       name="adjust_reason" required="required">
+                                <input type="text" id="demo-hor-inputemail" class="form-control" name="adjust_reason"
+                                       required="required">
                             </div>
                         </div>
 
@@ -427,7 +438,6 @@
     </div>
 </div>
 <!-- 添加项目模态框结束 -->
-
 
 <script type="text/javascript">
     /*添加权限*/
