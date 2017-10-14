@@ -106,6 +106,7 @@ class Staff extends Adminbase
     {
         if (Request::instance()->post()) {
             $data = input('post.');
+            //halt($data);
             $admin_pass = db('admin')->field('password')->where('id', session('user')['id'])->find();
             if (empty($data['password'])) {
                 $data['password'] = $admin_pass['password'];
@@ -168,7 +169,7 @@ class Staff extends Adminbase
 //halt($data);
             $info = db('admin')->where(array('id' => session('admin.admin_id')))->update($data);
             if ($info) {
-                $this->success('操作成功!');
+                $this->success('操作成功!','admin/staff/index');
             } else {
                 $this->error('操作失败!');
             }
