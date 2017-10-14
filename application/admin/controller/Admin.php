@@ -58,11 +58,11 @@ class Admin extends Adminbase
             $info = db('company')->select();//dump($info);
             $this->assign('admin', $info);
             return view();
-            //dump($info);
+            // dump($info);
         } elseif ($cate_id == 2) {
             //一般管理员调出公司信息
-            $info = db('company')->where('pid', session('admin_cate')['cid'])->select();//dump($info);
-
+            $info = db('company')->where('id', session('admin_cate')['cid'])->select();//dump($info);
+//dump($info);
             $this->assign('admin', $info);
             return view();
         } else {
