@@ -59,12 +59,12 @@ class Admin extends Adminbase
             $this->assign('admin', $info);
             return view();
             // dump($info);
-        } elseif ($cate_id == 2) {
-            //一般管理员调出公司信息
-            $info = db('company')->where('id', session('admin_cate')['cid'])->select();//dump($info);
-//dump($info);
-            $this->assign('admin', $info);
-            return view();
+//         } elseif ($cate_id == 2) {
+//             //一般管理员调出公司信息
+//             $info = db('company')->where('id', session('admin_cate')['cid'])->select();//dump($info);
+// //dump($info);
+//             $this->assign('admin', $info);
+//             return view();
         } else {
             //非管理员调出该公司所有员工信息
             $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.company_id', $cate['cid'])->select();//dump($data);
