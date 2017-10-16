@@ -57,7 +57,7 @@ class Admin extends Adminbase
             //超级管理员调出公司信息
             $info = db('company')->select();//dump($info);
             foreach ($info as $k => $v) {
-                        $data = db('admin')->where('company_id',$v['id'])->count();//dump($data);
+                        $data = db('admin')->where('company_id',$v['id'])->count();
                         $info[$k]['count'] = $data;
                     }
             $this->assign('admin', $info);
@@ -144,12 +144,19 @@ class Admin extends Adminbase
         }
         //dump($info);
         if(session('admin_cate')['id']==2){
-              $info = db('admin')->alias('a')->field('a.id,a.username,a.mobile,a.salary,a.company_id,admin_company.*')->join('admin_company c','a.company_id=c.id')->where('is_delete!=2')->where('a.company_id',session('admin_cate')['cid'])->where($where)->order('a.id desc')->paginate(15);
+              $info = db('admin')
+                  ->alias('a')
+                  ->field('a.id,a.username,a.mobile,a.salary,a.company_id,admin_company.company')
+                  ->join('admin_company c','a.company_id=c.id')
+                  ->where('is_delete!=2')
+                  ->where('a.company_id',session('admin_cate')['cid'])
+                  ->where($where)->order('a.id desc')->paginate(15);
 
              // $info = db('pay')->alias('p')->field('p.*,a.username,a.entry_year,a.company_id')->join('admin a', 'a.id=p.admin_id', 'LEFT')->where('a.company_id', session('admin_cate')['cid'])->where('is_delete!=2')->where($where)->order('p.id desc')->paginate(15);
         }
-       
+
         $this->assign('data', $info);
+
         // dump($info);
         return $this->fetch();
     }
