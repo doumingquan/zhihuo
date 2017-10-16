@@ -62,6 +62,34 @@ class Index extends Adminbase
             $this->assign($assign);
 
             return $this->fetch('index2');
+        }elseif($statue=2){
+            $cid=session('admin_cate')['cid'];
+            //完成数量
+            $date = db('project')->where('is_delete!=2')->where(array('company_id'=>$cid))->where('status=2')->count();
+            $date2 = db('project')->where('is_delete!=2')->where(array('company_id'=>$cid))->where('status=1')->count();
+            $date3 = db('project')->where('is_delete!=2')->where(array('company_id'=>$cid))->where('status=3')->count();
+
+            $BeginDate = date('Y-m-01', strtotime(date("Y-m-d")));
+            $Begin = strtotime($BeginDate);//echo $Begin;
+            $last = strtotime("$BeginDate +1 month -1 day");
+            //echo $lastDate;
+            $total1 = db('project')->where('is_delete!=2')->where(array('company_id'=>$cid))->where('status=1')->where('createtime', 'between', [$Begin, $last])->count();
+            $total2 = db('project')->where('is_delete!=2')->where(array('company_id'=>$cid))->where('status=2')->where('createtime', 'between', [$Begin, $last])->count();
+            $total3 = db('project')->where('is_delete!=2')->where(array('company_id'=>$cid))->where('status=3')->where('createtime', 'between', [$Begin, $last])->count();
+            // echo $total1;echo $total2;echo $total3;
+            $this->assign('date', $date);
+            $this->assign('date2', $date2);
+            $this->assign('date3', $date3);
+            $this->assign('total1', $total1);
+            $this->assign('total2', $total2);
+            $this->assign('total3', $total3);
+
+            $data=db('project')->alias('p')->field('p.*,po.position,c.company')->join('admin_position po','po.id=p.pro_style_id')->join('admin_company c','c.id=p.company_id')->where(array('c.id'=>$cid))->where('is_delete!=2')->order('id desc')->paginate(10);
+            $assign = array(
+                'data' => $data
+            );
+            $this->assign($assign);
+            return $this->fetch('index2');
         } else {
             //完成数量
             $date = db('project')->where("FIND_IN_SET($id, admin_id)")->where('is_delete!=2')->where('status=2')->count();
