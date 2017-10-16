@@ -174,15 +174,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">邮箱</label>
-                            <div class="col-sm-6">
-                                <input type="text" placeholder="E-mail" class="form-control"
-                                       value="{$info.email}" name="email" required="required">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
                             <label class="col-sm-3 control-label">微信号</label>
                             <div class="col-sm-6 ">
                                 <input type="text" placeholder="weixin" class="form-control"
@@ -191,7 +182,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">qq号</label>
+                            <label class="col-sm-3 control-label">QQ号</label>
                             <div class="col-sm-6 ">
                                 <input type="text" placeholder="" class="form-control"
                                        value="{$info.qq}" name="qq" required="required">
@@ -269,12 +260,9 @@
                                     {foreach name="department" id="vo"}
                                     <option value="{$vo['id']}" {if condition="$vo['id'] eq $info['depart_id']"}selected="selected" {/if} >{$vo['depart']}</option>
                                     {/foreach}
-
                                 </select>
                             </div>
                         </div>
-
-
 
                     </div>
 
@@ -328,7 +316,6 @@
                                 <input class="form-control" name="entry" required="required"
                                        value="{$info.entry}" type="text"
                                        onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd '})">
-
                                 {else /}
                                 <input class="form-control" name="entry" required="required"
                                        value="<?php echo date('Y-m-d',$info['entry']);?>" type="text"
@@ -411,9 +398,7 @@
                 success: function (data) {
                     if (data.code == 0) {
                         layer.alert('修改成功、前往登录页面');
-                        location.href = '{:url('
-                        Home / Index / index
-                        ')}';
+                        location.href = '{:url('Home/Index/index')}';
                     } else {
                         layer.alert('没有更改任何东西');
                     }

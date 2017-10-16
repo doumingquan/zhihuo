@@ -14,9 +14,9 @@ class Index extends Adminbase
         $id = $this->uid;
         $info = db('admin')->where('id',$id)->find();//dump($info);
     
-        if(empty($info['true_name']) || empty($info['headpic']) || empty($info['email'])){
+        if(empty($info['true_name']) || empty($info['headpic'])){
         
-             $this->success('请完善个人资料','Admin/Staff/my_center');
+             $this->success('请先完善个人资料!','Admin/Staff/my_center');
         }
 
         // $statue=db('admin')->field('id,remark')->where(array('id'=>$id))->find();

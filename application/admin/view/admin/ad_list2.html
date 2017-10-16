@@ -110,15 +110,15 @@
 
                         </ul>
                         <div class="list-group bg-trans pad-btm">
-                            <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i>
-                                {$vo.email}</a>
-                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
+                            <a class="list-group-item" href="#"><i class="ion-ios-personadd icon-lg icon-fw"></i>
+                                {$vo.true_name}</a>
+                            <a class="list-group-item" href="#"><i class="ion-ios-home-outline icon-lg icon-fw"></i>
                                 {$vo.position}</a>
-                            <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>{if
+                            <a class="list-group-item" href="#"><i class="ion-ios-email-outline icon-lg icon-fw"></i>{if
                                 condition="$vo['user_email'] eq ''"}暂无企业邮箱 {else /}{$vo.user_email}{/if}</a>
-                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
+                            <a class="list-group-item" href="#"><i class="ion-ios-filing icon-lg icon-fw"></i>
                                 {$vo.weixin}</a>
-                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i>
+                            <a class="list-group-item" href="#"><i class="ion-iphone icon-lg icon-fw"></i>
                                 {$vo.mobile}</a>
                         </div>
                         {if condition="session('user')['remark'] eq 1"}
@@ -187,8 +187,6 @@
                                 $('#address').attr('value', data.address);
                                 $('#company').attr('value', data.company);
                                 $('#depart').attr('value', data.depart);
-
-
                             }
 
                         });
