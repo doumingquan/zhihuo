@@ -155,9 +155,9 @@
                                 <div class="col-md-9">
                                     <div class="radio">
                                         <!-- Inline radio buttons -->
-                                        {volist id="vo" name="position"}
+                                        {volist id="vo" name="ptype"}
                                         <input id="demo-inline-form-radio-{$vo.id}" <?php if($vo['id']==$data['pro_style_id']) {echo "checked='checked'";}?> class="magic-radio" type="radio"  name="pro_style_id" value="{$vo.id}" >
-                                        <label for="demo-inline-form-radio-{$vo.id}" >{$vo.position}</label>
+                                        <label for="demo-inline-form-radio-{$vo.id}" >{$vo.ptype}</label>
                                         {/volist}
                                     </div>
                                 </div>

@@ -29,7 +29,7 @@ class Project extends Adminbase{
            //dump($info);
         }elseif($cate_id==2){
             //一般管理员调出该公司所有项目信息
-            $data = db('project')->alias('p')->field('p.*,po.position')->join('admin_company c','c.id=p.company_id')->join('admin_position po' , 'po.id=p.pro_style_id')->where('p.company_id',$cate['cid'])->where('is_delete!=2')->select();//dump($data);
+            $data = db('project')->alias('p')->field('p.*,po.ptype')->join('admin_company c','c.id=p.company_id')->join('admin_ptype po' , 'po.id=p.pro_style_id')->where('p.company_id',$cate['cid'])->where('is_delete!=2')->select();//dump($data);
             foreach($data as $k=>$v){
                 $arr = explode(',',$v['admin_id']);
                 //dump($arr);
@@ -48,7 +48,7 @@ class Project extends Adminbase{
         }else{
             //员工自己参与项目的信息
             $id=session('user')['id'];
-            $data=db('project')->alias('p')->where("FIND_IN_SET($id, admin_id)")->join('admin_position po' , 'po.id=p.pro_style_id','LEFT')->where('p.is_delete!=2')->select();//halt($data);
+            $data=db('project')->alias('p')->where("FIND_IN_SET($id, admin_id)")->join('admin_ptype po' , 'po.id=p.pro_style_id','LEFT')->where('p.is_delete!=2')->select();//halt($data);
             foreach($data as $k=>$v){
                 $arr = explode(',',$v['admin_id']);
                 //dump($arr);
@@ -102,7 +102,7 @@ class Project extends Adminbase{
             $keyword = input('keywords');
             $where['pro']=array('like',"%$keyword%");
         }
-         $data=Db::name('project')->alias('p')->field('p.*,po.position')->join('admin_position po' , 'po.id=p.pro_style_id')->where('is_delete!=2')->where('company_id',$id)->where($where)->select();
+         $data=Db::name('project')->alias('p')->field('p.*,pt.ptype')->join('admin_ptype pt' , 'pt.id=p.pro_style_id')->where('is_delete!=2')->where('company_id',$id)->where($where)->select();
         // dump($data);
         foreach($data as $k=>$v){
             $arr = explode(',',$v['admin_id']);
@@ -154,7 +154,7 @@ class Project extends Adminbase{
                 $this->error('添加失败');
             }
         }else{
-            $data = db('position')->select();
+            $data = db('ptype')->select();//dump($data);
             $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();
             if(session('admin_cate')['id']==1){
                 $info = Db::name('company')->field('company')->select(); 
@@ -210,9 +210,9 @@ class Project extends Adminbase{
             $user = DB::name('admin')->field('id,username')->where('company_id',session('admin_cate')['cid'])->select();//dump($info);
             $company = DB::name('company')->select();
       
-            $position = db('position')->select();
+            $ptype = db('ptype')->select();
             // $user = DB::name('admin')->field('id,username')->select();
-            $this->assign('position',$position);
+            $this->assign('ptype',$ptype);
             $this->assign('string',$array);
             $this->assign('company',$company);
             $this->assign('user',$user);
@@ -223,7 +223,7 @@ class Project extends Adminbase{
     }
 
     public function delete(){
-          $id = input('id');echo $id;
+          $id = input('id');//echo $id;
             $result = DB::name('project')->where(array('id'=>$id))->update(array('is_delete'=>2));
             if($result){
                 echo json_encode(array('status'=>1000,'msg'=>'删除成功!'));
