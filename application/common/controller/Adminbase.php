@@ -27,7 +27,7 @@ class AdminBase extends Base
         $a = $request->action();
         $rule_name = $m . '/' . $c . '/' . $a;
         $this->assign('c', $c);
-        //var_dump($rule_name);
+        //dump($rule_name);
         // 菜单
         $group = $auth->getGroups(session('user')['id']);
         $this->uid=(session('user')['id']);
@@ -41,7 +41,7 @@ class AdminBase extends Base
         $_map['id'] = ['in', $rules];
         $menu = db('authRule')->where($map)->select();
         foreach ($menu as $k => $v) {
-            $menu[$k]['children'] = db('authRule')->where($_map)->where(array('pid' => $v['id'], 'show' => 1))->select();
+            $menu[$k]['children'] = db('authRule')->alias('ar')->where($_map)->where(array('pid' => $v['id'], 'show' => 1))->order('ar.id desc')->select();
             foreach ($menu[$k]['children'] as $k1 => $v1) {
                 $menu[$k]['children'][$k1]['children'] = db('authRule')->where($_map)->where(array('pid' => $v1['id'], 'show' => 1))->select();
             }
@@ -55,12 +55,15 @@ class AdminBase extends Base
 
         // end菜单
         $result = $auth->check($rule_name, session('user')['id']);
+        //dump($result);
 
         $cate = db('auth_group_access')->alias('au')->field('g.id,c.id cid,c.pid,c.company,a.headpic')->join('__ADMIN__ a','a.id=au.uid')->join('admin_auth_group g','g.id=au.group_id')->join('__COMPANY__ c','c.id = a.company_id')->where('a.id',$this->uid)->find();//dump($cate);
 
         session('admin_cate',$cate);
 
-
+        // echo "<pre>";
+        // print_r($menu);
+        // echo "</pre>";exit;
         //超级管理员
         // switch ($cate['id']) {
         //     case 1://超级管理员
@@ -91,9 +94,9 @@ class AdminBase extends Base
       
 
 
-      /*  if (!$result) {
+        if (!$result) {
             $this->error('您没有权限访问');
-        }*/
+        }
 
     }
 

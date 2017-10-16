@@ -57,7 +57,7 @@ class Admin extends Adminbase
             //超级管理员调出公司信息
             $info = db('company')->select();//dump($info);
             foreach ($info as $k => $v) {
-                        $data = db('admin')->where('company_id',$v['id'])->count();
+                        $data = db('admin')->where('company_id',$v['id'])->where('is_delete!=2')->count();
                         $info[$k]['count'] = $data;
                     }
             $this->assign('admin', $info);
@@ -71,7 +71,7 @@ class Admin extends Adminbase
 //             return view();
         } else {
             //非管理员调出该公司所有员工信息
-            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.company_id', $cate['cid'])->select();//dump($data);
+            $data = db('admin')->alias('a')->field('a.*,i.name,d.depart,c.company,p.position')->join('admin_infomation i', 'i.id=a.schooling', 'LEFT')->join('admin_depart d', 'a.depart_id=d.id', 'LEFT')->join('admin_company c', 'c.id=a.company_id', 'LEFT')->join('admin_position p', 'a.entry_pos=p.id', 'LEFT')->where('a.is_delete!=2')->where('a.company_id', $cate['cid'])->select();//dump($data);
             $this->assign('admin', $data);
             return view('ad_list2');
         }
